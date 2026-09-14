@@ -94,7 +94,7 @@ export const sidebarData: SidebarData = {
       ],
     },
     {
-      title: 'Preferences & Support',
+      title: 'Preferences',
       items: [
         {
           title: 'Settings',

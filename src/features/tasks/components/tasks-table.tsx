@@ -127,7 +127,7 @@ export function TasksTable({ data }: DataTableProps) {
           },
         ]}
       />
-      <div className='overflow-hidden rounded-md border'>
+      <div className='w-full overflow-x-auto rounded-md border'>
         <Table className='min-w-xl'>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

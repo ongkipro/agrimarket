@@ -298,48 +298,52 @@ function TasksContent() {
         </div>
 
         {/* Multi-View Tabs Navigation */}
-        <Tabs value={selectedView} onValueChange={setSelectedView} className='w-full space-y-4'>
-          <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 overflow-x-auto no-scrollbar pb-1'>
-            <TabsList className='w-full sm:w-auto inline-flex justify-start min-w-full sm:min-w-0 h-10'>
-              <TabsTrigger value='table' className='text-xs sm:text-sm px-3 sm:px-4 py-2'>
-                <ListTodo className='h-3.5 w-3.5 mr-1.5' />
-                Daftar Operasi (Table)
-              </TabsTrigger>
-              <TabsTrigger value='kanban' className='text-xs sm:text-sm px-3 sm:px-4 py-2'>
-                <Columns3 className='h-3.5 w-3.5 mr-1.5' />
-                Papan Alur Kerja (Kanban)
-              </TabsTrigger>
-              <TabsTrigger value='calendar' className='text-xs sm:text-sm px-3 sm:px-4 py-2'>
-                <Calendar className='h-3.5 w-3.5 mr-1.5' />
-                Jadwal Kunjungan (7 Hari)
-              </TabsTrigger>
-              <TabsTrigger value='opt_desk' className='text-xs sm:text-sm px-3 sm:px-4 py-2'>
-                <ShieldAlert className='h-3.5 w-3.5 mr-1.5 text-rose-500' />
-                Meja Tanggap Darurat OPT
-              </TabsTrigger>
-            </TabsList>
+        <Tabs value={selectedView} onValueChange={setSelectedView} className='w-full space-y-4 min-w-0'>
+          <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 min-w-0'>
+            <div className='w-full sm:w-auto overflow-x-auto no-scrollbar pb-1'>
+              <TabsList className='inline-flex w-max justify-start h-10'>
+                <TabsTrigger value='table' className='text-xs sm:text-sm px-3 sm:px-4 py-2 shrink-0'>
+                  <ListTodo className='h-3.5 w-3.5 mr-1.5' />
+                  Daftar Operasi (Table)
+                </TabsTrigger>
+                <TabsTrigger value='kanban' className='text-xs sm:text-sm px-3 sm:px-4 py-2 shrink-0'>
+                  <Columns3 className='h-3.5 w-3.5 mr-1.5' />
+                  Papan Alur Kerja (Kanban)
+                </TabsTrigger>
+                <TabsTrigger value='calendar' className='text-xs sm:text-sm px-3 sm:px-4 py-2 shrink-0'>
+                  <Calendar className='h-3.5 w-3.5 mr-1.5' />
+                  Jadwal Kunjungan (7 Hari)
+                </TabsTrigger>
+                <TabsTrigger value='opt_desk' className='text-xs sm:text-sm px-3 sm:px-4 py-2 shrink-0'>
+                  <ShieldAlert className='h-3.5 w-3.5 mr-1.5 text-rose-500' />
+                  Meja Tanggap Darurat OPT
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
             {/* Quick Category Filter Pills */}
-            <div className='flex items-center gap-1.5 flex-wrap shrink-0'>
-              <span className='text-xs text-muted-foreground mr-1'>Pilar:</span>
-              {[
-                { key: 'ALL', label: 'Semua' },
-                { key: 'demoplot', label: 'Demoplot' },
-                { key: 'kios_kpl', label: 'Kios KPL' },
-                { key: 'opt_hama', label: 'OPT Hama' },
-                { key: 'distribusi', label: 'Distribusi' },
-                { key: 'ads_leads', label: 'Leads Ads' },
-              ].map((p) => (
-                <Button
-                  key={p.key}
-                  size='sm'
-                  variant={categoryFilter === p.key ? 'default' : 'outline'}
-                  className='h-7 text-[11px] px-2.5'
-                  onClick={() => setCategoryFilter(p.key)}
-                >
-                  {p.label}
-                </Button>
-              ))}
+            <div className='w-full sm:w-auto overflow-x-auto no-scrollbar pb-1'>
+              <div className='flex items-center gap-1.5 min-w-max sm:flex-wrap'>
+                <span className='text-xs text-muted-foreground mr-1'>Pilar:</span>
+                {[
+                  { key: 'ALL', label: 'Semua' },
+                  { key: 'demoplot', label: 'Demoplot' },
+                  { key: 'kios_kpl', label: 'Kios KPL' },
+                  { key: 'opt_hama', label: 'OPT Hama' },
+                  { key: 'distribusi', label: 'Distribusi' },
+                  { key: 'ads_leads', label: 'Leads Ads' },
+                ].map((p) => (
+                  <Button
+                    key={p.key}
+                    size='sm'
+                    variant={categoryFilter === p.key ? 'default' : 'outline'}
+                    className='h-7 text-[11px] px-2.5'
+                    onClick={() => setCategoryFilter(p.key)}
+                  >
+                    {p.label}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -571,8 +575,8 @@ function TasksContent() {
               </CardHeader>
 
               <CardContent className='p-0'>
-                <div className='overflow-x-auto'>
-                  <table className='w-full text-xs'>
+                <div className='w-full overflow-x-auto rounded-md border'>
+                  <table className='w-full min-w-[680px] text-xs'>
                     <thead>
                       <tr className='border-b bg-muted/40 text-muted-foreground text-[11px]'>
                         <th className='text-left py-2.5 px-4 font-semibold'>ID & Hama Sasaran</th>

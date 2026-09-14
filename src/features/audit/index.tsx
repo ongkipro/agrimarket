@@ -232,7 +232,7 @@ export function AuditLedger() {
         {/* Level 1: Macro Aggregate Reconciliation Audit */}
         <Card className='border shadow-xs'>
           <CardHeader className='pb-3'>
-            <div className='flex items-center justify-between'>
+            <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2'>
               <div>
                 <CardTitle className='text-sm font-semibold'>
                   Level 1: Macro Aggregate Reconciliation Audit (Header vs. Sum of 13 Crops)
@@ -241,7 +241,7 @@ export function AuditLedger() {
                   Verifying that top-line macro summary metrics match the bottom-up sum of all 13 individual commodity rows
                 </CardDescription>
               </div>
-              <Badge className='bg-emerald-600 text-white text-[10px]'>
+              <Badge className='bg-emerald-600 text-white text-[10px] self-start sm:self-auto'>
                 0.0000% Zero-Deviation PASS
               </Badge>
             </div>
@@ -251,7 +251,7 @@ export function AuditLedger() {
               ← Geser tabel ke kanan untuk melihat rincian rekonsiliasi makro →
             </div>
             <div className='w-full overflow-x-auto rounded-md border'>
-              <Table>
+              <Table className='min-w-[760px]'>
                 <TableHeader>
                   <TableRow className='bg-muted/50 text-xs font-semibold'>
                     <TableHead className='min-w-[180px] sticky left-0 bg-background z-20 border-r shadow-xs'>Macro Indicator</TableHead>
@@ -388,7 +388,7 @@ export function AuditLedger() {
               ← Geser tabel ke kanan untuk melihat selisih & metodologi survei →
             </div>
             <div className='w-full overflow-x-auto rounded-md border'>
-              <Table>
+              <Table className='min-w-[860px]'>
                 <TableHeader>
                   <TableRow className='bg-muted/50 text-xs font-semibold'>
                     <TableHead className='w-[160px] min-w-[140px] sticky left-0 bg-background z-20 border-r shadow-xs'>Commodity</TableHead>

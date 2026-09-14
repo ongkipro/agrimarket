@@ -206,7 +206,7 @@ export function DistributionNetwork() {
               ← Geser tabel ke kanan untuk melihat rincian KPL, BPP & risiko kredit →
             </div>
             <div className='w-full overflow-x-auto rounded-md border max-h-[500px] overflow-y-auto'>
-              <Table>
+              <Table className='min-w-[860px]'>
                 <TableHeader className='sticky top-0 bg-card z-20'>
                   <TableRow className='bg-muted/50 text-xs font-semibold'>
                     <TableHead className='w-[60px]'>Code</TableHead>

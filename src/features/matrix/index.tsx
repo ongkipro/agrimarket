@@ -227,13 +227,13 @@ export function AttractivenessMatrix() {
 
         {/* Multi-Criteria Scoring Table */}
         <Card className='border shadow-xs'>
-          <CardHeader className='flex flex-row items-center justify-between pb-3'>
+          <CardHeader className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3'>
             <div>
               <CardTitle className='text-sm font-semibold'>
-                Comprehensive Commodity Attractiveness Scorecard
+                Matriks Skor Daya Tarik Komoditas (Attractiveness Scorecard)
               </CardTitle>
               <CardDescription>
-                Ranked by composite attractiveness scoring engine (0 - 100)
+                Peringkat prioritas komersial berbasis scoring multi-kriteria pasar saprodi (0 - 100)
               </CardDescription>
             </div>
             <div className='flex items-center gap-1 text-xs'>
@@ -269,7 +269,7 @@ export function AttractivenessMatrix() {
               ← Geser tabel ke kanan untuk melihat rincian SAM & Skor →
             </div>
             <div className='w-full overflow-x-auto rounded-md border'>
-              <Table>
+              <Table className='min-w-[800px]'>
                 <TableHeader>
                   <TableRow className='bg-muted/50 text-xs font-semibold'>
                     <TableHead className='w-[60px] text-center'>Rank</TableHead>

@@ -237,8 +237,8 @@ export function AdsGrowthEngine() {
 
           {/* Navigation Tabs */}
           <Tabs value={selectedTab} onValueChange={setSelectedTab} className='w-full'>
-            <div className='overflow-x-auto no-scrollbar pb-1'>
-              <TabsList className='w-full sm:w-auto inline-flex justify-start min-w-full sm:min-w-0 h-10'>
+            <div className='w-full overflow-x-auto no-scrollbar pb-1'>
+              <TabsList className='inline-flex w-max min-w-full sm:min-w-0 justify-start h-10'>
                 <TabsTrigger value='personas' className='text-xs sm:text-sm px-3 sm:px-4 py-2'>
                   <Users className='h-3.5 w-3.5 mr-1.5' />
                   Personas & Demografi
@@ -906,8 +906,8 @@ export function AdsGrowthEngine() {
                 </CardHeader>
 
                 <CardContent className='p-0'>
-                  <div className='overflow-x-auto'>
-                    <Table>
+                  <div className='w-full overflow-x-auto rounded-md border'>
+                    <Table className='min-w-[720px]'>
                       <TableHeader>
                         <TableRow className='text-[11px]'>
                           <TableHead className='w-[280px]'>Search Keyword</TableHead>

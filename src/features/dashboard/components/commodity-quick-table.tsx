@@ -47,7 +47,7 @@ export function CommodityQuickTable() {
           ← Geser tabel ke kanan untuk melihat rincian SAM & Audit →
         </div>
         <div className='w-full overflow-x-auto rounded-md border'>
-          <Table>
+          <Table className='min-w-[850px]'>
             <TableHeader>
               <TableRow className='bg-muted/50 text-xs font-semibold'>
                 <TableHead className='w-[180px] min-w-[160px] sticky left-0 bg-background z-20 border-r shadow-xs'>Commodity</TableHead>

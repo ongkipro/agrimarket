@@ -107,7 +107,7 @@ export function GeospatialMap() {
               </CardHeader>
               <CardContent className='space-y-4'>
                 {/* Visual Legend */}
-                <div className='flex items-center gap-2 text-xs text-muted-foreground pb-2 border-b'>
+                <div className='flex flex-wrap items-center gap-2 text-xs text-muted-foreground pb-2 border-b'>
                   <span>Intensity:</span>
                   <span className='inline-flex items-center gap-1'>
                     <span className='h-3 w-3 rounded bg-muted/60' /> Low (&lt;1%)

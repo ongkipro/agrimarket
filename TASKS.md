@@ -208,7 +208,22 @@
   - Stage, commit cleanly (no AI attribution trailers, noreply email), push to GitHub `ongkipro/agrimarket`.
   - Deploy to Vercel via `vercel --prod --yes` and verify production deployment.
 
+---
 
-
-
-
+### Phase 10: AI Slop Cleansing & Mobile Responsive Over-Width Hardening (COMPLETED & VERIFIED)
+- [x] **TASK-49:** Mobile Over-Width Container Hardening & Layout Defenses:
+  - Add `overflow-x: hidden; width: 100%; max-width: 100vw;` to `html, body` in `src/styles/index.css` to eliminate mobile horizontal viewport wobbling.
+  - Add `min-w-0 max-w-full overflow-x-hidden` to `SidebarInset` in `src/components/layout/authenticated-layout.tsx` and `min-w-0 max-w-full` in `src/components/ui/sidebar.tsx` to prevent flex child expansion beyond screen boundary.
+  - Add `min-w-0 max-w-full` to `Main` in `src/components/layout/main.tsx`.
+  - Replace `overflow-hidden` with `w-full overflow-x-auto rounded-md border` in `src/features/tasks/components/tasks-table.tsx`.
+  - Add independent `overflow-x-auto no-scrollbar` scroll wrappers with `w-max inline-flex` on multi-view tabs and pill filters in `src/features/tasks/index.tsx`, `src/features/commodities/index.tsx`, and `src/features/ads/index.tsx`.
+  - Set explicit table minimum widths (`min-w-[680px]` to `min-w-[860px]`) wrapped in `w-full overflow-x-auto` across all data tables (`tasks`, `commodities`, `ads`, `audit`, `distribution`, `matrix`, `dashboard/commodity-quick-table`).
+  - Add `flex-wrap` to geospatial legend in `src/features/map/index.tsx` and commodity title banner in `src/features/commodities/index.tsx`.
+- [x] **TASK-50:** AI Slop Cleansing & Professional Agronomic Copywriting Polish:
+  - Eliminate generic LLM buzzwords, redundant AI comments, and vague placeholders across feature components.
+  - Replace generic marketing slogans with precise Indonesian & English agribusiness domain terms (permodelan berjenjang TAM/SAM/SOM, saprodi, yarnen, efikasi dosis lapang, alokasi KPL, BPP, OPT wereng/patek).
+  - Standardize all sidebar navigation group titles to concise labels $\le 2$ words (`Market Intelligence`, `Field Operations`, `Preferences`).
+- [x] **TASK-51:** Test Suite Calibration & Production Verification:
+  - Calibrate sidebar group title to `'Preferences'` to avoid substring collision with `'System'` theme trigger in `search-provider.test.tsx`.
+  - Verify 100% test pass rate (23 test files, 145/145 tests passing).
+  - Verify 0 ESLint errors and warnings, and successful Vite production compilation.

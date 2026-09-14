@@ -109,10 +109,10 @@ export function CommoditiesExplorer() {
 
         {/* Selected Crop Header Banner */}
         <Card className='border bg-card shadow-xs'>
-          <CardContent className='p-5'>
+          <CardContent className='p-4 sm:p-5'>
             <div className='flex flex-col md:flex-row md:items-center justify-between gap-4'>
               <div>
-                <div className='flex items-center gap-3'>
+                <div className='flex flex-wrap items-center gap-2 sm:gap-3'>
                   <h1 className='text-2xl font-bold tracking-tight text-foreground'>
                     {selectedCrop.name}
                   </h1>
@@ -124,26 +124,26 @@ export function CommoditiesExplorer() {
                   </Badge>
                 </div>
                 <p className='text-xs text-muted-foreground mt-1'>
-                  Comprehensive agronomic TAM sizing, sequential SAM driver conversion, seasonal subround curves, and input market valuation.
+                  Sizing pasar komoditas nasional: permodelan berjenjang TAM, SAM, SOM, kurva tanam subround BPS, dan valuasi saprodi per hektar.
                 </p>
               </div>
 
-              <div className='flex flex-wrap items-center gap-4 text-xs font-medium'>
-                <div className='rounded-md border bg-muted/40 p-2 text-center min-w-[110px]'>
-                  <div className='text-muted-foreground text-[11px]'>Farm-Gate Price</div>
-                  <div className='font-bold text-sm text-foreground'>
+              <div className='grid grid-cols-3 sm:flex sm:flex-wrap items-center gap-2 sm:gap-4 text-xs font-medium'>
+                <div className='rounded-md border bg-muted/40 p-2 text-center min-w-0 sm:min-w-[110px]'>
+                  <div className='text-muted-foreground text-[10px] sm:text-[11px]'>Farm-Gate Price</div>
+                  <div className='font-bold text-xs sm:text-sm text-foreground truncate'>
                     Rp {selectedCrop.tam.farmgate_price_idr_per_kg.toLocaleString('id-ID')}/kg
                   </div>
                 </div>
-                <div className='rounded-md border bg-muted/40 p-2 text-center min-w-[110px]'>
-                  <div className='text-muted-foreground text-[11px]'>National Yield</div>
-                  <div className='font-bold text-sm text-foreground'>
+                <div className='rounded-md border bg-muted/40 p-2 text-center min-w-0 sm:min-w-[110px]'>
+                  <div className='text-muted-foreground text-[10px] sm:text-[11px]'>National Yield</div>
+                  <div className='font-bold text-xs sm:text-sm text-foreground truncate'>
                     {selectedCrop.tam.yield_ton_per_ha.toFixed(2)} Ton/Ha
                   </div>
                 </div>
-                <div className='rounded-md border bg-muted/40 p-2 text-center min-w-[120px]'>
-                  <div className='text-muted-foreground text-[11px]'>Input Spend / Ha</div>
-                  <div className='font-bold text-sm text-foreground'>
+                <div className='rounded-md border bg-muted/40 p-2 text-center min-w-0 sm:min-w-[120px]'>
+                  <div className='text-muted-foreground text-[10px] sm:text-[11px]'>Input Spend / Ha</div>
+                  <div className='font-bold text-xs sm:text-sm text-foreground truncate'>
                     {formatIDR(selectedCrop.sam.input_spending_per_ha_idr, 'compact')}
                   </div>
                 </div>
@@ -152,9 +152,10 @@ export function CommoditiesExplorer() {
           </CardContent>
         </Card>
 
-        {/* 6 Comprehensive Tabs */}
+        {/* 6 Modul Analisis Agronomi */}
         <Tabs defaultValue='funnel' className='space-y-4'>
-          <TabsList className='w-full overflow-x-auto flex-nowrap justify-start sm:justify-center no-scrollbar h-auto p-1 bg-muted/70 gap-1'>
+          <div className='w-full overflow-x-auto no-scrollbar pb-1'>
+            <TabsList className='inline-flex w-max min-w-full sm:min-w-0 justify-start sm:justify-center h-auto p-1 bg-muted/70 gap-1'>
             <TabsTrigger value='funnel' className='text-xs py-2 shrink-0 whitespace-nowrap'>
               <Layers className='mr-1.5 h-3.5 w-3.5' /> Funnel & Economics
             </TabsTrigger>
@@ -174,6 +175,7 @@ export function CommoditiesExplorer() {
               <BookOpen className='mr-1.5 h-3.5 w-3.5' /> GTM Playbook
             </TabsTrigger>
           </TabsList>
+          </div>
 
           {/* TAB 1: FUNNEL & FARM ECONOMICS */}
           <TabsContent value='funnel' className='space-y-4'>
