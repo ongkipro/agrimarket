@@ -12,12 +12,32 @@ import {
 
 export const labels = [
   {
-    value: 'bug',
-    label: 'Bug',
+    value: 'demoplot',
+    label: 'Demoplot & Riset',
+  },
+  {
+    value: 'kios_kpl',
+    label: 'Kios KPL & Audit',
+  },
+  {
+    value: 'opt_hama',
+    label: 'Tanggap OPT & Hama',
+  },
+  {
+    value: 'distribusi',
+    label: 'Distribusi & Logistik',
+  },
+  {
+    value: 'ads_leads',
+    label: 'Digital Leads Meta/Google',
   },
   {
     value: 'feature',
     label: 'Feature',
+  },
+  {
+    value: 'bug',
+    label: 'Bug',
   },
   {
     value: 'documentation',

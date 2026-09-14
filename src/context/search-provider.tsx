@@ -39,7 +39,10 @@ export const useSearch = () => {
   const searchContext = useContext(SearchContext)
 
   if (!searchContext) {
-    throw new Error('useSearch has to be used within SearchProvider')
+    return {
+      open: false,
+      setOpen: () => {},
+    }
   }
 
   return searchContext

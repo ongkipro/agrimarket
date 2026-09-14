@@ -10,6 +10,11 @@
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
   }
+  html,
+  body {
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+  }
   html {
     @apply overflow-x-hidden;
   }

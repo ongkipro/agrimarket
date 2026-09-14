@@ -51,11 +51,34 @@ export const tasksColumns: ColumnDef<Task>[] = [
     },
     cell: ({ row }) => {
       const label = labels.find((label) => label.value === row.original.label)
+      const getLabelBadgeClass = (val?: string) => {
+        switch (val) {
+          case 'demoplot':
+            return 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-300'
+          case 'kios_kpl':
+            return 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border-blue-300'
+          case 'opt_hama':
+            return 'bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 border-rose-300'
+          case 'distribusi':
+            return 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border-amber-300'
+          case 'ads_leads':
+            return 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border-purple-300'
+          default:
+            return ''
+        }
+      }
 
       return (
-        <div className='flex space-x-2'>
-          {label && <Badge variant='outline'>{label.label}</Badge>}
-          <span className='truncate font-medium'>{row.getValue('title')}</span>
+        <div className='flex space-x-2 items-center min-w-0'>
+          {label && (
+            <Badge
+              variant='outline'
+              className={`shrink-0 text-[10px] font-semibold ${getLabelBadgeClass(row.original.label)}`}
+            >
+              {label.label}
+            </Badge>
+          )}
+          <span className='truncate font-medium text-xs sm:text-sm'>{row.getValue('title')}</span>
         </div>
       )
     },

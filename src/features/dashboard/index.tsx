@@ -1,190 +1,102 @@
+import { useState } from 'react'
+import { Link } from '@tanstack/react-router'
+import { Download, Sliders, MapPin, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ConfigDrawer } from '@/components/config-drawer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { TopNav } from '@/components/layout/top-nav'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
-import { Analytics } from './components/analytics'
-import { Overview } from './components/overview'
-import { RecentSales } from './components/recent-sales'
+import { MacroKpiCards } from './components/macro-kpi-cards'
+import { SectoralBreakdown } from './components/sectoral-breakdown'
+import { CommodityQuickTable } from './components/commodity-quick-table'
+import { NationalAgronomicAlerts } from './components/national-agronomic-alerts'
+import { getDataset } from '@/features/agri/data-provider'
 
 export function Dashboard() {
+  const dataset = getDataset()
+  const [downloading, setDownloading] = useState(false)
+
+  const handleExportJson = () => {
+    setDownloading(true)
+    const blob = new Blob([JSON.stringify(dataset, null, 2)], {
+      type: 'application/json',
+    })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `agrimarket-indonesia-master-dataset-2024.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+    setTimeout(() => setDownloading(false), 800)
+  }
+
   return (
     <>
       {/* ===== Top Heading ===== */}
       <Header>
         <TopNav links={topNav} className='me-auto' />
-        <Search />
-        <ThemeSwitch />
-        <ConfigDrawer />
-        <ProfileDropdown />
+        <div className='ms-auto flex items-center gap-2 shrink-0'>
+          <Search className='hidden sm:flex' />
+          <ThemeSwitch />
+          <ProfileDropdown />
+        </div>
       </Header>
 
-      {/* ===== Main ===== */}
-      <Main>
-        <div className='mb-2 flex items-center justify-between space-y-2'>
-          <h1 className='text-2xl font-bold tracking-tight'>Dashboard</h1>
-          <div className='flex items-center space-x-2'>
-            <Button>Download</Button>
+      {/* ===== Main Content ===== */}
+      <Main className='space-y-6'>
+        {/* Title & Quick Actions */}
+        <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
+          <div>
+            <div className='flex items-center gap-2'>
+              <h1 className='text-2xl font-bold tracking-tight'>Agrimarket Executive Telemetry</h1>
+              <span className='inline-flex items-center rounded-md bg-emerald-100 dark:bg-emerald-950/60 px-2 py-0.5 text-xs font-medium text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800'>
+                <Sparkles className='mr-1 h-3 w-3' /> BPS 2024 Verified
+              </span>
+            </div>
+            <p className='text-xs text-muted-foreground mt-0.5'>
+              National market sizing (TAM), qualified input commercial addressability (SAM), and internal capture capability (SOM) across 13 strategic crops.
+            </p>
+          </div>
+          <div className='flex flex-wrap items-center gap-2 w-full sm:w-auto'>
+            <Button variant='outline' size='sm' className='min-h-[44px] sm:min-h-9 flex-1 sm:flex-initial justify-center' asChild>
+              <Link to='/simulator'>
+                <Sliders className='mr-1.5 h-3.5 w-3.5' />
+                SOM Simulator
+              </Link>
+            </Button>
+            <Button variant='outline' size='sm' className='min-h-[44px] sm:min-h-9 flex-1 sm:flex-initial justify-center' asChild>
+              <Link to='/map'>
+                <MapPin className='mr-1.5 h-3.5 w-3.5' />
+                Geospatial Map
+              </Link>
+            </Button>
+            <Button size='sm' onClick={handleExportJson} disabled={downloading} className='min-h-[44px] sm:min-h-9 flex-1 sm:flex-initial justify-center'>
+              <Download className='mr-1.5 h-3.5 w-3.5' />
+              {downloading ? 'Exporting...' : 'Export Dataset'}
+            </Button>
           </div>
         </div>
-        <Tabs
-          orientation='vertical'
-          defaultValue='overview'
-          className='space-y-4'
-        >
-          <div className='w-full overflow-x-auto pb-2'>
-            <TabsList>
-              <TabsTrigger value='overview'>Overview</TabsTrigger>
-              <TabsTrigger value='analytics'>Analytics</TabsTrigger>
-              <TabsTrigger value='reports' disabled>
-                Reports
-              </TabsTrigger>
-              <TabsTrigger value='notifications' disabled>
-                Notifications
-              </TabsTrigger>
-            </TabsList>
-          </div>
-          <TabsContent value='overview' className='space-y-4'>
-            <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
-              <Card>
-                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>
-                    Total Revenue
-                  </CardTitle>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='h-4 w-4 text-muted-foreground'
-                  >
-                    <path d='M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6' />
-                  </svg>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>$45,231.89</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +20.1% from last month
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>
-                    Subscriptions
-                  </CardTitle>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='h-4 w-4 text-muted-foreground'
-                  >
-                    <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' />
-                    <circle cx='9' cy='7' r='4' />
-                    <path d='M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' />
-                  </svg>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>+2350</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +180.1% from last month
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>Sales</CardTitle>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='h-4 w-4 text-muted-foreground'
-                  >
-                    <rect width='20' height='14' x='2' y='5' rx='2' />
-                    <path d='M2 10h20' />
-                  </svg>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>+12,234</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +19% from last month
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>
-                    Active Now
-                  </CardTitle>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='h-4 w-4 text-muted-foreground'
-                  >
-                    <path d='M22 12h-4l-3 9L9 3l-3 9H2' />
-                  </svg>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>+573</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +201 since last hour
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-            <div className='grid grid-cols-1 gap-4 lg:grid-cols-7'>
-              <Card className='col-span-1 lg:col-span-4'>
-                <CardHeader>
-                  <CardTitle>Overview</CardTitle>
-                </CardHeader>
-                <CardContent className='ps-2'>
-                  <Overview />
-                </CardContent>
-              </Card>
-              <Card className='col-span-1 lg:col-span-3'>
-                <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
-                  <CardDescription>
-                    You made 265 sales this month.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <RecentSales />
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-          <TabsContent value='analytics' className='space-y-4'>
-            <Analytics />
-          </TabsContent>
-        </Tabs>
+
+        {/* 1. Macro KPI Telemetry Cards */}
+        <MacroKpiCards />
+
+        {/* 2. Sectoral Breakdown (TAM vs SAM + Input Market Pie) */}
+        <SectoralBreakdown />
+
+        {/* 3. 13 Strategic Commodities Matrix */}
+        <CommodityQuickTable />
+
+        {/* 4. Strategic Agronomic Alerts & Macro Drivers */}
+        <div className='space-y-2'>
+          <h2 className='text-sm font-semibold tracking-tight text-foreground'>
+            Strategic Market Catalysts & Agronomic Intelligence
+          </h2>
+          <NationalAgronomicAlerts />
+        </div>
       </Main>
     </>
   )
@@ -193,26 +105,38 @@ export function Dashboard() {
 const topNav = [
   {
     title: 'Overview',
-    href: 'dashboard/overview',
+    href: '/',
     isActive: true,
     disabled: false,
   },
   {
-    title: 'Customers',
-    href: 'dashboard/customers',
+    title: 'Commodities',
+    href: '/commodities',
     isActive: false,
-    disabled: true,
+    disabled: false,
   },
   {
-    title: 'Products',
-    href: 'dashboard/products',
+    title: 'Geospatial Map',
+    href: '/map',
     isActive: false,
-    disabled: true,
+    disabled: false,
   },
   {
-    title: 'Settings',
-    href: 'dashboard/settings',
+    title: 'SOM Simulator',
+    href: '/simulator',
     isActive: false,
-    disabled: true,
+    disabled: false,
+  },
+  {
+    title: 'Matrix',
+    href: '/matrix',
+    isActive: false,
+    disabled: false,
+  },
+  {
+    title: 'BPS Ledger',
+    href: '/audit',
+    isActive: false,
+    disabled: false,
   },
 ]

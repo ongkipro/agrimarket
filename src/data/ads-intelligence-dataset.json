@@ -1,0 +1,683 @@
+{
+  "last_updated": "2026-09-14",
+  "data_version": "1.0.0",
+  "demographics": {
+    "national_profile": {
+      "total_digital_farmers_reached": 12450000,
+      "age_distribution": [
+        { "range": "18-24", "percentage": 9.5, "label": "Pemuda Tani / Generasi Penerus" },
+        { "range": "25-34", "percentage": 28.4, "label": "Petani Muda & Pengelola Digital" },
+        { "range": "35-44", "percentage": 34.6, "label": "Pengambil Keputusan Utama (Decision Maker)" },
+        { "range": "45-54", "percentage": 19.8, "label": "Petani Senior Pemilik Lahan" },
+        { "range": "55+", "percentage": 7.7, "label": "Petani Sepuh (Biasanya dibantu anak)" }
+      ],
+      "gender_split": {
+        "male_percentage": 82.3,
+        "female_percentage": 17.7,
+        "female_roles": "Bendahara Poktan, Pengelola Kios KPL, Hobiis Urban Farming & Sayur Pekarangan"
+      },
+      "device_distribution": {
+        "android_percentage": 94.2,
+        "ios_percentage": 5.8,
+        "top_android_brands": ["Vivo (Y-series)", "Oppo (A-series)", "Samsung (Galaxy A)", "Xiaomi / Redmi", "Realme"],
+        "screen_resolution_note": "Dominan 720p / 1080p HD, orientasi vertikal 9:16 mutlak untuk video reels"
+      },
+      "connectivity": {
+        "mobile_data_4g_percentage": 88.0,
+        "rural_wifi_percentage": 12.0,
+        "bandwidth_constraint_note": "Kompresi video max 15MB, gunakan subtitle besar karena 65% ditonton tanpa headset di sawah/gardu"
+      },
+      "payment_channel_preferences": [
+        { "channel": "COD (Bayar di Tempat Kurir)", "percentage": 58.0, "trust_driver": "Sangat tinggi di kalangan petani pedesaan" },
+        { "channel": "Transfer Bank / Virtual Account (BRI, Mandiri, BCA)", "percentage": 24.0, "trust_driver": "Dominan bagi pemilik kios dan petani bermodal besar" },
+        { "channel": "QRIS / E-Wallet (Dana, ShopeePay)", "percentage": 12.0, "trust_driver": "Tumbuh pesat di kalangan petani muda <35 tahun" },
+        { "channel": "Tempo Kios / Yarnen", "percentage": 6.0, "trust_driver": "Khusus direct B2B via Kios KPL binaan" }
+      ]
+    },
+    "hourly_activity_heatmap": [
+      { "hour": 0, "label": "00:00 - 01:00", "activity_score": 12, "is_peak": false, "notes": "Istirahat malam" },
+      { "hour": 1, "label": "01:00 - 02:00", "activity_score": 8, "is_peak": false, "notes": "Istirahat malam" },
+      { "hour": 2, "label": "02:00 - 03:00", "activity_score": 6, "is_peak": false, "notes": "Istirahat malam" },
+      { "hour": 3, "label": "03:00 - 04:00", "activity_score": 10, "is_peak": false, "notes": "Mulai bangun dini hari" },
+      { "hour": 4, "label": "04:00 - 05:00", "activity_score": 25, "is_peak": false, "notes": "Bangun & sholat Subuh" },
+      { "hour": 5, "label": "05:00 - 06:00", "activity_score": 84, "is_peak": true, "notes": "Subuh Browsing: Kopi pagi sebelum ke sawah/kebun" },
+      { "hour": 6, "label": "06:00 - 07:00", "activity_score": 65, "is_peak": false, "notes": "Persiapan berangkat ke sawah" },
+      { "hour": 7, "label": "07:00 - 08:00", "activity_score": 30, "is_peak": false, "notes": "Aktivitas olah tanah / penyemprotan pagi" },
+      { "hour": 8, "label": "08:00 - 09:00", "activity_score": 22, "is_peak": false, "notes": "Kerja fisik lapangan aktif" },
+      { "hour": 9, "label": "09:00 - 10:00", "activity_score": 28, "is_peak": false, "notes": "Istirahat minum sejenak di saung sawah" },
+      { "hour": 10, "label": "10:00 - 11:00", "activity_score": 35, "is_peak": false, "notes": "Menjelang siang, mulai berteduh" },
+      { "hour": 11, "label": "11:00 - 12:00", "activity_score": 78, "is_peak": true, "notes": "Istirahat Siang: Berteduh di gubuk/warung kopi" },
+      { "hour": 12, "label": "12:00 - 13:00", "activity_score": 92, "is_peak": true, "notes": "Makan siang, buka TikTok/FB, diskusi hama di warung" },
+      { "hour": 13, "label": "13:00 - 14:00", "activity_score": 60, "is_peak": false, "notes": "Lanjut kerja sore atau pulang bersih-bersih" },
+      { "hour": 14, "label": "14:00 - 15:00", "activity_score": 42, "is_peak": false, "notes": "Penyemprotan herbisida / pupuk sore" },
+      { "hour": 15, "label": "15:00 - 16:00", "activity_score": 48, "is_peak": false, "notes": "Cek pengairan & saluran irigasi" },
+      { "hour": 16, "label": "16:00 - 17:00", "activity_score": 55, "is_peak": false, "notes": "Selesai dari sawah, mandi & santai" },
+      { "hour": 17, "label": "17:00 - 18:00", "activity_score": 68, "is_peak": false, "notes": "Menjelang Maghrib, kumpul keluarga" },
+      { "hour": 18, "label": "18:00 - 19:00", "activity_score": 75, "is_peak": false, "notes": "Lepas sholat Maghrib, santai makan malam" },
+      { "hour": 19, "label": "19:00 - 20:00", "activity_score": 96, "is_peak": true, "notes": "Golden Prime Time: Waktu paling responsif klik & chat WA" },
+      { "hour": 20, "label": "20:00 - 21:00", "activity_score": 98, "is_peak": true, "notes": "Peak Engagement: Buka FB Group Petani, YouTube demoplot" },
+      { "hour": 21, "label": "21:00 - 22:00", "activity_score": 72, "is_peak": false, "notes": "Menjelang tidur, cek harga pasar sayur/gabah" },
+      { "hour": 22, "label": "22:00 - 23:00", "activity_score": 40, "is_peak": false, "notes": "Sebagian besar petani sudah tidur" },
+      { "hour": 23, "label": "23:00 - 24:00", "activity_score": 20, "is_peak": false, "notes": "Aktivitas minimal" }
+    ]
+  },
+  "buyer_personas": [
+    {
+      "id": "PERSONA_01",
+      "name": "Pak Joko - Juragan Cabai & Bawang Merah",
+      "segment": "Petani Maju & Komersial",
+      "role": "Pemilik Lahan & Leader Komunitas Hortikultura",
+      "demographics": {
+        "age_range": "32 - 45 tahun",
+        "education": "SMA / Diploma / Sarjana",
+        "location": "Brebes, Nganjuk, Kediri, Temanggung, Kerinci",
+        "land_size": "1.5 - 5.0 Hektar",
+        "primary_crops": ["Cabai Rawit", "Cabai Merah Keriting", "Bawang Merah", "Tomat"]
+      },
+      "pain_points": [
+        "Patek (Antraknosa) dan layu fusarium yang bisa bikin gagal panen dalam 4 hari saat musim hujan.",
+        "Resistensi ulat grayak (Spodoptera exigua) terhadap insektisida generik yang sudah kebal.",
+        "Harga jual hasil panen berfluktuasi ekstrem; jika obat mahal tapi gagal khasiat, modal habis."
+      ],
+      "buying_triggers": [
+        "Bukti video demoplot tetangga desa atau wilayah sentra serupa yang cabainya mulus lebat.",
+        "Rekomendasi dari juragan kios KPL langganan tempat dia biasa ambil barang.",
+        "Jaminan bahan aktif murni original berhologram anti-palsu."
+      ],
+      "objections": [
+        "Takut barang palsu atau oplosan jika beli lewat online iklan Facebook.",
+        "Harga per botol terlihat mahal jika belum tahu dosis per tangki yang sangat irit (konsentrasi tinggi).",
+        "Kecepatan kirim barang: butuh obat sekarang juga saat serangan hama meledak."
+      ],
+      "preferred_platforms": ["Facebook (FB Groups Petani Cabai Indonesia)", "TikTok Reels", "WhatsApp Groups", "YouTube Pertanian"],
+      "winning_offer_angle": "Garansi Hasil Lapangan + Paket Bundling Ulat Grayak Tuntas Sekali Semprot + Layanan Konsultasi Agronomis via WA",
+      "recommended_cta": "Chat Agronomis via WhatsApp / Pesan Paket Uji Coba COD Gratis Ongkir",
+      "price_sensitivity": "Sedang - Selama terbukti tokcer menyelamatkan cabai ratusan juta, harga premi tidak masalah."
+    },
+    {
+      "id": "PERSONA_02",
+      "name": "Pak Slamet - Petani Padi Tradisional",
+      "segment": "Petani Tradisional & Gurem",
+      "role": "Penggarap / Pemilik Lahan Sempit",
+      "demographics": {
+        "age_range": "45 - 62 tahun",
+        "education": "SD / SMP",
+        "location": "Indramayu, Subang, Karawang, Ngawi, Sragen, Bone",
+        "land_size": "0.25 - 0.75 Hektar (Gurem)",
+        "primary_crops": ["Padi Sawah", "Jagung Pakan"]
+      },
+      "pain_points": [
+        "Pupuk subsidi langka dan jatah kuota kartu tani sering tidak mencukupi saat musim tanam.",
+        "Serangan sundep / beluk (penggerek batang) dan wereng coklat yang merontokkan rumpun.",
+        "Likuiditas cash terbatas; sangat bergantung pada sistem bayar panen (yarnen) dari tengkulak."
+      ],
+      "buying_triggers": [
+        "Harga terjangkau, ada kemasan sachet ekonomis (20-50 ml / gr) untuk 1-2 tangki.",
+        "Melihat langsung tanaman tetangga sawah sebelah yang rumpun padinya hijau tebal bernas.",
+        "Kemudahan sistem pembayaran COD (Bayar saat barang tiba di rumah)."
+      ],
+      "objections": [
+        "Tidak punya rekening bank atau mobile banking untuk transfer.",
+        "Ragu mencoba merk baru yang belum pernah diiklankan di radio lokal atau spanduk kios desa.",
+        "Takut salah takar dosis hingga daun terbakar (fitotoksik)."
+      ],
+      "preferred_platforms": ["Facebook Feed", "TikTok (lewat akun anak/keluarga)", "WhatsApp Kelompok Tani (Poktan)"],
+      "winning_offer_angle": "Solusi Padi Bunting Bernas Bebas Sundep + Kemasan Ekonomis Sachet + Bayar di Tempat (COD) Sampai Depan Pintu Rumah",
+      "recommended_cta": "Beli Sekarang Bayar di Tempat (COD) / Tanya Dosis Tangki",
+      "price_sensitivity": "Tinggi - Sangat memperhitungkan biaya per tangki semprot (IDR 5.000 - 12.000/tangki)."
+    },
+    {
+      "id": "PERSONA_03",
+      "name": "Ko Acun - Juragan Toko Kios Pertanian (KPL)",
+      "segment": "Juragan Kios & Distributor Retail",
+      "role": "Pemilik Toko Saprotan & Penggerak Ekonomi Desa",
+      "demographics": {
+        "age_range": "35 - 55 tahun",
+        "education": "SMA / Sarjana Ekonomi / Teknik",
+        "location": "Kecamatan Sentra Pertanian di seluruh Jawa, Sumatera, Sulawesi",
+        "land_size": "Ritel Toko (Melayani 150 - 500 petani aktif)",
+        "primary_crops": ["Multi-Crop (Padi, Jagung, Hortikultura, Sawit)"]
+      },
+      "pain_points": [
+        "Margin produk fast-moving merk multinasional sangat tipis (hanya 3% - 6% karena persaingan harga kios).",
+        "Piutang macet dari petani yang ambil sistem 'yarnen' jika panen petani gagal.",
+        "Dead-stock produk lambat gerak yang memakan tempat gudang dan mengunci modal kerja."
+      ],
+      "buying_triggers": [
+        "Margin keuntungan ritel yang tebal (>15% - 25%) dan program reward / insentif toko yang transparan.",
+        "Dukungan sales lapangan (Agronomist / Field Assistant) dari produsen yang mau aktif bikin demoplot di desa.",
+        "Izin edar resmi Kementan (RI) yang jelas dan aman dari razia dinas/aparat."
+      ],
+      "objections": [
+        "Apakah petani bakal mencari barang ini? 'Saya hanya kulakan barang yang sudah banyak ditanyakan petani.'",
+        "Term of payment (TOP) tempo harus ada; tidak mau bayar tunai di muka untuk produk baru.",
+        "Kekhawatiran komplain petani jika barang tidak manjur dan merusak reputasi kios puluhan tahun."
+      ],
+      "preferred_platforms": ["WhatsApp Bisnis", "Facebook Marketplace", "Web Portal Distributor Resmi", "Google Search"],
+      "winning_offer_angle": "Kemitraan Eksklusif Kios Sentra + Margin 22% + Free Spanduk Toko & Demo Lapang Bersama Petani Binaan + Garansi Retur Produk Tak Laku",
+      "recommended_cta": "Daftar Jadi Kios Mitra Resmi / Unduh Pricelist Grosir & Skema Margin",
+      "price_sensitivity": "Rendah terhadap harga ritel, tapi Sangat Sensitif terhadap margin laba toko dan fasilitas tempo."
+    },
+    {
+      "id": "PERSONA_04",
+      "name": "Bang Harahap - Mandor & Pengelola Sawit Swasta",
+      "segment": "Mandor & Asisten Agronomi Perkebunan",
+      "role": "Pengambil Keputusan Teknis Lapangan Kelapa Sawit",
+      "demographics": {
+        "age_range": "30 - 48 tahun",
+        "education": "SMK Pertanian / D3/S1 Kelapa Sawit (Instiper / STIPAP)",
+        "location": "Riau, Sumut, Jambi, Sumsel, Kalbar, Kalteng",
+        "land_size": "20 - 500 Hektar (Kebun Rakyat Terkonsolidasi / Plasma Swasta)",
+        "primary_crops": ["Kelapa Sawit (TM & TBM)"]
+      },
+      "pain_points": [
+        "Produksi TBS (Tandan Buah Segar) anjlok akibat pohon 'trek' dan defisiensi hara mikro (Boron, Seng, Magnesium).",
+        "Gulma berkayu dan paku-pakuan bandel yang boros ongkos semprot tenaga kerja mandor.",
+        "Serangan hama ulat api (Setothosea asigna) dan tikus pohon yang merusak tajuk pelepah."
+      ],
+      "buying_triggers": [
+        "Formulasi pekat yang tahan curah hujan tinggi (tidak mudah luntur / rainfastness dalam 1 jam).",
+        "Data uji efikasi dari Pusat Penelitian Kelapa Sawit (PPKS) atau riset perkebunan kredibel.",
+        "Penghematan biaya tenaga kerja semprot per hektar (cukup rotasi semprot 4 bulan sekali)."
+      ],
+      "objections": [
+        "Prosedur pengadaan kebun harus lolos uji coba demoplot 1 afdeling sebelum dibeli dalam drum 200 liter.",
+        "Biaya logistik ekspedisi ke pedalaman Sumatera/Kalimantan sering mahal dan lambat sampai.",
+        "Kesesuaian dengan sertifikasi keberlanjutan RSPO / ISPO (tidak memakai bahan aktif terlarang)."
+      ],
+      "preferred_platforms": ["Facebook (Komunitas Sawit Rakyat & Mandor Sawit)", "TikTok Edukasi Sawit", "WhatsApp Group Asosiasi Sawit", "YouTube"],
+      "winning_offer_angle": "Formulasi Khusus Sawit Tahan Cuci Hujan + Bukti Peningkatan Tonase TBS 18% + Pengiriman Drum Cargo Terpercaya Sampai Lokasi Kebun",
+      "recommended_cta": "Konsultasi Kebun Sawit via WA / Minta Proposal Demo Plot 5 Hektar",
+      "price_sensitivity": "Sedang - Lebih fokus pada ROI per hektar dan efisiensi ongkos tenaga kerja semprot."
+    },
+    {
+      "id": "PERSONA_05",
+      "name": "Mbak Cindy - Urban Gardener & Kolektor Florikultura",
+      "segment": "Hobiis Urban Farming & Florikultura",
+      "role": "Konsumen Rumahan & Kolektor Tanaman Hias",
+      "demographics": {
+        "age_range": "24 - 40 tahun",
+        "education": "Sarjana / Profesional Perkotaan",
+        "location": "Jabodetabek, Bandung, Surabaya, Malang, Denpasar",
+        "land_size": "Pekarangan Rumah / Balkon Apartemen / Greenhouse Mini",
+        "primary_crops": ["Anggrek (Phalaenopsis, Dendrobium)", "Alpukat Aligator/Miki Tabulampot", "Sayur Hidroponik"]
+      },
+      "pain_points": [
+        "Busuk batang / daun pada anggrek mahal saat musim hujan atau kelebihan air siram.",
+        "Tanaman tabulampot alpukat subur daun tapi bunganya rontok terus dan tidak mau jadi buah.",
+        "Takut bau pestisida kimia menyengat yang mengganggu anak kecil atau hewan peliharaan di rumah."
+      ],
+      "buying_triggers": [
+        "Kemasan semprot siap pakai (Ready-to-Use Spray Bottle 500ml) yang tidak perlu ribet mengukur dosis tangki.",
+        "Bahan organik / ramah lingkungan, tidak berbau busuk, aman untuk area pemukiman.",
+        "Video estetis before-after bunga anggrek berbunga lebat atau pohon buah mini berbuah dompolan."
+      ],
+      "objections": [
+        "Takut ribet meracik konsentrasi ppm atau ml/liter.",
+        "Khawatir tanaman hias kesayangan terbakar dan mati karena salah pakai obat pertanian dosis sawah.",
+        "Ingin kemasan cantik dan rapi yang tidak bocor saat dikirim kurir ekspedisi reguler."
+      ],
+      "preferred_platforms": ["Instagram Feed & Stories", "TikTok Shop", "Shopee / Tokopedia", "Pinterest"],
+      "winning_offer_angle": "Nutrisi Organik Semprot Langsung Pakai + Formula Bunga Anggrek Mekar Awet 3 Bulan Tanpa Rontok + Kemasan Trigger Estetis",
+      "recommended_cta": "Beli di Tokopedia / Shopee / Pesan Paket Pemula Anggrek COD",
+      "price_sensitivity": "Sangat Rendah - Bersedia membayar IDR 45.000 - 120.000 untuk botol kecil 250-500ml asalkan praktis dan tanaman hias sehat."
+    }
+  ],
+  "competitor_spy_matrix": [
+    {
+      "id": "COMP_01",
+      "brand_name": "Syngenta Indonesia",
+      "origin": "Multinational (Switzerland / Syngenta Group)",
+      "market_share_category": "Tier 1 - Market Leader Multinasional",
+      "active_ad_count_estimate": 145,
+      "primary_channels": ["Facebook Ads", "Instagram Ads", "YouTube TrueView", "TikTok Ads"],
+      "top_hero_products": [
+        { "name": "Amistar Top 325 SC", "active_ingredient": "Azoksistrobin 200 g/l + Difenokonazol 125 g/l", "target": "Fungisida Sistemik Padi & Hortikultura" },
+        { "name": "Virtako 300 SC", "active_ingredient": "Klorantraniliprol 100 g/l + Tiametoksam 200 g/l", "target": "Insektisida Penggerek Batang & Sundep Padi" },
+        { "name": "Gramoxone 276 SL", "active_ingredient": "Parakuat Diklorida (Kontak Cepat)", "target": "Herbisida Kontak Purna Tumbuh" },
+        { "name": "Alika 247 ZC", "active_ingredient": "Tiametoksam 141 g/l + Lamda Sihalotrin 106 g/l", "target": "Kutu Kebul & Ulat Hortikultura" }
+      ],
+      "dominant_creative_formats": [
+        "High-Production Video (60s) dengan plot agronomis profesional berlogo Syngenta.",
+        "UGC Petani Panen Raya memegang malai padi bernas mengkilap.",
+        "Animasi 3D cara kerja bahan aktif menembus jaringan stomata daun."
+      ],
+      "key_angles_and_hooks": [
+        "Padi Bening, Daun Bendera Tetap Hijau Sampai Pangkal Malai.",
+        "Sekali Semprot, Dua Bahan Aktif Saling Menguatkan (Efek ZPT).",
+        "Investasi Panen Lebih Pasti, Gabah Timbangan Berbobot Padat."
+      ],
+      "target_crops": ["Padi", "Cabai", "Bawang Merah", "Jagung", "Kelapa Sawit"],
+      "strengths": "Brand equity nomor 1 di benak petani; jaringan distribusi KPL terkuat; kepercayaan khasiat produk sangat tinggi.",
+      "vulnerabilities": "Harga paling mahal di pasaran; margin kios tipis sehingga pemilik kios sering mencari alternatif substitusi dengan margin lebih besar.",
+      "typical_cta_destination": "Website Resmi Syngenta / Store Locator Kios Mitra / Chat WhatsApp CS Perusahaan"
+    },
+    {
+      "id": "COMP_02",
+      "brand_name": "Bayer CropScience Indonesia",
+      "origin": "Multinational (Germany / Bayer AG)",
+      "market_share_category": "Tier 1 - Market Leader Multinasional",
+      "active_ad_count_estimate": 120,
+      "primary_channels": ["Facebook Ads", "YouTube Ads", "Google Search Ads", "TikTok"],
+      "top_hero_products": [
+        { "name": "Nativo 75 WG", "active_ingredient": "Tebukonazol 50% + Trifloksisistrobin 25%", "target": "Fungisida Protektif & Kuratif Padi, Cabai" },
+        { "name": "Confidor 5 WP / 200 SL", "active_ingredient": "Imidakloprid", "target": "Insektisida Wereng Coklat & Kutu Daun" },
+        { "name": "Decis 25 EC", "active_ingredient": "Deltametrin 25 g/l", "target": "Insektisida Kontak Ulat Grayak & Belalang" },
+        { "name": "Antracol 70 WP", "active_ingredient": "Propineb 70% + Zinc", "target": "Fungisida Kontak Dasar Plus Zinc Daun" }
+      ],
+      "dominant_creative_formats": [
+        "Edukasi Klinis Tanaman oleh Agronomis Bayer berseragam resmi.",
+        "Infografis Carousel 'Kenali Gejala Blas Daun vs Blas Leher'.",
+        "Video Testimonial Petani Jagung Hibrida Dekalb."
+      ],
+      "key_angles_and_hooks": [
+        "Panen Tanpa Cemas Blas & Sundep.",
+        "Perlindungan Teruji Standar Jerman Sejak Puluhan Tahun.",
+        "Bunga Cabai Jadi Buah Lebih Banyak Tanpa Rontok."
+      ],
+      "target_crops": ["Padi", "Cabai", "Jagung", "Bawang Merah", "Tomat"],
+      "strengths": "Kredibilitas saintifik luar biasa; produk Antracol dan Decis adalah nama generik di tingkat petani pedesaan.",
+      "vulnerabilities": "Komunikasi ads sering terlalu formal / kaku; kurang menyentuh bahasa santai daerah di TikTok/Reels.",
+      "typical_cta_destination": "Aplikasi Bayer Plus / Kios Sahabat Bayer / Website Edukasi Bayer Tani"
+    },
+    {
+      "id": "COMP_03",
+      "brand_name": "FMC Agricultural Solutions",
+      "origin": "Multinational (USA / FMC Corporation)",
+      "market_share_category": "Tier 1 - Multinasional Spesialis Ulat & Wereng",
+      "active_ad_count_estimate": 68,
+      "primary_channels": ["Facebook Ads", "TikTok Ads", "WhatsApp Blast Komunitas"],
+      "top_hero_products": [
+        { "name": "Prevathon 50 SC", "active_ingredient": "Klorantraniliprol 50 g/l", "target": "Spesialis Penggerek Batang Padi & Ulat Grayak" },
+        { "name": "Benevia 100 OD", "active_ingredient": "Siantraniliprol 100 g/l", "target": "Insektisida Sistemik Kutu Kebul & Thrips Cabai" },
+        { "name": "Coragen 20 SC", "active_ingredient": "Klorantraniliprol 200 g/l", "target": "Ulat Spodoptera pada Jagung & Kedelai" }
+      ],
+      "dominant_creative_formats": [
+        "Slow-motion video ulat langsung lumpuh dan mati dalam hitungan menit pasca semprot.",
+        "Perbandingan 'Kiri: Disemprot Prevathon daun mulus, Kanan: Tanpa Prevathon daun bolong-bolong'.",
+        "Live Q&A Agronomis menjawab pertanyaan hama petani di Facebook Live."
+      ],
+      "key_angles_and_hooks": [
+        "Ulat Berhenti Makan Sejak 7 Menit Pertama Setelah Kena Semprot.",
+        "Cukup 1-2 Kali Semprot, Padi Aman Dari Awal Tanam Sampai Panen.",
+        "Daun Cabai Mulus Tanpa Keriting Kutu Kebul."
+      ],
+      "target_crops": ["Padi", "Cabai", "Jagung", "Bawang Merah", "Sayuran Daun"],
+      "strengths": "Posisinya sangat kuat sebagai senjata pamungkas (top-shelf pesticide) ketika obat murah lainnya gagal mengatasi hama ganas.",
+      "vulnerabilities": "Banyak pemalsuan botol di pasar offline; petani gurem sering mengeluhkan harga kemasan 100ml yang mahal.",
+      "typical_cta_destination": "WhatsApp Konsultasi Dokter Hama FMC / Store Locator Kios"
+    },
+    {
+      "id": "COMP_04",
+      "brand_name": "Corteva Agriscience",
+      "origin": "Multinational (USA / Dow AgroSciences + DuPont Pioneer)",
+      "market_share_category": "Tier 1 - Multinasional Spesialis Jagung & Padi",
+      "active_ad_count_estimate": 55,
+      "primary_channels": ["Facebook Ads", "YouTube", "Direct BPP Workshops"],
+      "top_hero_products": [
+        { "name": "Benih Jagung Pioneer (P27, P35, P36)", "active_ingredient": "Benih Hibrida Unggul Bersertifikat", "target": "Hasil Pipilan Jagung Tinggi Tahan Bulai" },
+        { "name": "Gallant 108 EC", "active_ingredient": "Haloksifop-P-Metil", "target": "Herbisida Selektif Gulma Rumputan pada Cabai/Bawang" },
+        { "name": "Garlon 670 EC", "active_ingredient": "Triklopir Butoksi Etil Ester", "target": "Herbisida Pembasmi Kayu-kayuan & Gulma Kebun Sawit" }
+      ],
+      "dominant_creative_formats": [
+        "Pesta Panen Jagung Pioneer dengan tumpukan tongkol oranye kemerahan raksasa.",
+        "Demonstrasi semprot gulma di antara bedengan cabai tanpa membuat cabai layu.",
+        "Tips pemilihan benih bersertifikat anti-benih palsu."
+      ],
+      "key_angles_and_hooks": [
+        "Tongkol Rapat, Timbangan Berat, Rendemen Pipil Di Atas 80%.",
+        "Basmi Rumput Liar Tanpa Khawatir Cabai Merana.",
+        "Kayu dan Tunggul Sawit Lapuk Tuntas Sampai Akarnya."
+      ],
+      "target_crops": ["Jagung", "Cabai", "Bawang Merah", "Kelapa Sawit"],
+      "strengths": "Monopoli kuat di benih jagung hibrida premium Pioneer; reputasi herbisida spesifik seperti Garlon tak tertandingi di sawit.",
+      "vulnerabilities": "Portofolio fungisida hortikultura kurang agresif dibanding Syngenta/Bayer.",
+      "typical_cta_destination": "Nomor WA Layanan Petani Corteva / Brosur Digital PDF"
+    },
+    {
+      "id": "COMP_05",
+      "brand_name": "PT Dharma Guna Wibawa (DGW)",
+      "origin": "National Indonesian Major",
+      "market_share_category": "Tier 2 - National Champion Teragresif",
+      "active_ad_count_estimate": 180,
+      "primary_channels": ["TikTok Ads", "Facebook Ads", "Instagram Ads", "SnackVideo", "Shopee/Tokopedia"],
+      "top_hero_products": [
+        { "name": "Explore 250 EC", "active_ingredient": "Difenokonazol 250 g/l", "target": "Fungisida Sistemik + ZPT Ramah Kantong" },
+        { "name": "Klensect 200 EC", "active_ingredient": "Permetrin 200 g/l", "target": "Insektisida Kontak Cepat Hama Ulat" },
+        { "name": "Topsin M 70 WP", "active_ingredient": "Metil Tiofanat", "target": "Fungisida Pembasmi Jamur Antraknosa" },
+        { "name": "DGW Pupuk Foliar KNO3 & MKP", "active_ingredient": "Kalium & Fosfat Larut Air", "target": "Nutrisi Pengisian Umbi & Buah Lebat" }
+      ],
+      "dominant_creative_formats": [
+        "UGC Petani Berbahasa Daerah (Bahasa Jawa Ngapak, Sunda, Madura) di tengah sawah.",
+        "Video Masalah-Solusi Cepat: 'Cabai Mletik Kena Jamur? Ini Rahasianya!'.",
+        "Promosi paket bundling semprot (Insektisida + Pupuk Daun + Perekat)."
+      ],
+      "key_angles_and_hooks": [
+        "Kualitas Multinasional, Harga Sahabat Petani Indonesia.",
+        "Bawang Merah Umbi Merah Mengkilap, Timbangan Masuk Super.",
+        "Bahan Aktif Sama Persis, Hemat Biaya Produksi 35%."
+      ],
+      "target_crops": ["Bawang Merah", "Cabai", "Padi", "Tomat", "Semangka & Melon"],
+      "strengths": "Paling mahir bermain di media sosial lokal; bahasa sangat membumi; margin kios tebal sehingga disukai pemilik toko ritel.",
+      "vulnerabilities": "Sering dianggap 'produk generik nomor dua' oleh petani fanatik merk multinasional.",
+      "typical_cta_destination": "Keranjang TikTok Shop / Order COD WhatsApp Admin / Official Tokopedia"
+    },
+    {
+      "id": "COMP_06",
+      "brand_name": "PT Petrokimia Gresik (Pupuk Indonesia)",
+      "origin": "State-Owned Enterprise (BUMN Pupuk Indonesia)",
+      "market_share_category": "Tier 1 - Dominated Fertilizer & Soil Nutrition",
+      "active_ad_count_estimate": 42,
+      "primary_channels": ["YouTube", "Facebook Page Resmi", "Portal Kementan / BUMN"],
+      "top_hero_products": [
+        { "name": "Phonska Plus 15-15-15 + Zinc", "active_ingredient": "NPK Majemuk Non-Subsidi + Sulfur + Zinc", "target": "Pupuk Dasar & Susulan Komoditas Pangan & Hortikultura" },
+        { "name": "Petro-Cas (Kalsium Sulfat)", "active_ingredient": "CaSO4 Pembenah Tanah Masam", "target": "Netralisir pH Lahan Sawah & Perkebunan" },
+        { "name": "Petrobiofertil", "active_ingredient": "Pupuk Hayati Majemuk Mikroba Penambat N & Pelarut P", "target": "Efisiensi Pupuk Kimia Tanah" }
+      ],
+      "dominant_creative_formats": [
+        "Video Edukasi Pertanian Berkelanjutan & Program Makmur BUMN.",
+        "Liputan Demoplot Panen Raya bersama pejabat Kementan / Gubernur.",
+        "Infografis Dosis Pemupukan Berimbang Rekomendasi Balitbangtan."
+      ],
+      "key_angles_and_hooks": [
+        "Solusi Pupuk Non-Subsidi Berkualitas Saat Kuota Subsidi Terbatas.",
+        "Unsur Hara Lengkap Plus Zinc: Tanaman Kokoh Anakan Melimpah.",
+        "Pulihkan Kesuburan Tanah Warisan Nenek Moyang Kita."
+      ],
+      "target_crops": ["Padi", "Jagung", "Kelapa Sawit", "Bawang Merah", "Tebu"],
+      "strengths": "Jaringan logistik dan nama besar BUMN diakui seluruh pelosok nusantara; kapasitas produksi raksasa.",
+      "vulnerabilities": "Iklan berorientasi PR / korporat; kurang responsif terhadap lead capture direct conversion dan follow-up WhatsApp.",
+      "typical_cta_destination": "Website Resmi Perusahaan / Call Center BUMN / Kios Pupuk Lengkap"
+    },
+    {
+      "id": "COMP_07",
+      "brand_name": "PT Advansia Indotani",
+      "origin": "National Agro-Input Challenger",
+      "market_share_category": "Tier 2 - Challenger Value-for-Money",
+      "active_ad_count_estimate": 75,
+      "primary_channels": ["Facebook Ads", "TikTok", "YouTube Shorts"],
+      "top_hero_products": [
+        { "name": "Avoca 250 SC", "active_ingredient": "Azoksistrobin 250 g/l", "target": "Fungisida Sistemik Pengendali Jamur Daun" },
+        { "name": "Clipper 25 OD", "active_ingredient": "Penoksulam 25 g/l", "target": "Herbisida Purna Tumbuh Padi Sawah Selektif" },
+        { "name": "AdvaMix Spreader", "active_ingredient": "Alkil Fenol Etoksilat", "target": "Perekat, Perata, dan Penembus Pestisida" }
+      ],
+      "dominant_creative_formats": [
+        "Komparasi Efisiensi Biaya Tani: 'Ngapain Bayar Mahal Jika Bahan Aktifnya Sama?'.",
+        "Video Live Lapangan menyemprot gulma tanpa merusak rumpun padi muda.",
+        "Studi kasus petani hemat biaya hingga Rp 1.500.000 per musim."
+      ],
+      "key_angles_and_hooks": [
+        "Pestisida Berkualitas, Biaya Hemat, Petani Sejahtera.",
+        "Rumput Liar Gosong Bersih, Padi Tetap Hijau Segar.",
+        "Bahan Aktif Murni 100% Terdaftar Resmi Kementan."
+      ],
+      "target_crops": ["Padi", "Cabai", "Bawang Merah", "Jagung"],
+      "strengths": "Value pricing luar biasa; disukai petani penghemat biaya dan kios yang mengejar omzet perputaran cepat.",
+      "vulnerabilities": "Brand recognition di luar Jawa masih dalam tahap bertumbuh; budget media buying terbatas.",
+      "typical_cta_destination": "Chat CS WhatsApp Pemesanan COD / Daftar Mitra Toko"
+    },
+    {
+      "id": "COMP_08",
+      "brand_name": "PT Bisi International Tbk",
+      "origin": "National Integrated Seed & Agrochemical Champion",
+      "market_share_category": "Tier 1 - Raja Benih Nasional & Hortikultura",
+      "active_ad_count_estimate": 95,
+      "primary_channels": ["Facebook Ads", "YouTube Edukasi Benih", "TikTok", "Agronomist Direct Events"],
+      "top_hero_products": [
+        { "name": "Benih Jagung BISI-18 & BISI-228", "active_ingredient": "Benih Hibrida Tahan Rebah & Bulai", "target": "Jagung Pipil Rendemen Tinggi Lahan Kering" },
+        { "name": "Benih Hortikultura Cap Kapal Terbang (Cabai Bhaskara, Semangka Inul)", "active_ingredient": "F1 Hybrid Seed", "target": "Benih Sayuran & Buah Komersial Unggul" },
+        { "name": "Nurelle D 500/50 EC", "active_ingredient": "Klorpirifos 500 g/l + Sipermetrin 50 g/l", "target": "Insektisida Kombinasi Kutu & Ulat" }
+      ],
+      "dominant_creative_formats": [
+        "Video Panen Raya Semangka & Melon Berbobot 4-6 kg/buah manis renyah.",
+        "Testimoni Petani Jagung BISI-18 di lahan kering Nusa Tenggara & Gorontalo.",
+        "Infografis Kalender Tanam Benih Cap Kapal Terbang."
+      ],
+      "key_angles_and_hooks": [
+        "Cap Kapal Terbang: Benihnya Pasti Tumbuh, Hasilnya Pasti Untung.",
+        "Jagung Tahan Kering, Tahan Bulai, Panen Merata Sampai Ujung Tongkol.",
+        "Semangka Inul Manis Madu, Laris Manis Diburu Pengepul Pasar Induk."
+      ],
+      "target_crops": ["Jagung", "Cabai", "Semangka", "Melon", "Tomat", "Timun"],
+      "strengths": "Integrasi vertikal hulu-hilir dari benih hingga pestisida; Cap Kapal Terbang memiliki loyalitas kultus di kalangan petani sayur & buah.",
+      "vulnerabilities": "Pesaing impor menggerus pasar di benih hortikultura greenhouse high-end.",
+      "typical_cta_destination": "Website Resmi BISI / Katalog Digital Benih / WhatsApp Layanan Petani"
+    }
+  ],
+  "creative_teardowns": [
+    {
+      "id": "CREATIVE_01",
+      "concept_title": "Video Demoplot 60 Detik 'Ulat Grayak Mati Kaku'",
+      "format": "Video Reels / TikTok 9:16 (Vertikal)",
+      "target_crops": ["Cabai", "Bawang Merah", "Jagung"],
+      "objective": "High-Intent Leads via WhatsApp & COD Direct Purchase",
+      "hook_breakdown": {
+        "visual": "Close-up kamera makro memperlihatkan ulat grayak gendut sedang rakus menggigit pucuk cabai/daun bawang merah.",
+        "audio_opening": "Jangan panik kalau ulat grayak di lahan mulai kebal disemprot obat biasa! Lihat apa yang terjadi dalam 5 menit setelah pakai cairan ini...",
+        "hook_duration_seconds": 3.8
+      },
+      "body_breakdown": {
+        "visual_flow": "Petani menyemprotkan 1 tangki larutan -> Kamera zoom in kembali ke ulat yang mulai kejang dan jatuh lemas ke plastik mulsa -> Petani tersenyum menunjukkan daun tanaman mulus segar.",
+        "talking_points": "Formulasi baru dengan bahan aktif ganda meresap sistemik hingga ke balik lipatan daun. Ulat yang sembunyi pun kena racun lambung & pernapasan sekaligus.",
+        "duration_seconds": 35
+      },
+      "offer_and_cta": {
+        "offer_text": "Spesial Musim Ini: Beli 2 Botol Dapat Gratis Kaos Tani Eksklusif + Subsidi Ongkos Kirim COD Seluruh Indonesia.",
+        "cta_text": "Klik tombol WhatsApp di bawah, agronomis kami siap bantu hitung dosis tepat untuk luas lahan Anda!"
+      },
+      "performance_benchmarks": {
+        "avg_ctr": "3.2% - 4.5%",
+        "avg_cpl_idr": "Rp 7.500 - Rp 14.000",
+        "conversion_to_wa_rate": "8.8%"
+      }
+    },
+    {
+      "id": "CREATIVE_02",
+      "concept_title": "Carousel Masalah-Solusi 'Penyakit Patek vs Jamur Blas'",
+      "format": "Carousel Image 1:1 (Facebook & Instagram 5 Slides)",
+      "target_crops": ["Cabai", "Padi", "Tomat"],
+      "objective": "Retargeting & Middle of Funnel Consideration",
+      "hook_breakdown": {
+        "visual": "Slide 1: Gambar komparasi split screen 'Cabai Busuk Patek Kering' vs 'Cabai Merah Mulus Siap Petik'. Headline teks merah menyala.",
+        "audio_opening": "Tanpa audio (visual headline text)",
+        "hook_duration_seconds": 0
+      },
+      "body_breakdown": {
+        "visual_flow": "Slide 2: Gejala awal antraknosa yang sering diabaikan petani -> Slide 3: Mengapa fungisida kontak biasa gagal saat hujan lebat -> Slide 4: Cara kerja fungisida sistemik bersertifikat.",
+        "talking_points": "Edukasi bahwa jamur berkembang di bawah jaringan kutikula. Hanya fungisida translaminar yang sanggup membunuh spora di dalam daging buah.",
+        "duration_seconds": 0
+      },
+      "offer_and_cta": {
+        "offer_text": "Slide 5: Tabel Dosis Tangki Lengkap + Promo Paket Tanggap Patek.",
+        "cta_text": "Simpan gambar ini & Hubungi kami via Chat untuk dapatkan jadwal semprot rekomendasi musim hujan!"
+      },
+      "performance_benchmarks": {
+        "avg_ctr": "2.4% - 3.1%",
+        "avg_cpl_idr": "Rp 11.000 - Rp 18.000",
+        "conversion_to_wa_rate": "6.5%"
+      }
+    },
+    {
+      "id": "CREATIVE_03",
+      "concept_title": "UGC Testimonial 'Panen Melimpah Pak Haji Brebes'",
+      "format": "Real Camera Phone Video 9:16 (Gaya Natural Tanpa Edit Mewah)",
+      "target_crops": ["Bawang Merah", "Padi", "Kentang"],
+      "objective": "Building Unshakable Trust & Social Proof",
+      "hook_breakdown": {
+        "visual": "Petani asli memegang seikat bawang merah super merah merona dengan latar hamparan bedengan sawah luas.",
+        "audio_opening": "Alhamdulillah lur! Musim kemarin tetangga banyak yang kena moler, punya saya malah tembus 14 ton per hektar...",
+        "hook_duration_seconds": 4.2
+      },
+      "body_breakdown": {
+        "visual_flow": "Kamera diajak jalan melihat hamparan umbi bawang merah yang seragam dan daun yang tegak kaku -> Petani memperlihatkan botol obat yang dia pakai dari sakunya.",
+        "talking_points": "Awalnya saya juga ragu beli online lewat FB. Tapi pas barang datang bisa COD, saya coba 1 petak dulu. Hasilnya beda jauh, umbi lebih padat dan timbangan mantap.",
+        "duration_seconds": 45
+      },
+      "offer_and_cta": {
+        "offer_text": "Garansi 100% Produk Original Bersegel Hologram Resmi Pabrik.",
+        "cta_text": "Mau hasil panen seperti Pak Haji? Klik link untuk konsultasi gratis dengan tim lapangan!"
+      },
+      "performance_benchmarks": {
+        "avg_ctr": "3.8% - 5.2%",
+        "avg_cpl_idr": "Rp 6.800 - Rp 12.500",
+        "conversion_to_wa_rate": "11.2%"
+      }
+    }
+  ],
+  "copywriting_blueprints": [
+    {
+      "step_number": 1,
+      "step_name": "Hook Masalah Lapangan",
+      "objective": "Menangkap perhatian dalam 3 detik pertama dengan menyebut rasa sakit spesifik petani",
+      "example_phrase": "Pusing cabai rontok bunga dan buahnya menghitam kena patek pas harga pasar lagi Rp 80.000/kg?"
+    },
+    {
+      "step_number": 2,
+      "step_name": "Validasi Emosional & Bukti Lokal",
+      "objective": "Membangun empati bahwa kegagalan bukan salah petani, melainkan karena hama sudah kebal",
+      "example_phrase": "Sudah gonta-ganti obat semprot tapi ulat grayak tetap kebal dan malah makin merajalela? Petani di Brebes dan Nganjuk tadinya juga merasakan hal yang sama."
+    },
+    {
+      "step_number": 3,
+      "step_name": "Mekanisme Kerja Unik",
+      "objective": "Menjelaskan mengapa produk ini berhasil di mana produk lain gagal secara ilmiah namun mudah dipahami",
+      "example_phrase": "Dengan kombinasi ganda bahan aktif sistemik translaminar, obat ini tidak hanya melapisi permukaan daun, tapi meresap tembus ke balik daun tempat hama bersembunyi."
+    },
+    {
+      "step_number": 4,
+      "step_name": "Edukasi Dosis & Efisiensi",
+      "objective": "Menghilangkan keraguan soal harga dengan membuktikan hematnya biaya per tangki semprot",
+      "example_phrase": "Cukup 1 tutup botol (15 ml) per tangki 16 liter. Satu botol bisa untuk 15-20 tangki semprot, biaya operasional Anda hemat 40% per musim!"
+    },
+    {
+      "step_number": 5,
+      "step_name": "CTA Tanpa Risiko",
+      "objective": "Mengunci konversi dengan metode pembayaran aman dan bonus konsultasi",
+      "example_phrase": "Pesan hari ini bisa BAYAR DI TEMPAT (COD). Barang sampai baru bayar! Plus GRATIS konsultasi agronomis via WhatsApp sampai panen tuntas. Klik link di bawah sekarang!"
+    }
+  ],
+  "ad_scripts": [
+    {
+      "commodity_id": "COMM_03",
+      "crop_name": "Cabai Rawit & Cabai Merah",
+      "pest_target": "Patek (Antraknosa) & Layu Bakteri",
+      "platform": "Meta Ads (Facebook & Instagram Feed/Reels)",
+      "script_content": "[HOOK LAPANGAN]\nCabai lagi mahal Rp 75.000/kg, eh tiba-tiba buah pada busuk basah kena PATEK (Antraknosa)? Jangan tunggu besok sampai 1 petak ludes!\n\n[MASALAH REALITA]\nBanyak obat cuma membunuh jamur di permukaan. Pas kena hujan deras sore hari, obat luntur dan spora jamur di dalam buah cabai malah makin ganas.\n\n[SOLUSI BERIKUTNYA]\nInilah kenapa ribuan petani cabai di Temanggung, Banyuwangi, dan Kerinci beralih ke formula fungisida translaminar sistemik ini!\n✅ Langsung meresap ke dalam jaringan buah dalam 30 menit (Tahan Guyuran Hujan)\n✅ Menghentikan penyebaran bercak antraknosa seketika\n✅ Dilengkapi zat pengatur tumbuh (ZPT) bikin tangkai buah liat dan bunga tidak mudah rontok\n\n[HITUNGAN HEMAT]\nDosis cukup 1 sendok makan per tangki 16 liter. Sangat irit dan aman di kantong!\n\n[PENAWARAN COD]\nKhusus minggu ini:\n📦 BISA COD (Bayar di tempat saat kurir tiba)\n🎁 Beli 2 Botol GRATIS Kaos Petani Keren & Ongkir Subsidi\n\n👉 Klik tombol 'Kirim Pesan' di bawah untuk konsultasi dosis gratis langsung dengan Agronomis kami!"
+    },
+    {
+      "commodity_id": "COMM_01",
+      "crop_name": "Padi Sawah",
+      "pest_target": "Sundep, Beluk (Penggerek Batang) & Wereng Coklat",
+      "platform": "TikTok Ads & Facebook Video",
+      "script_content": "[OPENING VIDEO 0-3s]\n(Video malai padi roboh & mengering putih) -> 'Hati-hati lur! Jangan sampai malai padi Anda kosong tak berisi kayak gini cuma gara-gara sundep terlambat diatasi!'\n\n[MASALAH]\nPadi pas fase bunting adalah momen paling kritis. Sekali larva penggerek masuk ke dalam batang padi, disemprot obat biasa dari luar sudah tidak mempan!\n\n[MEKANISME]\nPakai formula sistemik terbaru ini. Obat diserap melalui akar dan batang, mengalir ke seluruh pembuluh tanaman:\n1. Larva ulat di dalam batang mati kaku tanpa sempat memotong malai\n2. Daun bendera tetap hijau segar mengkilap sampai masa panen\n3. Bulir padi terisi padat bernas dari pangkal sampai ujung malai\n\n[TESTIMONI]\nPak Sugeng (Ngawi): 'Musim lalu biasanya cuma tembus 6 ton, setelah pakai paket ini alhamdulillah timbangan naik jadi 7.8 ton per hektar!'\n\n[CTA]\nStok terbatas untuk persiapan Musim Tanam 1. Klik tautan untuk pesan sekarang dengan sistem Bayar di Tempat (COD)!"
+    },
+    {
+      "commodity_id": "COMM_04",
+      "crop_name": "Bawang Merah",
+      "pest_target": "Ulat Grayak (Spodoptera) & Moler / Layu Kuning",
+      "platform": "Facebook Group & WhatsApp Blast",
+      "script_content": "[HEADLINE]\nRAHASIA BAWANG MERAH BREBES & NGANJUK DAUN TEGAK KAKU, BEBAS ULAT GRAYAK, UMBI SUPER BESAR MERAH MENYALA!\n\nMusim tanam bawang merah butuh modal besar puluhan juta per hektar. Jangan ambil risiko pakai obat murah yang bikin ulat makin kebal!\n\nFormula Unggulan Hortikultura:\n- Efek Knock-Down Cepat: Ulat grayak jatuh lemas dalam 15 menit\n- Efek Ovisida: Memandulkan telur ulat sehingga tidak menetas generasi baru\n- Daun bawang merah tetap tegak, kaku, dan bebas daun trotol\n\nSudah terbukti di ribuan hektar sentra bawang Jawa Tengah dan Jawa Timur.\n\nPromo Spesial:\n- Ambil 1 Dus untuk kebutuhan 1 hektar dapat DISKON GROSIR\n- Pembayaran Fleksibel COD ke seluruh Indonesia\n- Garansi ganti baru jika botol rusak di perjalanan ekspedisi\n\nHubungi nomor WhatsApp resmi agronomis kami di bawah sekarang juga sebelum harga pupuk & pestisida naik!"
+    },
+    {
+      "commodity_id": "COMM_10",
+      "crop_name": "Kelapa Sawit",
+      "pest_target": "Pohon Trek, Defisiensi Boron & Gulma Berkayu",
+      "platform": "Facebook Sawit Community & Meta Feed Ads",
+      "script_content": "[PERHATIAN MANDOR & PEMILIK KEBUN SAWIT]\nProduksi TBS kebun Anda turun drastis karena pohon lagi 'trek' berbulan-bulan? Pelepah sengkleh dan bunga betina rontok?\n\nJangan cuma andalkan pupuk makro NPK biasa! Tanaman sawit membutuhkan mikronutrien esensial Boron, Magnesium, dan Seng untuk merangsang pembentukan bakal tandan buah segar.\n\nPupuk Mikro Khusus Sawit Berkualitas Ekspor:\n✅ Mempercepat pemulihan pohon dari masa trek\n✅ Meningkatkan berat tandan (BJR) rata-rata naik 15% - 22%\n✅ Meningkatkan rendemen minyak kelapa sawit (CPO) saat timbangan PKS\n\nJuga tersedia herbisida pembasmi gulma berkayu dan paku-pakuan kebun sawit yang tahan cuci hujan deras!\n\nPengiriman kargo drum dan pail siap kirim langsung ke afdeling kebun Anda di Riau, Sumut, Jambi, Sumsel, Kalbar, dan Kalteng.\n\nKlik 'Hubungi Kami' untuk proposal uji coba dan konsultasi kebun sawit Anda!"
+    }
+  ],
+  "google_ads_keywords": [
+    {
+      "tier": "Tier 1: Urgent Problem & Diagnostic",
+      "intent_description": "Petani atau mandor sedang menghadapi hama darurat dan mencari solusi obat/penyembuh secepatnya.",
+      "keywords": [
+        { "keyword": "obat patek cabai paling ampuh", "crop": "Cabai", "monthly_volume": 4400, "avg_cpc_idr": 1250, "competition": "Medium", "match_type": "Phrase Match" },
+        { "keyword": "cara mengatasi ulat grayak bawang merah", "crop": "Bawang Merah", "monthly_volume": 3600, "avg_cpc_idr": 980, "competition": "Medium", "match_type": "Broad Match Modifier" },
+        { "keyword": "insektisida penggerek batang padi terbaik", "crop": "Padi", "monthly_volume": 2900, "avg_cpc_idr": 1400, "competition": "High", "match_type": "Phrase Match" },
+        { "keyword": "obat sundep padi umur 30 hari", "crop": "Padi", "monthly_volume": 2100, "avg_cpc_idr": 1100, "competition": "Medium", "match_type": "Phrase Match" },
+        { "keyword": "cara mengatasi daun cabai keriting kuning", "crop": "Cabai", "monthly_volume": 5400, "avg_cpc_idr": 850, "competition": "Low", "match_type": "Broad Match" },
+        { "keyword": "fungisida busuk daun kentang musim hujan", "crop": "Kentang", "monthly_volume": 1600, "avg_cpc_idr": 1350, "competition": "Medium", "match_type": "Phrase Match" },
+        { "keyword": "obat ulat kantung sawit paling manjur", "crop": "Kelapa Sawit", "monthly_volume": 1200, "avg_cpc_idr": 1850, "competition": "Medium", "match_type": "Phrase Match" },
+        { "keyword": "pupuk agar bunga alpukat tidak rontok", "crop": "Alpukat", "monthly_volume": 3200, "avg_cpc_idr": 1150, "competition": "Low", "match_type": "Phrase Match" },
+        { "keyword": "obat busuk batang anggrek hitam", "crop": "Anggrek", "monthly_volume": 1800, "avg_cpc_idr": 1650, "competition": "Medium", "match_type": "Exact Match" }
+      ]
+    },
+    {
+      "tier": "Tier 2: Brand & Active Ingredient Comparison",
+      "intent_description": "Petani sudah tahu nama produk/bahan aktif dan mencari perbandingan dosis, harga, atau efikasi.",
+      "keywords": [
+        { "keyword": "dosis amistar top per tangki untuk cabai", "crop": "Cabai", "monthly_volume": 6600, "avg_cpc_idr": 1450, "competition": "High", "match_type": "Exact Match" },
+        { "keyword": "aturan pakai prevathon padi", "crop": "Padi", "monthly_volume": 4800, "avg_cpc_idr": 1200, "competition": "Medium", "match_type": "Phrase Match" },
+        { "keyword": "perbedaan virtako vs prevathon", "crop": "Padi", "monthly_volume": 2400, "avg_cpc_idr": 1100, "competition": "Low", "match_type": "Phrase Match" },
+        { "keyword": "harga fungisida nativo bayer kemasan 100 gram", "crop": "Multi-crop", "monthly_volume": 3100, "avg_cpc_idr": 1750, "competition": "High", "match_type": "Exact Match" },
+        { "keyword": "bahan aktif pengganti skor 250 ec", "crop": "Bawang Merah", "monthly_volume": 1500, "avg_cpc_idr": 1300, "competition": "Medium", "match_type": "Phrase Match" },
+        { "keyword": "dosis pupuk mkp dan kno3 untuk semangka", "crop": "Semangka", "monthly_volume": 2800, "avg_cpc_idr": 1050, "competition": "Medium", "match_type": "Phrase Match" },
+        { "keyword": "herbisida selektif jagung calaris", "crop": "Jagung", "monthly_volume": 2200, "avg_cpc_idr": 1600, "competition": "High", "match_type": "Phrase Match" }
+      ]
+    },
+    {
+      "tier": "Tier 3: Commercial Buying & Distributor Intent",
+      "intent_description": "Pemilik kios atau petani modal besar siap membeli grosir atau mencari tempat order resmi.",
+      "keywords": [
+        { "keyword": "distributor obat pertanian resmi jawa timur", "crop": "Multi-crop", "monthly_volume": 1900, "avg_cpc_idr": 2800, "competition": "High", "match_type": "Phrase Match" },
+        { "keyword": "toko pertanian online bisa bayar di tempat cod", "crop": "Multi-crop", "monthly_volume": 3800, "avg_cpc_idr": 2100, "competition": "High", "match_type": "Phrase Match" },
+        { "keyword": "grosir benih jagung bisi 18 asli", "crop": "Jagung", "monthly_volume": 2700, "avg_cpc_idr": 2400, "competition": "High", "match_type": "Exact Match" },
+        { "keyword": "kulakan pestisida untuk buka kios tani", "crop": "Multi-crop", "monthly_volume": 1400, "avg_cpc_idr": 3100, "competition": "High", "match_type": "Phrase Match" },
+        { "keyword": "agen resmi pupuk non subsidi brebes", "crop": "Bawang Merah", "monthly_volume": 1100, "avg_cpc_idr": 2600, "competition": "Medium", "match_type": "Phrase Match" },
+        { "keyword": "beli bibit alpukat aligator bersertifikat", "crop": "Alpukat", "monthly_volume": 2500, "avg_cpc_idr": 1950, "competition": "Medium", "match_type": "Phrase Match" }
+      ]
+    }
+  ],
+  "negative_keywords": [
+    {
+      "category": "Akademik & Penelitian (Non-Komersial)",
+      "list": ["skripsi", "jurnal", "makalah", "pdf", "tesis", "penelitian", "universitas", "ipb", "ugm", "unud", "daftar pustaka", "latar belakang"]
+    },
+    {
+      "category": "Lowongan Kerja & Karir",
+      "list": ["lowongan kerja", "loker", "gaji sales pestisida", "karir", "recruitment", "magang", "internship"]
+    },
+    {
+      "category": "Kebijakan Dinas & Peraturan Pemerintah",
+      "list": ["dinas pertanian", "kementan go id", "anggaran apbd", "bantuan gratis", "bansos benih", "program pemerintah"]
+    },
+    {
+      "category": "Hiburan & Hewan Peliharaan",
+      "list": ["game bertani", "harvest moon", "racun tikus rumahan", "kucing keracunan", "tanaman mati di pot plastik mainan"]
+    }
+  ],
+  "budget_and_roas_benchmarks": {
+    "hortikultura_intensif": {
+      "typical_cpm_idr": 22000,
+      "avg_ctr_percent": 2.8,
+      "cpl_wa_idr": 11500,
+      "wa_to_order_closing_rate_percent": 18.5,
+      "average_order_value_idr": 385000,
+      "target_roas": 4.2
+    },
+    "tanaman_pangan": {
+      "typical_cpm_idr": 16500,
+      "avg_ctr_percent": 3.4,
+      "cpl_wa_idr": 8200,
+      "wa_to_order_closing_rate_percent": 14.0,
+      "average_order_value_idr": 210000,
+      "target_roas": 3.5
+    },
+    "perkebunan_sawit": {
+      "typical_cpm_idr": 28500,
+      "avg_ctr_percent": 1.9,
+      "cpl_wa_idr": 24000,
+      "wa_to_order_closing_rate_percent": 22.0,
+      "average_order_value_idr": 1850000,
+      "target_roas": 6.8
+    },
+    "florikultura_urban": {
+      "typical_cpm_idr": 31000,
+      "avg_ctr_percent": 3.1,
+      "cpl_wa_idr": 14500,
+      "wa_to_order_closing_rate_percent": 25.0,
+      "average_order_value_idr": 145000,
+      "target_roas": 3.2
+    }
+  }
+}
