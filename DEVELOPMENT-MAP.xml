@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<development-map project="volum-admin" version="1" baseline="e16c87f213a5ba5e45964e9b67c792105ec74d26">
+  <purpose>Source-backed dictionary of pages, sections, shared surfaces, and implementation gaps. Not a task queue or backend specification.</purpose>
+  <vocabulary>
+    <term name="page">A navigable leaf route. URL patterns exclude pathless route groups.</term>
+    <term name="section">A named page region, form, table, tab group, or overlay; source is the edit owner.</term>
+    <term name="layout">A shared wrapper inherited by pages; layout names do not imply authorization.</term>
+    <term name="demo">Fixture data or simulated submission; no operational persistence promised.</term>
+    <term name="local">Browser-local presentation, navigation, or preferences.</term>
+    <term name="provider">Conditional Clerk behavior requiring configuration; does not imply backend implementation.</term>
+    <term name="placeholder">Rendered placeholder without the intended feature.</term>
+    <term name="disabled">Visible but unavailable control.</term>
+    <term name="missing">Linked destination or behavior without implementation.</term>
+  </vocabulary>
+  <shared>
+    <surface id="root" source="src/routes/__root.tsx">Outlet; navigation progress; toast; development-only devtools; global not-found/error fallback.</surface>
+    <surface id="admin" source="src/components/layout/authenticated-layout.tsx">Sidebar provider; layout/search providers; skip-to-main; sidebar inset; outlet. No auth guard.</surface>
+    <surface id="sidebar" source="src/components/layout/app-sidebar.tsx">Team switcher; navigation groups; user menu. Mobile drawer; desktop collapse.</surface>
+    <surface id="navigation" source="src/components/layout/data/sidebar-data.ts">General: dashboard/tasks/apps/chats/users/Clerk. Pages: auth/errors. Other: settings/help.</surface>
+    <surface id="header" source="src/components/layout/header.tsx">Sidebar trigger and per-page actions; optional fixed header.</surface>
+    <surface id="search" source="src/components/search.tsx">Command menu navigation via search provider.</surface>
+    <surface id="theme" source="src/components/theme-switch.tsx">Light/dark/system preferences.</surface>
+    <surface id="configuration" source="src/components/config-drawer.tsx">Theme; sidebar variant; layout/collapse mode; direction; reset.</surface>
+    <surface id="profile" source="src/components/profile-dropdown.tsx">Demo identity; account/settings links; sign-out dialog.</surface>
+    <surface id="settings" source="src/features/settings/index.tsx">Shared header; Settings heading; profile/account/appearance/notifications/display navigation; outlet.</surface>
+    <surface id="auth" source="src/features/auth/auth-layout.tsx">Command mark and volum-admin identity; centered content.</surface>
+    <surface id="clerk" source="src/routes/clerk/route.tsx">Optional provider wrapper; missing publishable-key setup instructions. /clerk itself has no leaf index page.</surface>
+    <surface id="clerk-auth" source="src/routes/clerk/(auth)/route.tsx">Provider auth layout; logo; volum-admin home link; outlet.</surface>
+    <surface id="clerk-admin" source="src/routes/clerk/_authenticated/route.tsx">Admin layout for provider user-management route.</surface>
+    <surface id="table-toolbar" source="src/components/data-table/toolbar.tsx">Search; facets; filter reset; column visibility.</surface>
+    <surface id="table-pagination" source="src/components/data-table/pagination.tsx">Selection count; page size; page navigation.</surface>
+    <surface id="table-bulk" source="src/components/data-table/bulk-actions.tsx">Selected-row action surface.</surface>
+    <surface id="table-url" source="src/hooks/use-table-url-state.ts">URL search/pagination/filter synchronization; feature configuration determines fields.</surface>
+    <surface id="tokens" source="src/styles/theme.css">Semantic light/dark colors, fonts, radius and chart variables.</surface>
+  </shared>
+  <pages>
+    <page id="dashboard" url="/" route="src/routes/_authenticated/index.tsx" source="src/features/dashboard/index.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="dashboard.heading" source="src/features/dashboard/index.tsx">Dashboard heading and Download button (no handler)</section>
+      <section id="dashboard.tabs" source="src/features/dashboard/index.tsx">Overview; Analytics; Reports and Notifications disabled</section>
+      <section id="dashboard.overview-kpis" source="src/features/dashboard/index.tsx">Total Revenue; Subscriptions; Sales; Active Now</section>
+      <section id="dashboard.overview-chart" source="src/features/dashboard/components/overview.tsx">Monthly bar chart</section>
+      <section id="dashboard.recent-sales" source="src/features/dashboard/components/recent-sales.tsx">Recent sales list</section>
+      <section id="dashboard.analytics-traffic" source="src/features/dashboard/components/analytics-chart.tsx">Weekly clicks and unique visitors</section>
+      <section id="dashboard.analytics-kpis" source="src/features/dashboard/components/analytics.tsx">Total Clicks; Unique Visitors; Bounce Rate; Avg. Session</section>
+      <section id="dashboard.analytics-referrers" source="src/features/dashboard/components/analytics.tsx">Direct; Product Hunt; Twitter; Blog</section>
+      <section id="dashboard.analytics-devices" source="src/features/dashboard/components/analytics.tsx">Desktop; Mobile; Tablet</section>
+    </page>
+    <page id="tasks" url="/tasks" route="src/routes/_authenticated/tasks/index.tsx" source="src/features/tasks/index.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <uses ref="table-toolbar"/><uses ref="table-pagination"/><uses ref="table-bulk"/><uses ref="table-url"/>
+      <section id="tasks.heading" source="src/features/tasks/index.tsx">Title; description; Import and Create controls</section>
+      <section id="tasks.table" source="src/features/tasks/components/tasks-table.tsx">Selection; task ID; title; status; priority; row actions</section>
+      <section id="tasks.row-actions" source="src/features/tasks/components/data-table-row-actions.tsx">Edit; label choices; delete</section>
+      <section id="tasks.bulk-actions" source="src/features/tasks/components/data-table-bulk-actions.tsx">Status; priority; export; delete (simulated)</section>
+      <section id="tasks.mutate-drawer" source="src/features/tasks/components/tasks-mutate-drawer.tsx">Create/update: title; status; label; priority</section>
+      <section id="tasks.import-dialog" source="src/features/tasks/components/tasks-import-dialog.tsx">CSV selection and file metadata demonstration</section>
+      <section id="tasks.delete-dialogs" source="src/features/tasks/components/tasks-dialogs.tsx">Single confirmation; multi-delete confirmation</section>
+    </page>
+    <page id="users" url="/users" route="src/routes/_authenticated/users/index.tsx" source="src/features/users/index.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <uses ref="table-toolbar"/><uses ref="table-pagination"/><uses ref="table-bulk"/><uses ref="table-url"/>
+      <section id="users.heading" source="src/features/users/index.tsx">User List; invite; add</section>
+      <section id="users.table" source="src/features/users/components/users-table.tsx">Selection; username; name; email; phone; status; role; actions</section>
+      <section id="users.row-actions" source="src/features/users/components/data-table-row-actions.tsx">Edit and delete</section>
+      <section id="users.bulk-actions" source="src/features/users/components/data-table-bulk-actions.tsx">Activate/deactivate; invite; delete (simulated)</section>
+      <section id="users.edit-dialog" source="src/features/users/components/users-action-dialog.tsx">First/last name; username; email; phone; role; password confirmation</section>
+      <section id="users.invite-dialog" source="src/features/users/components/users-invite-dialog.tsx">Email; role; optional description</section>
+      <section id="users.delete-dialog" source="src/features/users/components/users-delete-dialog.tsx">Email confirmation and warning</section>
+      <section id="users.multi-delete" source="src/features/users/components/users-multi-delete-dialog.tsx">Confirmation for selected users</section>
+    </page>
+    <page id="apps" url="/apps" route="src/routes/_authenticated/apps/index.tsx" source="src/features/apps/index.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="apps.heading" source="src/features/apps/index.tsx">App Integrations</section>
+      <section id="apps.filters" source="src/features/apps/index.tsx">Search; all/connected/not connected; ascending/descending sort (URL backed)</section>
+      <section id="apps.cards" source="src/features/apps/index.tsx">Provider icon; name; description; connection label; Connect has no handler</section>
+    </page>
+    <page id="chats" url="/chats" route="src/routes/_authenticated/chats/index.tsx" source="src/features/chats/index.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="chats.inbox" source="src/features/chats/index.tsx">Search; conversation list; new message button</section>
+      <section id="chats.empty" source="src/features/chats/index.tsx">No selected conversation; start-message prompt</section>
+      <section id="chats.conversation-header" source="src/features/chats/index.tsx">Participant; mobile back; phone/video/menu controls</section>
+      <section id="chats.messages" source="src/features/chats/index.tsx">Messages grouped by date; sender and time</section>
+      <section id="chats.composer" source="src/features/chats/index.tsx">Text; attachment/image controls; send (not wired to messaging)</section>
+      <section id="chats.new-message" source="src/features/chats/components/new-chat.tsx">Recipient selection and demo submission</section>
+    </page>
+    <page id="settings-profile" url="/settings" route="src/routes/_authenticated/settings/index.tsx" source="src/features/settings/profile/index.tsx" state="demo" layout="settings">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="settings-profile.section-heading" source="src/features/settings/profile/index.tsx">profile title and description</section>
+      <section id="settings-profile.form" source="src/features/settings/profile/profile-form.tsx">Username; email; bio; repeatable URLs</section>
+    </page>
+    <page id="settings-account" url="/settings/account" route="src/routes/_authenticated/settings/account.tsx" source="src/features/settings/account/index.tsx" state="demo" layout="settings">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="settings-account.section-heading" source="src/features/settings/account/index.tsx">account title and description</section>
+      <section id="settings-account.form" source="src/features/settings/account/account-form.tsx">Name; date of birth; language</section>
+    </page>
+    <page id="settings-appearance" url="/settings/appearance" route="src/routes/_authenticated/settings/appearance.tsx" source="src/features/settings/appearance/index.tsx" state="local" layout="settings">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="settings-appearance.section-heading" source="src/features/settings/appearance/index.tsx">appearance title and description</section>
+      <section id="settings-appearance.form" source="src/features/settings/appearance/appearance-form.tsx">Font; light/dark preference; save to browser preferences</section>
+    </page>
+    <page id="settings-notifications" url="/settings/notifications" route="src/routes/_authenticated/settings/notifications.tsx" source="src/features/settings/notifications/index.tsx" state="demo" layout="settings">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="settings-notifications.section-heading" source="src/features/settings/notifications/index.tsx">notifications title and description</section>
+      <section id="settings-notifications.form" source="src/features/settings/notifications/notifications-form.tsx">Notification type; communication/marketing/social/security emails; mobile setting</section>
+    </page>
+    <page id="settings-display" url="/settings/display" route="src/routes/_authenticated/settings/display.tsx" source="src/features/settings/display/index.tsx" state="demo" layout="settings">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="settings-display.section-heading" source="src/features/settings/display/index.tsx">display title and description</section>
+      <section id="settings-display.form" source="src/features/settings/display/display-form.tsx">Sidebar item checkboxes; demo submission</section>
+    </page>
+    <page id="help-center" url="/help-center" route="src/routes/_authenticated/help-center/index.tsx" source="src/routes/_authenticated/help-center/index.tsx" state="placeholder" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="help-center.coming-soon" source="src/components/coming-soon.tsx">Coming Soon placeholder</section>
+    </page>
+    <page id="sign-in" url="/sign-in" route="src/routes/(auth)/sign-in.tsx" source="src/features/auth/sign-in/index.tsx" state="demo" layout="auth">
+      <section id="sign-in.identity" source="src/features/auth/sign-in/index.tsx">volum-admin name and Command mark</section>
+      <section id="sign-in.form" source="src/features/auth/sign-in/components/user-auth-form.tsx">Email/password; forgot-password link; submit; social buttons; terms/privacy links</section>
+    </page>
+    <page id="sign-in-2" url="/sign-in-2" route="src/routes/(auth)/sign-in-2.tsx" source="src/features/auth/sign-in/sign-in-2.tsx" state="demo" layout="auth">
+      <section id="sign-in-2.identity" source="src/features/auth/sign-in/sign-in-2.tsx">volum-admin name and Command mark</section>
+      <section id="sign-in-2.form" source="src/features/auth/sign-in/components/user-auth-form.tsx">Two-column sign-in; email/password form; sign-up; terms/privacy; light/dark dashboard preview</section>
+    </page>
+    <page id="sign-up" url="/sign-up" route="src/routes/(auth)/sign-up.tsx" source="src/features/auth/sign-up/index.tsx" state="demo" layout="auth">
+      <section id="sign-up.identity" source="src/features/auth/sign-up/index.tsx">volum-admin name and Command mark</section>
+      <section id="sign-up.form" source="src/features/auth/sign-up/components/sign-up-form.tsx">Email; password; confirm password; create account; social controls; sign-in link</section>
+    </page>
+    <page id="forgot-password" url="/forgot-password" route="src/routes/(auth)/forgot-password.tsx" source="src/features/auth/forgot-password/index.tsx" state="demo" layout="auth">
+      <section id="forgot-password.identity" source="src/features/auth/forgot-password/index.tsx">volum-admin name and Command mark</section>
+      <section id="forgot-password.form" source="src/features/auth/forgot-password/components/forgot-password-form.tsx">Email; recovery submit; sign-up link</section>
+    </page>
+    <page id="otp" url="/otp" route="src/routes/(auth)/otp.tsx" source="src/features/auth/otp/index.tsx" state="demo" layout="auth">
+      <section id="otp.identity" source="src/features/auth/otp/index.tsx">volum-admin name and Command mark</section>
+      <section id="otp.form" source="src/features/auth/otp/components/otp-form.tsx">One-time code; verification submit; resend link</section>
+    </page>
+    <page id="error-401" url="/401" route="src/routes/(errors)/401.tsx" source="src/features/errors/unauthorized-error.tsx" state="local" layout="standalone">
+      <section id="error-401.message" source="src/features/errors/unauthorized-error.tsx">401; Unauthorized; explanation</section>
+      <section id="error-401.recovery" source="src/features/errors/unauthorized-error.tsx">Recovery/navigation controls rendered by the error component</section>
+    </page>
+    <page id="error-403" url="/403" route="src/routes/(errors)/403.tsx" source="src/features/errors/forbidden.tsx" state="local" layout="standalone">
+      <section id="error-403.message" source="src/features/errors/forbidden.tsx">403; Forbidden; explanation</section>
+      <section id="error-403.recovery" source="src/features/errors/forbidden.tsx">Recovery/navigation controls rendered by the error component</section>
+    </page>
+    <page id="error-404" url="/404" route="src/routes/(errors)/404.tsx" source="src/features/errors/not-found-error.tsx" state="local" layout="standalone">
+      <section id="error-404.message" source="src/features/errors/not-found-error.tsx">404; Not found; explanation</section>
+      <section id="error-404.recovery" source="src/features/errors/not-found-error.tsx">Recovery/navigation controls rendered by the error component</section>
+    </page>
+    <page id="error-500" url="/500" route="src/routes/(errors)/500.tsx" source="src/features/errors/general-error.tsx" state="local" layout="standalone">
+      <section id="error-500.message" source="src/features/errors/general-error.tsx">500; Internal server error; explanation</section>
+      <section id="error-500.recovery" source="src/features/errors/general-error.tsx">Recovery/navigation controls rendered by the error component</section>
+    </page>
+    <page id="error-503" url="/503" route="src/routes/(errors)/503.tsx" source="src/features/errors/maintenance-error.tsx" state="local" layout="standalone">
+      <section id="error-503.message" source="src/features/errors/maintenance-error.tsx">503; Maintenance; explanation</section>
+      <section id="error-503.recovery" source="src/features/errors/maintenance-error.tsx">Recovery/navigation controls rendered by the error component</section>
+    </page>
+    <page id="error-gallery" url="/errors/$error" route="src/routes/_authenticated/errors/$error.tsx" source="src/routes/_authenticated/errors/$error.tsx" state="local" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="error-gallery.variants" source="src/routes/_authenticated/errors/$error.tsx">unauthorized; forbidden; not-found; internal-server-error; maintenance-error; unknown value falls back to not-found</section>
+      <section id="error-gallery.error-content" source="src/routes/_authenticated/errors/$error.tsx">Reuses standalone error components inside admin shell</section>
+    </page>
+    <page id="clerk-sign-in" url="/clerk/sign-in" route="src/routes/clerk/(auth)/sign-in.tsx" source="src/routes/clerk/(auth)/sign-in.tsx" state="provider" layout="clerk-auth">
+      <section id="clerk-sign-in.provider-form" source="src/routes/clerk/(auth)/sign-in.tsx">Clerk SignIn widget; shared Clerk auth identity</section>
+    </page>
+    <page id="clerk-sign-up" url="/clerk/sign-up" route="src/routes/clerk/(auth)/sign-up.tsx" source="src/routes/clerk/(auth)/sign-up.tsx" state="provider" layout="clerk-auth">
+      <section id="clerk-sign-up.provider-form" source="src/routes/clerk/(auth)/sign-up.tsx">Clerk SignUp widget; shared Clerk auth identity</section>
+    </page>
+    <page id="clerk-users" url="/clerk/user-management" route="src/routes/clerk/_authenticated/user-management.tsx" source="src/routes/clerk/_authenticated/user-management.tsx" state="provider" layout="clerk-admin">
+      <section id="clerk-users.loading" source="src/routes/clerk/_authenticated/user-management.tsx">Provider initialization spinner</section>
+      <section id="clerk-users.unauthorized" source="src/routes/clerk/_authenticated/user-management.tsx">401; sign-in; help popover; cancellable countdown</section>
+      <section id="clerk-users.header" source="src/routes/clerk/_authenticated/user-management.tsx">Clerk UserButton; search; theme; config</section>
+      <section id="clerk-users.users" source="src/features/users/components/users-table.tsx">Reuses demo UsersTable and dialogs; not the Clerk user directory</section>
+    </page>
+  </pages>
+  <data-sources>
+    <data source="src/features/tasks/data/tasks.ts" state="demo">Task fixtures.</data>
+    <data source="src/features/users/data/users.ts" state="demo">User fixtures, also used on the Clerk user-management page.</data>
+    <data source="src/features/apps/data/apps.tsx" state="demo">Static integration catalog and connection flags.</data>
+    <data source="src/features/chats/data/convo.json" state="demo">Conversation fixtures.</data>
+    <data source="src/features/dashboard/index.tsx" state="demo">Hardcoded KPI values; chart component data is illustrative.</data>
+  </data-sources>
+  <gaps>
+    <gap state="missing" url="/terms">Linked from auth screens; no route implementation.</gap>
+    <gap state="missing" url="/privacy">Linked from auth screens; no route implementation.</gap>
+    <gap state="missing" url="/dashboard/overview">Dashboard top-nav href has no matching leaf route.</gap>
+    <gap state="disabled">Dashboard Customers/Products/Settings top-nav destinations and Reports/Notifications tabs.</gap>
+    <gap state="missing">Dashboard Download, integration Connect, and chat send/attachments need real handlers.</gap>
+    <gap state="demo">CRUD, bulk actions, import/export, and auth submissions require real API and persistence contracts.</gap>
+    <gap state="missing">Server-side authorization, tenant isolation, audit logging, and real operational loading/conflict/recovery behavior.</gap>
+    <gap state="placeholder">Help Center.</gap>
+  </gaps>
+  <maintenance>When adding or removing a page, update its route and this inventory. When a section changes, update its owner and implementation status. Shared components are referenced once. Verify all source paths and route coverage; code wins over this document.</maintenance>
+</development-map>

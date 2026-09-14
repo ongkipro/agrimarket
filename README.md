@@ -1,119 +1,74 @@
-# Shadcn Admin Dashboard
+# volum-admin
 
-Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and accessibility in mind.
+Primary reference implementation for our admin dashboards. Upstream provenance and attribution are recorded in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
-![alt text](public/images/shadcn-admin.png)
+Reuse the shell, navigation, tables, forms, overlays, themes, and responsive patterns. Business modules are examples: dashboard metrics, tasks, users, app connections, and chats use demo data. The ordinary `_authenticated` layout is **not an authentication guard**. Clerk is an optional, separate integration; its user table still uses demo data.
 
-[![Sponsored by Clerk](https://img.shields.io/badge/Sponsored%20by-Clerk-5b6ee1?logo=clerk)](https://go.clerk.com/GttUAaK)
+## Run locally
 
-I've been creating dashboard UIs at work and for my personal projects. I always wanted to make a reusable collection of dashboard UI for future projects; and here it is now. While I've created a few custom components, some of the code is directly adapted from ShadcnUI examples.
+Use Node.js 24 and pnpm with the committed lockfile:
 
-> This is not a starter project (template) though. I'll probably make one in the future.
-
-## Features
-
-- Light/dark mode
-- Responsive
-- Accessible
-- With built-in Sidebar component
-- Global search command
-- 10+ pages
-- Extra custom components
-- RTL support
-
-<details>
-<summary>Customized Components (click to expand)</summary>
-
-This project uses Shadcn UI components, but some have been slightly modified for better RTL (Right-to-Left) support and other improvements. These customized components differ from the original Shadcn UI versions.
-
-If you want to update components using the Shadcn CLI (e.g., `npx shadcn@latest add <component>`), it's generally safe for non-customized components. For the listed customized ones, you may need to manually merge changes to preserve the project's modifications and avoid overwriting RTL support or other updates.
-
-> If you don't require RTL support, you can safely update the 'RTL Updated Components' via the Shadcn CLI, as these changes are primarily for RTL compatibility. The 'Modified Components' may have other customizations to consider.
-
-### Modified Components
-
-- scroll-area
-- sonner
-- separator
-
-### RTL Updated Components
-
-- alert-dialog
-- calendar
-- command
-- dialog
-- dropdown-menu
-- select
-- table
-- sheet
-- sidebar
-- switch
-
-**Notes:**
-
-- **Modified Components**: These have general updates, potentially including RTL adjustments.
-- **RTL Updated Components**: These have specific changes for RTL language support (e.g., layout, positioning).
-- For implementation details, check the source files in `src/components/ui/`.
-- All other Shadcn UI components in the project are standard and can be safely updated via the CLI.
-
-</details>
-
-## Tech Stack
-
-**UI:** [ShadcnUI](https://ui.shadcn.com) (TailwindCSS + RadixUI)
-
-**Build Tool:** [Vite](https://vitejs.dev/)
-
-**Routing:** [TanStack Router](https://tanstack.com/router/latest)
-
-**Type Checking:** [TypeScript](https://www.typescriptlang.org/)
-
-**Linting/Formatting:** [ESLint](https://eslint.org/) & [Prettier](https://prettier.io/)
-
-**Icons:** [Lucide Icons](https://lucide.dev/icons/), [Tabler Icons](https://tabler.io/icons) (Brand icons only)
-
-**Auth (partial):** [Clerk](https://go.clerk.com/GttUAaK)
-
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/satnaing/shadcn-admin.git
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-Go to the project directory
+No credentials are needed for the ordinary demo pages. Clerk routes show setup guidance when no publishable key is configured. Never put private credentials into Vite client environment variables.
 
-```bash
-  cd shadcn-admin
+With pnpm versions that require dependency build approval, review the reported packages and their lifecycle scripts before allowing individual builds. Do not disable the policy globally. A blocked install is not a successful installation.
+
+## Checks
+
+```sh
+pnpm lint
+pnpm build
+pnpm test
+pnpm format:check
 ```
 
-Install dependencies
+Tests use Vitest browser mode and Playwright Chromium. The declared Playwright version needs its matching browser binary. The upstream `test:browser:install` script also installs OS dependencies; inspect it before use. For a user-local browser download only, use `pnpm exec playwright install chromium`.
 
-```bash
-  pnpm install
-```
+## Development dictionary
 
-Start the server
+[DEVELOPMENT-MAP.xml](DEVELOPMENT-MAP.xml) is the canonical page/section inventory, not an execution queue. It maps URL patterns to route files, component owners, shared sections, fields, dialogs, data sources, and known implementation gaps. Its vocabulary is defined inside the XML.
 
-```bash
-  pnpm run dev
-```
+- Start with the page URL, then locate its section and source file.
+- Shared sections are defined once and referenced by ID.
+- `demo` means a UI example, not persisted business behavior.
+- `local` means browser-local behavior; `provider` means optional Clerk behavior.
+- `placeholder`, `disabled`, and `missing` are explicitly incomplete.
+- Update the map in the same change as a route or section change.
+- Source code wins if the map drifts; do not edit `src/routeTree.gen.ts` by hand.
 
-## Sponsoring this project ❤️
+Agent instructions: [AGENTS.md](AGENTS.md).
 
-If you find this project helpful or use this in your own work, consider [sponsoring me](https://github.com/sponsors/satnaing) to support development and maintenance. You can [buy me a coffee](https://buymeacoffee.com/satnaing) as well. Don’t worry, every penny helps. Thank you! 🙏
+## Structure
 
-For questions or sponsorship inquiries, feel free to reach out at [satnaingdev@gmail.com](mailto:satnaingdev@gmail.com).
+| Path                               | Responsibility                                       |
+| ---------------------------------- | ---------------------------------------------------- |
+| `src/routes/`                      | TanStack Router route definitions and URL validation |
+| `src/features/`                    | Page composition, forms, tables, demo data           |
+| `src/components/layout/`           | Sidebar, header, navigation, workspace switcher      |
+| `src/components/data-table/`       | Reusable table controls                              |
+| `src/components/ui/`               | Locally owned shadcn/Radix primitives                |
+| `src/context/`                     | Theme, font, direction, layout, search preferences   |
+| `src/hooks/use-table-url-state.ts` | Table search and pagination URL state                |
+| `src/styles/theme.css`             | Light/dark semantic tokens                           |
+| `src/stores/auth-store.ts`         | Demo client auth state, not server authorization     |
 
-### Current Sponsor
+Stack: React 19, TypeScript, Vite 8, Tailwind 4, TanStack Router/Query/Table v8, React Hook Form, Zod, Zustand, Recharts, and optional Clerk. Package versions are owned by `package.json` and `pnpm-lock.yaml`.
 
-- [Clerk](https://go.clerk.com/GttUAaK) - authentication and user management for the modern web
+## Pattern maintenance
 
-## Author
+Preserve the existing density, responsive navigation, keyboard behavior, and light/dark themes. Rebranding currently uses the existing Command mark; a distinct logo is not yet designed. Keep provider logos and library names accurate.
 
-Crafted with 🤍 by [@satnaing](https://github.com/satnaing)
+Some UI primitives have upstream RTL/custom modifications: scroll-area, sonner, separator, alert-dialog, calendar, command, dialog, dropdown-menu, select, table, sheet, sidebar, and switch. Inspect local differences before replacing components through the shadcn CLI.
 
-## License
+New operational modules need their own roles, permissions, lifecycle, API, loading/error states, and persistence contracts. Existing demo actions and success toasts are not those contracts. Terms/privacy links and several dashboard actions are not implemented; see the map.
 
-Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
+## Upstream provenance
+
+Baseline: `e16c87f213a5ba5e45964e9b67c792105ec74d26` (upstream package version 2.2.1).
+The root LICENSE file has been replaced by [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md), preserving the original copyright and permission notice in full. Rebranding does not remove that notice.
+
+Repository: [ongkipro/volum-admin](https://github.com/ongkipro/volum-admin) (private). This linked worktree uses the `volum` remote for this repository; `origin` still belongs to the upstream clone and is not a push target for Volum work. No production hostname or deployment target has been assigned.

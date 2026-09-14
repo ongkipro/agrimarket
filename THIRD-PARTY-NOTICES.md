@@ -1,3 +1,8 @@
+# Third-party notices
+
+volum-admin is derived from [satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin), baseline commit `e16c87f213a5ba5e45964e9b67c792105ec74d26`.
+The upstream notice is retained below, verbatim. Dependency licenses remain with their respective packages.
+
 MIT License
 
 Copyright (c) 2024 Sat Naing
