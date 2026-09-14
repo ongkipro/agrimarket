@@ -25,11 +25,11 @@ Tabel berikut menyajikan rekapitulasi komparatif ukuran pasar agronomi (TAM), ko
 | 7 | **Tomat** | Hortikultura Sayur | 56.780 | 1.184.200 | Rp 7,34 T | 44.920 Ha | 79,11% | Rp 29,18 jt | **Rp 1,31 T** | Jawa Barat, Jawa Timur, Jawa Tengah |
 | 8 | **Semangka** | Hortikultura Buah | 34.850 | 627.300 | Rp 2,82 T | 28.531 Ha | 81,87% | Rp 22,50 jt | **Rp 0,64 T** | Jawa Timur, Sumatera Utara, Jawa Tengah |
 | 9 | **Melon** | Hortikultura Buah | 12.850 | 218.450 | Rp 1,86 T | 10.767 Ha | 83,79% | Rp 27,30 jt | **Rp 0,29 T** | Jawa Timur, Jawa Tengah, Jawa Barat |
-| 10 | **Kelapa Sawit** | Perkebunan Besar | 16.835.000 | 47.690.000 (CPO) | Rp 631,89 T | 11.285.500 Ha | 67,04% | Rp 10,45 jt | **Rp 117,93 T** | Riau, Sumatera Utara, Kalimantan Tengah |
+| 10 | **Kelapa Sawit** | Perkebunan Besar | 16.835.000 | 238.450.000 (TBS) / 47.690.000 (CPO) | Rp 631,89 T | 11.285.500 Ha | 67,04% | Rp 10,45 jt | **Rp 117,93 T** | Riau, Sumatera Utara, Kalimantan Tengah |
 | 11 | **Alpukat** | Buah Tahunan | 42.100 (8,42 jt phn) | 924.500 | Rp 13,41 T | 26.593 Ha | 63,17% | Rp 11,20 jt | **Rp 0,30 T** | Jawa Timur, Jawa Barat, Jawa Tengah |
 | 12 | **Tembakau** | Perkebunan Semusim | 226.400 | 245.800 | Rp 11,80 T | 186.418 Ha | 82,34% | Rp 16,00 jt | **Rp 2,99 T** | Jawa Timur, NTB, Jawa Tengah |
 | 13 | **Anggrek** | Florikultura | 1.850 (2,78 jt tgk) | 2.780.000 tgk | Rp 0,14 T | 1.637 Ha | 88,51% | Rp 27,30 jt | **Rp 0,04 T** | Banten, Jawa Barat, Jawa Timur |
-| **TOTAL** | **AGREGAT 13** | **SELURUH SEKTOR** | **30.451.874 Ha** | **—** | **Rp 1.276,46 T** | **20.985.713 Ha** | **68,91% (w)** | **—** | **Rp 204,22 T** | **38 Provinsi (Reconciled)** |
+| **TOTAL** | **AGREGAT 13** | **SELURUH SEKTOR** | **30.451.874 Ha** | **—** | **Rp 1.276,46 T** | **21.185.714 Ha** | **69,57% (w)** | **—** | **Rp 204,22 T** | **38 Provinsi (Reconciled)** |
 
 *(w) = Rata-rata persentase tertimbang berdasarkan luas areal.*
 
@@ -49,10 +49,14 @@ Tabel berikut menyajikan rekapitulasi komparatif ukuran pasar agronomi (TAM), ko
 
 ### 2.2 Dampak Regulasi Pupuk Subsidi (Permentan No. 10 Tahun 2022)
 Penerbitan Peraturan Menteri Pertanian No. 10 Tahun 2022 telah merombak arsitektur pasar pupuk nasional secara permanen:
-- **Penyempitan Alokasi Komoditas Subsidi:** Subsidi pupuk pemerintah hanya dibatasi untuk **9 komoditas**: Padi, Jagung, Kedelai (Tanaman Pangan); Cabai, Bawang Merah, Bawang Putih (Hortikultura); serta Tebu Rakyat, Kopi, Kakao (Perkebunan).
-- **Komoditas yang Terlempar dari Subsidi:** Kentang, Kubis, Tomat, Semangka, Melon, Kelapa Sawit, Alpukat, Tembakau, dan Anggrek **100% tidak lagi berhak menerima pupuk subsidi pemerintah**.
+- **Penyempitan Alokasi Komoditas Subsidi (Pasal 3 Ayat 2):** Subsidi pupuk pemerintah hanya dibatasi untuk **9 komoditas**:
+  - *Tanaman Pangan:* Padi, Jagung, Kedelai.
+  - *Hortikultura:* Cabai, Bawang Merah, Bawang Putih.
+  - *Perkebunan Rakyat:* Tebu Rakyat, Kopi, Kakao.
+- **Komoditas yang 100% Terlempar dari Subsidi (0% Alokasi):** Kentang, Kubis, Tomat, Semangka, Melon, Kelapa Sawit, Alpukat, Tembakau, dan Anggrek **sama sekali tidak berhak menerima pupuk subsidi pemerintah**.
+- **Dinamika Khusus Cabai & Bawang Merah:** Kendati tercantum sebagai penerima subsidi (maksimal kepemilikan 2 Ha), kuota riil *e-Alokasi* Kementan di lapangan rata-rata hanya mencukupi **25–35%** dari total kebutuhan pemupukan intensif petani (misal petani butuh 1.200 kg NPK/Ha, alokasi subsidi hanya 300–400 kg/Ha). Sisa kebutuhan **65–75%**, ditambah **100% nutrisi mikro, kalsium, foliar, serta proteksi tanaman (fungisida/insektisida)** dipasok sepenuhnya oleh jalur ritel swasta komersial.
 - **Konsekuensi Komersial bagi Pelaku Bisnis:**
-  - Terjadi ledakan permintaan pasar pupuk komersial non-subsidi (NPK formulasi, kalium sulfat/ZK, kalsium nitrat, dan pupuk organik hayati) senilai puluhan triliun rupiah di kalangan petani hortikultura dan perkebunan.
+  - Terjadi ledakan permintaan pasar pupuk komersial non-subsidi (NPK formulasi spesifik, kalium sulfat/ZK, kalsium nitrat, dan pupuk organik hayati) senilai puluhan triliun rupiah.
   - Petani terbukti rela membayar pupuk non-subsidi dengan harga 2–3 kali lipat lebih mahal asalkan ketersediaan barang terjamin saat fase kritis pemupukan dan memberikan kenaikan tonase panen riil.
 
 ---

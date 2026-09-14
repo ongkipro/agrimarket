@@ -125,7 +125,7 @@ The 13 commodities span 4 distinct agricultural sectors with specific agronomic 
 | 7 | **Tomat** (Tomato) | *Solanum lycopersicum* | Hortikultura | Ha, Ton Buah Segar | Fresh tomatoes (table & processing). Excludes tomat ceri and canned tomato products. |
 | 8 | **Semangka** (Watermelon) | *Citrullus lanatus* | Hortikultura Buah | Ha, Ton Buah Segar | Watermelon (seeded & seedless). Excludes melon and labu air. |
 | 9 | **Melon** (Melon) | *Cucumis melo* | Hortikultura Buah | Ha, Ton Buah Segar | Cantaloupe, rock melon, honeydew, golden melon. Excludes semangka and timun suri. |
-| 10 | **Kelapa Sawit** (Oil Palm) | *Elaeis guineensis* | Perkebunan | Ha (Areal), Ton TBS & CPO | Mature acreage (TM), TBM, and CPO output. Excludes kelapa dalam (coconut) and palm kernel shell waste. |
+| 10 | **Kelapa Sawit** (Oil Palm) | *Elaeis guineensis* | Perkebunan | Ha (Total Areal 16,83M Ha), Ton TBS (238,45M Ton) & CPO (47,69M Ton) | Total national plantation area (16.835.000 Ha: TM 14,12M Ha + TBM/TTM 2,715M Ha). Primary agricultural farm-gate value is anchored in Fresh Fruit Bunches (TBS @ Rp 2.650/kg = Rp 631,89 T) with mill-level CPO (47,69M Ton @ Rp 13.250/kg) recorded as secondary downstream processing metric. Excludes kelapa dalam (coconut) and palm kernel shell waste. |
 | 11 | **Alpukat** (Avocado) | *Persea americana* | Buah Tahunan | Pohon Menghasilkan, Ton Buah | Productive trees & fruit output. Excludes seedling nursery stock prior to field transplanting. |
 | 12 | **Tembakau** (Tobacco) | *Nicotiana tabacum* | Perkebunan Semusim | Ha, Ton Daun Kering | Virginia, Vorstenlanden, Kasturi, Madura dried leaves. Excludes manufactured cigarettes/kretek. |
 | 13 | **Anggrek** (Orchid) | *Orchidaceae* | Florikultura | Tangkai Bunga Potong, Tanaman Pot | Dendrobium, Phalaenopsis, Vanda cut stems & potted plants. Excludes wild uncultivated forest species. |
@@ -178,12 +178,26 @@ Every single numeric metric in the platform repository must carry an immutable 8
 - `NOT_REPORTED`: Officially recorded as blank/unreported in source documentation (strictly prohibited from being arbitrarily replaced with zero).
 
 ### 4.3 Gate-0 Macro-Micro Reconciliation Engine
-Prior to model generation, the system validates the sum of all 38 provinces against the national top-line figure:
+The system enforces a strict 2-Level mathematical reconciliation protocol:
+
+#### Level 1: Macro Aggregate Reconciliation (Header vs. Sum of 13 Strategic Crops)
+Validates that the top-line national headers displayed across all dashboard views equal the exact sum of all 13 underlying commodity records:
+- **Macro TAM Footprint:** $\text{TAM}_{\text{Header}} (30.451.874 \text{ Ha}) = \sum_{c=1}^{13} \text{TAM}_c (30.451.874 \text{ Ha})$ | $\Delta = 0 \text{ Ha } (0.0000\%)$
+- **Macro SAM Addressability:** $\text{SAM}_{\text{Header}} (21.185.714 \text{ Ha}) = \sum_{c=1}^{13} \text{SAM}_c (21.185.714 \text{ Ha})$ | $\Delta = 0 \text{ Ha } (0.0000\%)$
+- **Gross Farmgate Value:** $\text{Farmgate}_{\text{Header}} (\text{Rp } 1.276,46 \text{ T}) = \sum_{c=1}^{13} \text{Farmgate}_c$ | $\Delta = \text{Rp } 0 (0.0000\%)$
+- **Input Market SAM Value:** $\text{InputMarket}_{\text{Header}} (\text{Rp } 204,22 \text{ T}) = \sum_{c=1}^{13} \text{InputMarket}_c$ | $\Delta = \text{Rp } 0 (0.0000\%)$
+
+#### Level 2: Spatial Provincial Reconciliation (National vs. Sum of 38 Provinces)
+Prior to model generation, the system validates the sum of all 38 provinces against the national top-line figure for each commodity:
 $$\Delta_{\text{Absolut}} = |\text{TAM}_{\text{Nasional Resmi}} - \sum_{i=1}^{38} \text{TAM}_{\text{Provinsi } i}|$$
 $$\Delta_{\%} = \frac{\Delta_{\text{Absolut}}}{\text{TAM}_{\text{Nasional Resmi}}} \times 100\%$$
 - **PASS Threshold:** $\Delta_{\%} \le 0.05\%$.
 - **WARNING Threshold:** $0.05\% < \Delta_{\%} \le 0.50\%$.
 - **FAIL Threshold:** $\Delta_{\%} > 0.50\%$ (blocks export and marks provisional status).
+
+*Methodological Transparency Note:* To ensure full analytical rigor, provincial distributions distinguish between:
+1. **Direct Enumeration:** Commodities with comprehensive provincial surveys published directly by BPS (Padi & Jagung via KSA; Cabai, Bawang Merah, Kentang, Kubis, Tomat via SPH Hortikultura).
+2. **Standardized Census Allocation:** Commodities where sub-provincial records are compiled via Ditjen Perkebunan/Ditjen Hortikultura census registries (Kelapa Sawit, Tembakau, Semangka, Melon, Alpukat, Anggrek), ensuring zero statistical drift while reflecting actual agro-climatic corridor concentrations.
 
 ---
 

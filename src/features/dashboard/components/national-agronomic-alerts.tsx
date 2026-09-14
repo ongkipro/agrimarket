@@ -11,7 +11,7 @@ export function NationalAgronomicAlerts() {
       badge: 'Regulatory Catalyst',
       badgeVariant: 'default',
       description:
-        'Subsidized fertilizer restricted strictly to Padi, Jagung, and Kedelai (Urea & NPK only). Horticultural crops (Cabai, Bawang Merah, Kentang, Tomat) and Perkebunan (Kelapa Sawit) now rely 100% on commercial private inputs, creating an immediate Rp 42.8 Trillion commercial addressable market expansion.',
+        'Permentan 10/2022 Pasal 3(2) restricts subsidized fertilizer (Urea & NPK) to 9 strategic commodities (Padi, Jagung, Kedelai; Cabai, Bawang Merah, Bawang Putih; Tebu, Kopi, Kakao). Non-subsidized crops (Kentang, Kubis, Tomat, Semangka, Melon, Kelapa Sawit) rely 100% on commercial inputs. Even for Cabai & Bawang Merah, e-Alokasi quotas cover only 25–35% of intensive dosages, leaving 65–75% and all micro/CP inputs to private retail distribution.',
     },
     {
       type: 'weather',

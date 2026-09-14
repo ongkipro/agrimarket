@@ -19,10 +19,30 @@ describe('Agrimarket Data Engine', () => {
     expect(dataset.metadata.reference_year).toBe(2024)
 
     const macro = getMacroSummary()
-    expect(macro.total_tam_ha).toBeGreaterThan(30_000_000)
-    expect(macro.total_sam_ha).toBeGreaterThan(20_000_000)
+    expect(macro.total_tam_ha).toBe(30_451_874)
+    expect(macro.total_sam_ha).toBe(21_185_714)
     expect(macro.total_gross_farmgate_value_idr).toBeGreaterThan(1_000_000_000_000_000)
-    expect(macro.overall_tam_to_sam_conversion_pct).toBeCloseTo(68.91, 1)
+    expect(macro.overall_tam_to_sam_conversion_pct).toBeCloseTo(69.57, 1)
+  })
+
+  it('validates Level 1 Macro Aggregate Reconciliation (Zero Deviation)', () => {
+    const macro = getMacroSummary()
+    const crops = getCommodities()
+
+    const sumTamHa = crops.reduce((acc, c) => acc + c.tam.harvest_area_ha, 0)
+    expect(sumTamHa).toBe(macro.total_tam_ha)
+    expect(macro.total_tam_ha - sumTamHa).toBe(0)
+
+    const sumSamHa = Math.round(crops.reduce((acc, c) => acc + c.sam.eligible_area_ha, 0))
+    expect(sumSamHa).toBe(macro.total_sam_ha)
+    expect(macro.total_sam_ha - sumSamHa).toBe(0)
+
+    const sawit = crops.find((c) => c.id === 'COMM_10_KELAPA_SAWIT')!
+    expect(sawit).toBeDefined()
+    expect(sawit.tam.harvest_area_ha).toBe(16_835_000)
+    expect(sawit.tam.production_ton).toBe(238_450_000) // Fresh Fruit Bunches (TBS)
+    expect(sawit.tam.farmgate_price_idr_per_kg).toBe(2650)
+    expect(sawit.tam.gross_output_value_trillion_idr).toBe(631.89)
   })
 
   it('contains exactly 13 strategic commodities', () => {

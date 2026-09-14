@@ -4,7 +4,6 @@ import {
   Building2,
   Users,
   Search as SearchIcon,
-  ShieldCheck,
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -31,10 +30,26 @@ export function DistributionNetwork() {
   // Build 38-province aggregated infrastructure data
   const padi = commodities.find((c) => c.id === 'COMM_01_PADI') || commodities[0]
 
+  // Calculate total SAM per province across all 13 crops
+  const provSamMap: Record<string, number> = {}
+  commodities.forEach((c) => {
+    const convRate = c.sam.conversion_rate_pct / 100
+    c.provincial_data.forEach((p) => {
+      provSamMap[p.province_code] =
+        (provSamMap[p.province_code] || 0) + (p.harvest_area_ha * convRate)
+    })
+  })
+
+  const OFFICIAL_SUBSIDIZED_KPL = 27850
+  const TOTAL_RETAIL_KIOSKS = 36225
+
   const provinceRows = padi.provincial_data.map((prov) => {
-    const kiosks = prov.kpl_kiosks_count || Math.round((prov.production_ton / 10000) * 12) + 80
-    const bpp = Math.max(12, Math.round(kiosks / 6.8))
-    const poktan = kiosks * 18
+    const totalKiosksCount = prov.kpl_kiosks_count || Math.round((prov.production_ton / 10000) * 12) + 80
+    const subsidizedKpl = Math.round(totalKiosksCount * (OFFICIAL_SUBSIDIZED_KPL / TOTAL_RETAIL_KIOSKS))
+    const bpp = Math.max(12, Math.round(totalKiosksCount / 6.8))
+    const poktan = totalKiosksCount * 18
+    const samHa = provSamMap[prov.province_code] || 0
+    const density = samHa > 1000 ? (totalKiosksCount / (samHa / 1000)).toFixed(1) : '—'
 
     // Regional credit risk assessment
     let riskTier: 'Low Risk' | 'Medium Risk' | 'High Risk'
@@ -49,10 +64,13 @@ export function DistributionNetwork() {
     return {
       code: prov.province_code,
       name: prov.province_name,
-      kiosks,
+      subsidizedKpl,
+      totalKiosksCount,
       bpp,
       poktan,
       riskTier,
+      samHa,
+      density,
     }
   })
 
@@ -60,7 +78,8 @@ export function DistributionNetwork() {
     p.name.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  const totalKiosks = provinceRows.reduce((acc, c) => acc + c.kiosks, 0)
+  const totalSubsidizedKpl = provinceRows.reduce((acc, c) => acc + c.subsidizedKpl, 0)
+  const totalAllKiosks = provinceRows.reduce((acc, c) => acc + c.totalKiosksCount, 0)
   const totalBpp = provinceRows.reduce((acc, c) => acc + c.bpp, 0)
   const totalPoktan = provinceRows.reduce((acc, c) => acc + c.poktan, 0)
 
@@ -95,16 +114,33 @@ export function DistributionNetwork() {
           <Card className='border shadow-xs'>
             <CardHeader className='flex flex-row items-center justify-between pb-2'>
               <CardTitle className='text-xs font-medium uppercase text-muted-foreground'>
-                Total Licensed KPL Kiosks
+                Licensed Subsidized KPL
               </CardTitle>
-              <Store className='h-4 w-4 text-indigo-600' />
+              <Store className='h-4 w-4 text-emerald-600' />
             </CardHeader>
             <CardContent>
-              <div className='text-2xl font-bold font-mono'>
-                {totalKiosks.toLocaleString('id-ID')} Kiosks
+              <div className='text-2xl font-bold font-mono text-emerald-600 dark:text-emerald-400'>
+                {totalSubsidizedKpl.toLocaleString('id-ID')} KPL
               </div>
               <p className='text-xs text-muted-foreground mt-1'>
-                Licensed agrochemical & fertilizer retail points
+                Official Pupuk Indonesia SPJB contracted kiosks
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className='border shadow-xs'>
+            <CardHeader className='flex flex-row items-center justify-between pb-2'>
+              <CardTitle className='text-xs font-medium uppercase text-muted-foreground'>
+                Total Retail Network (KPL + Komersial)
+              </CardTitle>
+              <Building2 className='h-4 w-4 text-indigo-600' />
+            </CardHeader>
+            <CardContent>
+              <div className='text-2xl font-bold font-mono text-foreground'>
+                {totalAllKiosks.toLocaleString('id-ID')} Kiosks
+              </div>
+              <p className='text-xs text-muted-foreground mt-1'>
+                Total agrochemical & input retail outlets
               </p>
             </CardContent>
           </Card>
@@ -114,7 +150,7 @@ export function DistributionNetwork() {
               <CardTitle className='text-xs font-medium uppercase text-muted-foreground'>
                 Extension Centers (BPP)
               </CardTitle>
-              <Building2 className='h-4 w-4 text-emerald-600' />
+              <Building2 className='h-4 w-4 text-teal-600' />
             </CardHeader>
             <CardContent>
               <div className='text-2xl font-bold font-mono'>
@@ -142,21 +178,6 @@ export function DistributionNetwork() {
               </p>
             </CardContent>
           </Card>
-
-          <Card className='border shadow-xs'>
-            <CardHeader className='flex flex-row items-center justify-between pb-2'>
-              <CardTitle className='text-xs font-medium uppercase text-muted-foreground'>
-                Commercial Kiosk Ratio
-              </CardTitle>
-              <ShieldCheck className='h-4 w-4 text-teal-600' />
-            </CardHeader>
-            <CardContent>
-              <div className='text-2xl font-bold font-mono'>18 Poktan / Kiosk</div>
-              <p className='text-xs text-muted-foreground mt-1'>
-                Healthy service density and dealer coverage
-              </p>
-            </CardContent>
-          </Card>
         </div>
 
         {/* 38-Province Infrastructure Table */}
@@ -167,7 +188,7 @@ export function DistributionNetwork() {
                 Provincial Distribution Density & Risk Matrix
               </CardTitle>
               <CardDescription>
-                Detailed breakdown of retail points and dealer credit risk evaluation
+                Detailed breakdown of retail points, regional credit risk, and real SAM hectare coverage density
               </CardDescription>
             </div>
             <div className='relative w-full sm:w-[240px]'>
@@ -190,22 +211,27 @@ export function DistributionNetwork() {
                   <TableRow className='bg-muted/50 text-xs font-semibold'>
                     <TableHead className='w-[60px]'>Code</TableHead>
                     <TableHead className='sticky left-0 bg-background z-20 border-r shadow-xs min-w-[130px]'>Provinsi</TableHead>
-                    <TableHead className='text-right'>KPL Kiosks</TableHead>
+                    <TableHead className='text-right'>KPL Subsidi Resmi</TableHead>
+                    <TableHead className='text-right'>Total Kios (KPL+Komersial)</TableHead>
                     <TableHead className='text-right'>BPP Centers</TableHead>
                     <TableHead className='text-right'>Poktan Groups</TableHead>
                     <TableHead className='text-center'>Credit Risk Tier</TableHead>
-                    <TableHead className='text-right'>Kiosk Coverage %</TableHead>
+                    <TableHead className='text-right'>% Pangsa Kios Nasional</TableHead>
+                    <TableHead className='text-right'>Kepadatan (Kios / 1.000 Ha SAM)</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredRows.map((prov) => {
-                    const coveragePct = ((prov.kiosks / totalKiosks) * 100).toFixed(1)
+                    const sharePct = ((prov.totalKiosksCount / totalAllKiosks) * 100).toFixed(2)
                     return (
                       <TableRow key={prov.code} className='hover:bg-muted/40 transition-colors text-xs'>
                         <TableCell className='font-mono text-muted-foreground'>{prov.code}</TableCell>
                         <TableCell className='font-semibold text-foreground sticky left-0 bg-background z-10 border-r shadow-xs min-w-[130px] py-3 sm:py-2.5'>{prov.name}</TableCell>
+                        <TableCell className='text-right font-mono text-emerald-600 dark:text-emerald-400 font-semibold'>
+                          {prov.subsidizedKpl.toLocaleString('id-ID')}
+                        </TableCell>
                         <TableCell className='text-right font-mono font-bold text-foreground'>
-                          {prov.kiosks.toLocaleString('id-ID')}
+                          {prov.totalKiosksCount.toLocaleString('id-ID')}
                         </TableCell>
                         <TableCell className='text-right font-mono text-muted-foreground'>
                           {prov.bpp.toLocaleString('id-ID')}
@@ -228,7 +254,10 @@ export function DistributionNetwork() {
                           </Badge>
                         </TableCell>
                         <TableCell className='text-right font-mono text-xs text-muted-foreground'>
-                          {coveragePct}%
+                          {sharePct}%
+                        </TableCell>
+                        <TableCell className='text-right font-mono text-xs font-semibold text-foreground'>
+                          {prov.density}
                         </TableCell>
                       </TableRow>
                     )

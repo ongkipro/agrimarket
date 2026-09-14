@@ -66,13 +66,18 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
     credit_yarnen_dependency_pct: yarnen,
   }
 
-  // 4. Normalize som_internal_capacity
+  // 4. Normalize som_internal_capacity (Harmonized with operational capacity economics)
   const rawSom = (c.som_internal_capacity || {}) as unknown as Record<string, number>
   const baseReps = Math.max(8, Math.min(50, Math.round(eligibleArea / 180000)))
   const baseKiosks = baseReps * 25
-  const projectedRevBillion = Math.round(inputMarketTrillion * 1000 * 0.025 * 10) / 10
+  const defaultSalesPerKioskMillion = 75
+  const defaultSeasonality = 1.2
+  // Bottom-up operational launch capacity (Reps * Kiosks * Seasonal Sales * Seasonality)
+  const rawBottomUpRevBillion = (baseKiosks * (defaultSalesPerKioskMillion / 1000) * defaultSeasonality)
+  const projectedRevBillion = Math.round(rawBottomUpRevBillion * 10) / 10
   const tempoLimitBillion = Math.max(5, Math.round((projectedRevBillion / 2.5) * 10) / 10)
-  const penHa = Math.round(eligibleArea * 0.025)
+  const spendingPerHa = c.sam?.input_spending_per_ha_idr || 5000000
+  const penHa = spendingPerHa > 0 ? Math.round((projectedRevBillion * 1_000_000_000) / spendingPerHa) : 0
   const targetShare =
     Math.round(Math.min(12, Math.max(3.5, 45 / Math.sqrt(Math.max(1, inputMarketTrillion)))) * 10) / 10
 

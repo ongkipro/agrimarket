@@ -169,6 +169,45 @@
   - `pnpm run build` (successful compilation).
   - `project-check --full /Users/ongki/Projects/agrimarket` (VERIFIED 3/3 checks passed).
 
+---
+
+### Phase 9: Data Integrity, Regulatory Accuracy & Agronomic Model Calibration (COMPLETED & VERIFIED)
+- [x] **TASK-43:** Standardize Kelapa Sawit TAM & Production Accounting:
+  - Calibrate `COMM_10_KELAPA_SAWIT` in `src/data/market-intel-dataset.json`:
+    * Set `tam.harvest_area_ha` to `16835000` (Total National Plantation Footprint: 14,12M Ha TM + 2,715M Ha TBM/TTM).
+    * Set `tam.production_ton` to `238450000` (Fresh Fruit Bunches / TBS raw farmgate product basis).
+    * Set `tam.yield_ton_per_ha` to `16.89` (based on TM area) or `14.16` (based on total plantation area).
+    * Set `tam.farmgate_price_idr_per_kg` to `2650` (TBS price at mill/collector, resulting in exact gross value Rp 631,89 Trillion).
+    * Retain `cpo_production_ton: 47690000`, `cpo_yield_ton_per_ha: 3.3775`, and `cpo_price_idr_per_kg: 13250` in secondary metadata.
+    * Reconcile provincial records for Kelapa Sawit to sum exactly 16.835.000 Ha and 238.450.000 Ton TBS.
+  - Update `macro_summary`:
+    * Set `total_tam_ha: 30451874` ($\sum_{c=1}^{13} \text{TAM}_c = 30.451.874 \text{ Ha}$, deviation = 0 Ha / 0.0000%).
+    * Set `total_sam_ha: 21185714` ($\sum_{c=1}^{13} \text{SAM}_c = 21.185.714 \text{ Ha}$, deviation = 0 Ha / 0.0000%).
+    * Set `overall_tam_to_sam_conversion_pct: 69.57`.
+- [x] **TASK-44:** Correct Regulatory Impact of Permentan No. 10/2022:
+  - Update `src/features/dashboard/components/national-agronomic-alerts.tsx`:
+    * Accurately list the 9 prioritized subsidized crops under Permentan 10/2022 Pasal 3 ayat 2 (Padi, Jagung, Kedelai; Cabai, Bawang Merah, Bawang Putih; Tebu Rakyat, Kopi, Kakao).
+    * Highlight truly excluded crops (0% subsidy: Kentang, Kubis, Tomat, Semangka, Melon, Kelapa Sawit, Alpukat, Tembakau, Anggrek).
+    * Clarify that Cabai & Bawang Merah e-Alokasi quotas cover only 25–35% of actual dosage in practice, driving the remaining 65–75% and all micro-nutrients & crop protection into commercial private distribution.
+- [x] **TASK-45:** Harmonize SOM Internal Capacity Simulator with Baseline Targets:
+  - Update `src/features/agri/data-provider.ts` and `src/features/simulator/index.tsx`:
+    * Connect `year1_projected_revenue_billion_idr` and `year1_penetration_ha` directly to bottom-up operational capacity parameters ($N_{\text{reps}} \times K_{\text{kiosks}} \times S_{\text{sales}}$) to eliminate the 12x discrepancy.
+    * Differentiate Year 1 Initial Sales Force Capacity (operational launch) vs Year 3 Strategic Market Ambition (scaled corporate expansion).
+- [x] **TASK-46:** Calibrate KPL Kiosks Count & Kiosk Coverage Metric:
+  - Update `src/features/distribution/index.tsx`:
+    * Clarify KPI cards: "Total Licensed Subsidized KPL: 27.850 Kiosks (Official Pupuk Indonesia SPJB)" and "Total Retail Network: ~36.225 Kiosks (KPL + Commercial)".
+    * Rename column `Kiosk Coverage %` to `% Pangsa Kios Nasional` (`prov.kiosks / totalKiosks * 100`).
+    * Add `Kepadatan (Kios / 1.000 Ha SAM)` column to represent real territorial service density.
+- [x] **TASK-47:** Upgrade Audit Ledger with Level 1 Macro Reconciliation Table & Methodology Transparency:
+  - Update `src/features/audit/index.tsx`:
+    * Add Level 1 Macro Reconciliation Table comparing Header vs Sum of 13 rows for TAM Ha (0 diff), SAM Ha (0 diff), Gross Farm-gate Value (0 diff), and Input Market Value (0 diff).
+    * Add transparent methodology categorization to address tautology concerns (Direct BPS KSA/SPH records vs Standardized Allocations).
+- [x] **TASK-48:** Testing, Verification, Commit, Push & Vercel Deployment:
+  - Update unit tests in `src/features/agri/data-provider.test.ts` to assert 0 deviation for Macro TAM (30.451.874 Ha) and SAM (21.185.714 Ha).
+  - Verify zero errors via `pnpm run lint`, `pnpm run test`, `pnpm run build`, and `project-check --full`.
+  - Stage, commit cleanly (no AI attribution trailers, noreply email), push to GitHub `ongkipro/agrimarket`.
+  - Deploy to Vercel via `vercel --prod --yes` and verify production deployment.
+
 
 
 

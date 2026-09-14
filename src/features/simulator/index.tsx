@@ -351,26 +351,41 @@ export function SomSimulator() {
                 <CardTitle className='text-sm font-semibold'>
                   3-Year Strategic Trajectory Benchmarks ({selectedCrop.name})
                 </CardTitle>
+                <CardDescription className='text-[11px]'>
+                  Harmonized operational capacity model comparing Year 1 ground launch with Year 3 corporate market penetration.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs'>
                   <div className='rounded-md border p-3 bg-muted/20 space-y-1'>
-                    <div className='text-muted-foreground font-semibold'>Year 1 Baseline Target</div>
+                    <div className='text-muted-foreground font-semibold flex items-center justify-between'>
+                      <span>Year 1 Baseline Target</span>
+                      <Badge variant='outline' className='text-[9px] font-mono'>Operational Launch</Badge>
+                    </div>
                     <div className='font-mono font-bold text-sm text-foreground'>
                       Rp {selectedCrop?.som_internal_capacity?.year1_projected_revenue_billion_idr || 15} Miliar
                     </div>
                     <div className='text-[11px] text-muted-foreground'>
-                      Penetration: {formatHa(selectedCrop?.som_internal_capacity?.year1_penetration_ha || 15000)} ({selectedCrop?.som_internal_capacity?.year1_sales_reps || 20} reps)
+                      Penetration: {formatHa(selectedCrop?.som_internal_capacity?.year1_penetration_ha || 15000)} ({selectedCrop?.som_internal_capacity?.year1_sales_reps || 20} reps / {((selectedCrop?.som_internal_capacity?.year1_sales_reps || 20) * 25).toLocaleString()} kiosks)
+                    </div>
+                    <div className='text-[10px] text-muted-foreground italic pt-0.5'>
+                      *Calibrated directly from initial sales force capacity (Sales Reps × 25 Kiosks × Rp 75M × 1.2 Seasonality)
                     </div>
                   </div>
 
                   <div className='rounded-md border p-3 bg-muted/20 space-y-1'>
-                    <div className='text-muted-foreground font-semibold'>Year 3 Strategic Ambition</div>
+                    <div className='text-muted-foreground font-semibold flex items-center justify-between'>
+                      <span>Year 3 Strategic Ambition</span>
+                      <Badge variant='outline' className='text-[9px] font-mono text-indigo-600 dark:text-indigo-400'>Scaled Expansion</Badge>
+                    </div>
                     <div className='font-mono font-bold text-sm text-indigo-600 dark:text-indigo-400'>
                       {selectedCrop?.som_internal_capacity?.year3_target_market_share_pct || 8.5}% Target Share
                     </div>
                     <div className='text-[11px] text-muted-foreground'>
                       Projected Revenue: Rp {(((selectedCrop?.sam?.total_input_market_value_trillion_idr || 1) * 1000 * (selectedCrop?.som_internal_capacity?.year3_target_market_share_pct || 8.5)) / 100).toFixed(1)} Miliar
+                    </div>
+                    <div className='text-[10px] text-muted-foreground italic pt-0.5'>
+                      *Multi-region distributor network & corporate account capture across full SAM
                     </div>
                   </div>
                 </div>
