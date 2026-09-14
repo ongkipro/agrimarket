@@ -52,32 +52,27 @@ export const sidebarData: SidebarData = {
           icon: Calendar,
         },
         {
-          title: 'Ads & Growth Engine',
-          url: '/ads',
-          icon: Megaphone,
-        },
-        {
           title: 'Geospatial Map',
           url: '/map',
           icon: MapPin,
         },
         {
-          title: 'Dynamic SOM Simulator',
+          title: 'SOM Simulator',
           url: '/simulator',
           icon: Sliders,
         },
         {
-          title: 'Attractiveness Matrix',
+          title: 'Market Matrix',
           url: '/matrix',
           icon: TrendingUp,
         },
         {
-          title: 'Distribution & Kiosks',
+          title: 'Distribution Network',
           url: '/distribution',
           icon: Store,
         },
         {
-          title: 'BPS Audit Ledger',
+          title: 'Audit Ledger',
           url: '/audit',
           icon: Database,
         },
@@ -90,6 +85,11 @@ export const sidebarData: SidebarData = {
           title: 'Tasks',
           url: '/tasks',
           icon: ListTodo,
+        },
+        {
+          title: 'Meta Ads',
+          url: '/ads',
+          icon: Megaphone,
         },
       ],
     },
