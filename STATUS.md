@@ -6,6 +6,7 @@ State: VERIFIED
 Review-Risk: R1
 Independent-Review: PASS
 Primary-Worker: Antigravity
+Live-URL: https://agrimarket-five.vercel.app
 
 ## Delivery state machine
 
@@ -15,21 +16,23 @@ Allowed forward path:
 
 ## Current state
 
-The Indonesian Agricultural Market Intelligence Dashboard (`agrimarket`) has been successfully developed and verified against the repository contract using the `volum-admin` design system architecture (React 19, Tailwind CSS v4, Radix UI, TanStack Router, TanStack Table, Recharts, OKLCH theme tokens).
+The Indonesian Agricultural Market Intelligence Dashboard (`agrimarket`) has been successfully developed, verified, committed, pushed to GitHub (`ongkipro/agrimarket`), and deployed to production on Vercel (`https://agrimarket-five.vercel.app`).
 
-All 13 strategic commodities (Padi, Jagung, Cabai, Bawang Merah, Kentang, Kubis, Tomat, Semangka, Melon, Kelapa Sawit, Alpukat, Tembakau, Anggrek) are fully operational with:
+All core analytical engines and operational hubs are fully live:
 1. Executive Telemetry Dashboard (`/`)
 2. Commodity Deep Explorer with 6 analytical tabs (`/commodities`)
 3. Kalender Tanam & Seasonal Wave Engine (`/calendar`)
-4. 38-Province Geospatial Heatmap (`/map`)
-5. Dynamic SOM Internal Capacity Simulator (`/simulator`)
-6. Cross-Commodity Attractiveness Matrix (`/matrix`)
-7. Retail Distribution Infrastructure & KPL Kiosk Density (`/distribution`)
-8. BPS Data Audit Ledger & Instant Export Engine (`/audit`)
+4. Digital Advertising Intelligence & Growth Engine (`/ads`)
+5. Field Operations & Agronomist Task Hub (`/tasks`) with 4 multi-view tabs
+6. 38-Province Geospatial Heatmap (`/map`)
+7. Dynamic SOM Internal Capacity Simulator (`/simulator`)
+8. Cross-Commodity Attractiveness Matrix (`/matrix`)
+9. Retail Distribution Infrastructure & KPL Kiosk Density (`/distribution`)
+10. BPS Data Audit Ledger & Instant Export Engine (`/audit`)
 
 ## Active work
 
-None (All Phase 1 to Phase 5 tasks completed and verified).
+None (All Phase 1 to Phase 8 tasks completed, verified, and deployed).
 
 ## Blockers
 
@@ -38,10 +41,11 @@ None recorded.
 ## Verification evidence
 
 1. `pnpm run lint`: ESLint clean, 0 errors, 0 warnings.
-2. `pnpm run test`: Vitest with Playwright headless, 22 test suites, 137 tests passed (including Gate-0 macro-micro mathematical reconciliation tests asserting 0.0000% deviation across all 13 crops).
-3. `pnpm run build`: TypeScript compilation (`tsc -b`) and Vite production build (`vite build`) passed in 790ms.
+2. `pnpm run test`: Vitest with Playwright headless, 23 test suites, 144 tests passed cleanly.
+3. `pnpm run build`: TypeScript compilation (`tsc -b`) and Vite production build (`vite build`) passed in 649ms.
 4. `project-check --full /Users/ongki/Projects/agrimarket`: VERIFIED (3/3 checks passed).
+5. Vercel Production Deployment: Live at `https://agrimarket-five.vercel.app`, smoke tests confirmed HTTP 200 on `/`, `/tasks`, and `/ads`.
 
 ## Next verified action
 
-Deliver interactive dashboard overview to Paduka Ongki for review.
+Maintain operational monitoring and support Paduka Ongki with further feature iterations.

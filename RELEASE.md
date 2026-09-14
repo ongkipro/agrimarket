@@ -1,13 +1,17 @@
 # Release Manifest — agrimarket
 
-Release-ID: UNSET
-Base: UNSET
+Release-ID: REL-20260914-01
+Base: 40aee91
 Environment: production
-Declared-Risk: R0
-Rollback-Ref: UNSET
-Rollback-Command: UNSET
+Declared-Risk: R1
+Rollback-Ref: 40aee91
+Rollback-Command: git reset --hard 40aee91 && vercel --prod
 Backup-Proof: NOT_REQUIRED
-Status: DRAFT
+Status: DEPLOYED
+Live-URL: https://agrimarket-five.vercel.app
+Deployment-ID: dpl_ALBcTTfifktfjUX6q6vd1HMXyhFS
+Target-Git-Ref: refs/heads/main
+Verified-By: project-check --full
 
 ## Contract
 
