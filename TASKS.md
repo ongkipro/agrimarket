@@ -257,3 +257,35 @@
   - Successful Vite production build (`tsc -b && vite build` in 899ms).
   - Full delivery contract verification passed (`project-check --full /Users/ongki/Projects/agrimarket` VERIFIED 3/3 checks passed).
 
+---
+
+### Phase 12: Province-to-District Drilldown Engine on Geospatial Map (COMPLETED & VERIFIED)
+- [x] **TASK-56:** Author District Data Architecture Specification:
+  - Formalize hierarchical data schema (Nasional -> 38 Provinsi -> Kabupaten/Kota) and intra-provincial Pareto distribution model.
+  - Enforce zero-discrepancy and zero-NaN invariants across all 13 crops.
+  - Document in `docs/spec/DISTRICT-DATA-ENGINE-SPEC.md` and sync to staging.
+- [x] **TASK-57:** Author Comprehensive Province-District Data Engine (`src/features/agri/province-districts-data.ts`):
+  - Model authentic regency mappings across all 38 provinces in Indonesia.
+  - Populate verified quantitative figures (Ha, Ton, Yield) for core agricultural hub regencies from `COMPLEX-DATA-ENGINE-SPEC.md` and BPS KSA/SPH records.
+  - Implement deterministic intra-provincial allocation for all remaining provinces to ensure 100% coverage across all 13 commodities (13 crops x 38 provinces = 494 combinations).
+  - Export typed helper functions: `getProvinceDistricts(cropId: string, provinceCode: string): DistrictDetailRecord[]` and `getProvinceDistrictSummary(cropId: string, provinceCode: string): ProvinceDistrictSummary`.
+- [x] **TASK-58:** Upgrade Geospatial Map with Interactive District Drilldown & Dual-View UI (`src/features/map/index.tsx`):
+  - Implement seamless drilldown transition: clicking any of the 38 provinces dynamically switches to the granular **Kabupaten/Kota Agronomic Heatmap & Data Table**.
+  - Add navigation controls: `← Kembali ke Peta 38 Provinsi` back button, breadcrumb navigation, and direct province switcher dropdown.
+  - Render Province Macro Summary Header (Luas Panen Ha, Produksi Ton, Yield Ton/Ha, Pangsa Nasional %, Kios KPL, Jumlah Kabupaten Sentra).
+  - Render Kabupaten Visual Card Grid color-coded by intra-provincial production share.
+  - Render Detailed Kabupaten Agronomic Table with live search, multi-column sorting (Produksi, Luas, Yield, Alfabetis), status badges (`Sentra Utama #1`, `Sentra Utama`, `Sentra Penyangga`, `Potensial`), progress bars, and localized commercial action recommendations.
+  - Upgrade side drawer to reflect intra-provincial Pareto concentration, top 3 kabupaten contributors, and sales agronomist deployment ratios.
+- [x] **TASK-59:** Parallel Validation Matrix & Automated Test Suite (`src/features/agri/province-districts-data.test.ts`):
+  - Author comprehensive test suite validating all 13 commodities x all 38 provinces (494 matrix points) in parallel.
+  - Verify zero empty district arrays for producing provinces.
+  - Verify exact mathematical reconciliation ($\sum \text{districts} \le \text{province total} \times 1.001$).
+  - Verify strictly positive and realistic yield figures (no NaN, null, or zero divisions).
+- [x] **TASK-60:** Quality Gate, Full Contract Verification & Production Deployment:
+  - Verify zero ESLint errors (`pnpm run lint`).
+  - Verify 100% test pass rate across all suites (`pnpm run test` - 170/170 tests passing).
+  - Verify successful Vite production build (`pnpm run build` in 948ms).
+  - Verify project delivery contract via `project-check --full /Users/ongki/Projects/agrimarket` (VERIFIED 3/3 checks passed).
+  - Stage, commit cleanly (noreply author, no AI trailers), push to GitHub, and deploy to Vercel via CLI `vercel --prod --yes`.
+
+

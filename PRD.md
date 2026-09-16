@@ -279,7 +279,16 @@ Each commodity possesses its own dedicated sub-menu following an identical, rigo
   - Total Production Volume (Ton).
   - Average Yield (Ton/Ha).
   - Qualified SAM Acreage (Ha).
-- **Interactive Tooltip:** Hovering over any province reveals rank, top kabupaten clusters, predominant soil/climate condition, and active agricultural extension centers (BPP).
+- **Interactive Tooltip & Province Selection:** Hovering over or clicking any of the 38 provinces initiates territorial inspection.
+- **Hierarchical Drilldown Architecture (Nasional -> 38 Provinsi -> Rincian Kabupaten/Kota):**
+  - **Dynamic Drilldown Transition:** When a province is clicked, the geospatial interface switches from the national overview into a granular **District-Level (Kabupaten/Kota) Agronomic Heatmap & Data Table**.
+  - **Breadcrumb & Swift Navigation:** Features a prominent `← Kembali ke Peta 38 Provinsi` toggle alongside a direct province selector dropdown to seamlessly explore neighboring provinces without navigating back to the root.
+  - **Provincial Macro Header:** Summarizes provincial Harvest Area (Ha), Production Volume (Ton), Average Yield (Ton/Ha), National Share (%), KPL Kiosk Density, and count of tracked regencies.
+  - **Intra-Provincial Visual Density Grid:** Kabupaten cards with proportional color badges reflecting intra-provincial production contribution (Top Hubs, Secondary Centers, Buffer Districts).
+  - **Detailed Kabupaten Agronomic Table:** TanStack table with live search by regency name, multi-column sorting (Production, Area, Yield, Alphabetical), status classification badges (`Sentra Utama #1`, `Sentra Utama`, `Sentra Penyangga`, `Potensial`), percentage progress bars, and localized commercial action recommendations.
+  - **Dedicated Provincial Sidebar Telemetry:** Dynamically updates the side drawer to calculate intra-provincial Pareto concentration (e.g. Top 3 districts controlling X% of provincial volume), territorial agronomist deployment ratios, and depot stocking suggestions.
+  - **Parallel Mathematical Integrity:** Enforces zero undefined/NaN invariants, strict positivity, and exact reconciliation across all 13 commodities and all 38 provinces.
+
 
 ### 5.4 Menu 4: Dynamic SOM Simulation Engine (Gap 7)
 - **Purpose:** Transforms static SAM into an executable, realistic Serviceable Obtainable Market (SOM) by incorporating internal commercial company constraints.

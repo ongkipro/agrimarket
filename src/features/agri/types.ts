@@ -145,4 +145,5 @@ export interface MarketIntelDataset {
 
 export * from './ads-types'
 export * from './commercial-selling-data'
+export * from './province-districts-data'
 
