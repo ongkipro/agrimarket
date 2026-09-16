@@ -68,12 +68,12 @@ export function CommodityQuickTable() {
                 return (
                   <TableRow key={crop.id} className='hover:bg-muted/40 transition-colors'>
                     <TableCell className='font-medium sticky left-0 bg-background z-10 border-r shadow-xs py-3 sm:py-2.5'>
-                      <div>
+                      <Link to='/commodities' search={{ crop: crop.id }} className='hover:underline block'>
                         <div className='font-semibold text-foreground'>{crop.name}</div>
                         <div className='text-[11px] text-muted-foreground italic'>
                           {crop.scientific_name}
                         </div>
-                      </div>
+                      </Link>
                     </TableCell>
                     <TableCell>
                       <Badge
@@ -112,7 +112,7 @@ export function CommodityQuickTable() {
                     </TableCell>
                     <TableCell className='text-right'>
                       <Button variant='ghost' size='sm' className='h-7 w-7 p-0' asChild>
-                        <Link to='/commodities'>
+                        <Link to='/commodities' search={{ crop: crop.id }} title={`Buka analisis mendalam ${crop.name}`}>
                           <ArrowUpRight className='h-4 w-4' />
                         </Link>
                       </Button>

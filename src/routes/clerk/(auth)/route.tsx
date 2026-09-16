@@ -18,7 +18,7 @@ function ClerkAuthLayout() {
           className='relative z-20 flex items-center text-lg font-medium'
         >
           <Logo className='me-2' />
-          volum-admin
+          Agrimarket
         </Link>
 
         <ClerkFullLogo className='relative m-auto size-96' />
@@ -26,10 +26,9 @@ function ClerkAuthLayout() {
         <div className='relative z-20 mt-auto'>
           <blockquote className='space-y-2'>
             <p className='text-lg'>
-              &ldquo; Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sint, magni debitis inventore asperiores velit! &rdquo;
+              &ldquo; Data-driven agricultural market intelligence and precision supply chain analytics across 38 Indonesian provinces. &rdquo;
             </p>
-            <footer className='text-sm'>John Doe</footer>
+            <footer className='text-sm'>Agrimarket Intelligence Platform</footer>
           </blockquote>
         </div>
       </div>

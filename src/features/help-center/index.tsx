@@ -38,7 +38,7 @@ export function HelpCenter() {
     },
     {
       q: 'Apakah dataset dapat diekspor untuk pemodelan internal tim komersial?',
-      a: 'Ya, pada menu BPS Audit Ledger (/audit), tersedia tombol ekspor satu-klik untuk Master Dataset JSON, Ringkasan 13 Komoditas Nasional (CSV), dan Data Mikro 38 Provinsi per Komoditas (CSV) yang siap diimpor ke Excel, Python pandas, atau BI tools.',
+      a: 'Ya, pada menu BPS Audit Ledger (/audit), tersedia tombol ekspor satu-klik untuk Master Dataset JSON, Ringkasan 13 Komoditas Nasional (CSV), Data Mikro 38 Provinsi per Komoditas (CSV), serta Sensus 514 Kabupaten/Kota se-Indonesia (CSV) yang siap diimpor ke Excel, Python pandas, atau BI tools.',
       tag: 'Ekspor Data',
     },
   ]
