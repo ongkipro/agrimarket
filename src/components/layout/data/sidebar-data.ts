@@ -1,7 +1,7 @@
 import {
   LayoutDashboard,
   Monitor,
-  HelpCircle,
+  History,
   Bell,
   Palette,
   Settings,
@@ -128,9 +128,9 @@ export const sidebarData: SidebarData = {
           ],
         },
         {
-          title: 'Help Center',
+          title: 'Update Log',
           url: '/help-center',
-          icon: HelpCircle,
+          icon: History,
         },
       ],
     },

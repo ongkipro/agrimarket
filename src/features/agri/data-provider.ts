@@ -157,6 +157,46 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
     },
   }
 
+  // 6. Normalize climate_vulnerability from climate_index
+  const ci = (c.climate_index || c.climate_vulnerability || {}) as Record<string, number | string>
+  const irrigated = typeof ci.technical_irrigated_pct === 'number' ? ci.technical_irrigated_pct : 35
+  const rainfed = typeof ci.rainfed_pct === 'number' ? ci.rainfed_pct : 100 - irrigated
+  const elNinoScore = typeof ci.el_nino_vulnerability_score === 'number' ? ci.el_nino_vulnerability_score : 5.0
+  const laNinaScore = typeof ci.la_nina_vulnerability_score === 'number' ? ci.la_nina_vulnerability_score : 5.0
+
+  const getRiskLabel = (score: number): 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' => {
+    if (score >= 8.5) return 'CRITICAL'
+    if (score >= 6.5) return 'HIGH'
+    if (score >= 4.0) return 'MEDIUM'
+    return 'LOW'
+  }
+
+  const CLIMATE_MITIGATION_MAP: Record<string, string> = {
+    COMM_01_PADI: 'Pompa Air Alsintan, Varietas Inpari Toleran Kekeringan, Pengaturan Air Macak-Macak',
+    COMM_02_JAGUNG: 'Drainase Guludan, Benih Hibrida Tahan Cekaman Kekeringan, Pemupukan Kalium',
+    COMM_03_CABAI: 'Fungisida Protektif Patek/Antraknosa, Mulsa Plastik Hitam Perak (MPHP), Bedengan Tinggi 60 cm',
+    COMM_04_BAWANG_MERAH: 'Pompa Penguras Sawah, Fungisida Moler/Layu, Sungkup Plastik Penahan Hujan',
+    COMM_05_KENTANG: 'Fungisida Translaminar Berkala 2 Hari Sekali, Pengaturan Drainase Bedengan Lereng',
+    COMM_06_KUBIS: 'Aplikasi Kapur Dolomit Penurun Keasaman Tanah, Fungisida Tembaga Busuk Lunak',
+    COMM_07_TOMAT: 'Pupuk Kalsium Boron Penguat Dinding Sel Kulit Buah, Tali Ajir Kokoh Penahan Angin',
+    COMM_08_SEMANGKA: 'Penanaman Eksklusif Periode Kemarau, Drainase Pasir Cepat Buang Air Genangan',
+    COMM_09_MELON: 'Naungan Rain Shelter / Greenhouse, Kontrol Kelembaban untuk Brix Kemanisan Tinggi',
+    COMM_10_KELAPA_SAWIT: 'Pembuatan Rorak / Tapak Kuda Konservasi Air Tanah, Normalisasi Parit Primer',
+    COMM_11_ALPUKAT: 'ZPT Retensi Bunga, Biostimulan Asam Amino Anti-Rontok Pentil Buah',
+    COMM_12_TEMBAKAU: 'Larangan Mutlak Penanaman di Musim Hujan, Pengolahan Guludan Kering Pembakar Daun',
+    COMM_13_ANGGREK: 'Naungan Paranet 65-75%, Sprinkler Mikro Terjadwal, Fungisida Tembaga Sirkulasi Blower',
+  }
+
+  const climate_vulnerability = {
+    irrigated_pct: Number(irrigated.toFixed(1)),
+    rainfed_pct: Number(rainfed.toFixed(1)),
+    el_nino_sensitivity: getRiskLabel(elNinoScore),
+    la_nina_flood_risk: getRiskLabel(laNinaScore),
+    el_nino_score: elNinoScore,
+    la_nina_score: laNinaScore,
+    mitigation_strategy: CLIMATE_MITIGATION_MAP[c.id] || 'Manajemen tata kelola air terpadu dan pemantauan cuaca BMKG berkala',
+  }
+
   return {
     ...c,
     tam,
@@ -167,6 +207,7 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
     farmer_typology,
     som_internal_capacity,
     input_decomposition,
+    climate_vulnerability,
   } as unknown as CommodityData
 }
 

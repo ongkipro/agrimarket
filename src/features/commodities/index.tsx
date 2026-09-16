@@ -10,6 +10,10 @@ import {
   Sparkles,
   ShoppingBag,
   Clock,
+  CloudRain,
+  Sun,
+  Waves,
+  ShieldCheck,
 } from 'lucide-react'
 import {
   Bar,
@@ -881,6 +885,138 @@ export function CommoditiesExplorer() {
                       </div>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+
+              {/* Water Infrastructure & Climate Vulnerability Index */}
+              <Card className='border shadow-xs col-span-full'>
+                <CardHeader className='pb-3'>
+                  <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-2'>
+                    <div>
+                      <CardTitle className='text-sm font-semibold flex items-center gap-2'>
+                        <CloudRain className='h-4 w-4 text-sky-600 dark:text-sky-400' />
+                        Water Infrastructure & Agro-Climate Vulnerability Index
+                      </CardTitle>
+                      <CardDescription className='text-xs'>
+                        Analisis infrastruktur pengairan lahan (BPS SPH) dan ketahanan terhadap anomali iklim El Niño (kekeringan) &amp; La Niña (curah hujan ekstrim)
+                      </CardDescription>
+                    </div>
+                    <Badge variant='outline' className='text-xs self-start sm:self-auto font-mono'>
+                      BPS &amp; BMKG Reconciled
+                    </Badge>
+                  </div>
+                </CardHeader>
+
+                <CardContent className='space-y-4'>
+                  <div className='grid gap-4 md:grid-cols-3'>
+                    {/* 1. Irrigation Footprint */}
+                    <div className='rounded-lg border p-3.5 bg-muted/20 space-y-2.5'>
+                      <div className='flex items-center justify-between text-xs'>
+                        <span className='font-semibold text-foreground flex items-center gap-1.5'>
+                          <Waves className='h-3.5 w-3.5 text-blue-500' />
+                          Infrastruktur Pengairan
+                        </span>
+                        <span className='font-mono text-[11px] text-muted-foreground'>
+                          {selectedCrop.climate_vulnerability?.irrigated_pct}% Irigasi
+                        </span>
+                      </div>
+
+                      <div className='space-y-1.5 text-xs'>
+                        <div className='flex justify-between text-[11px] text-muted-foreground'>
+                          <span>Irigasi Teknis / Semi-Teknis</span>
+                          <span className='font-bold text-foreground'>{selectedCrop.climate_vulnerability?.irrigated_pct}%</span>
+                        </div>
+                        <div className='h-2 rounded-full bg-muted overflow-hidden'>
+                          <div
+                            className='h-full bg-blue-500 rounded-full'
+                            style={{ width: `${selectedCrop.climate_vulnerability?.irrigated_pct}%` }}
+                          />
+                        </div>
+
+                        <div className='flex justify-between text-[11px] text-muted-foreground pt-1'>
+                          <span>Tadah Hujan / Lahan Kering</span>
+                          <span className='font-bold text-foreground'>{selectedCrop.climate_vulnerability?.rainfed_pct}%</span>
+                        </div>
+                        <div className='h-2 rounded-full bg-muted overflow-hidden'>
+                          <div
+                            className='h-full bg-amber-500 rounded-full'
+                            style={{ width: `${selectedCrop.climate_vulnerability?.rainfed_pct}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 2. El Nino Vulnerability */}
+                    <div className='rounded-lg border p-3.5 bg-amber-50/50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-900 space-y-2'>
+                      <div className='flex items-center justify-between'>
+                        <span className='text-xs font-semibold text-amber-900 dark:text-amber-300 flex items-center gap-1.5'>
+                          <Sun className='h-3.5 w-3.5 text-amber-600' />
+                          Kerentanan El Niño (Kekeringan)
+                        </span>
+                        <Badge
+                          className={`text-[10px] uppercase font-semibold ${
+                            selectedCrop.climate_vulnerability?.el_nino_sensitivity === 'CRITICAL'
+                              ? 'bg-rose-500 text-white'
+                              : selectedCrop.climate_vulnerability?.el_nino_sensitivity === 'HIGH'
+                              ? 'bg-amber-500 text-white'
+                              : 'bg-emerald-600 text-white'
+                          }`}
+                        >
+                          {selectedCrop.climate_vulnerability?.el_nino_sensitivity}
+                        </Badge>
+                      </div>
+                      <div className='flex items-baseline gap-1.5'>
+                        <span className='text-2xl font-bold tracking-tight text-amber-950 dark:text-amber-100 font-mono'>
+                          {selectedCrop.climate_vulnerability?.el_nino_score?.toFixed(1) ?? '—'}
+                        </span>
+                        <span className='text-xs text-muted-foreground'>/ 10.0 Indeks Risiko</span>
+                      </div>
+                      <p className='text-[11px] text-amber-800 dark:text-amber-300 leading-snug'>
+                        Sensitivitas tanaman terhadap cekaman panas dan defisit air irigasi selama fase pembentukan klorofil/bunga.
+                      </p>
+                    </div>
+
+                    {/* 3. La Nina Flood & Fungal Risk */}
+                    <div className='rounded-lg border p-3.5 bg-sky-50/50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 space-y-2'>
+                      <div className='flex items-center justify-between'>
+                        <span className='text-xs font-semibold text-sky-900 dark:text-sky-300 flex items-center gap-1.5'>
+                          <CloudRain className='h-3.5 w-3.5 text-sky-600' />
+                          Kerentanan La Niña (Basah/Jamur)
+                        </span>
+                        <Badge
+                          className={`text-[10px] uppercase font-semibold ${
+                            selectedCrop.climate_vulnerability?.la_nina_flood_risk === 'CRITICAL'
+                              ? 'bg-rose-500 text-white'
+                              : selectedCrop.climate_vulnerability?.la_nina_flood_risk === 'HIGH'
+                              ? 'bg-amber-500 text-white'
+                              : 'bg-emerald-600 text-white'
+                          }`}
+                        >
+                          {selectedCrop.climate_vulnerability?.la_nina_flood_risk}
+                        </Badge>
+                      </div>
+                      <div className='flex items-baseline gap-1.5'>
+                        <span className='text-2xl font-bold tracking-tight text-sky-950 dark:text-sky-100 font-mono'>
+                          {selectedCrop.climate_vulnerability?.la_nina_score?.toFixed(1) ?? '—'}
+                        </span>
+                        <span className='text-xs text-muted-foreground'>/ 10.0 Indeks Risiko</span>
+                      </div>
+                      <p className='text-[11px] text-sky-800 dark:text-sky-300 leading-snug'>
+                        Tingkat ancaman kelembaban ekstrim, busuk basah phytophthora, gugur bunga, dan banjir perakaran.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Agronomic Mitigation Protocol */}
+                  {selectedCrop.climate_vulnerability?.mitigation_strategy && (
+                    <div className='rounded-md border p-3 bg-muted/40 flex items-start gap-2.5'>
+                      <ShieldCheck className='h-4 w-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0' />
+                      <div className='text-xs'>
+                        <span className='font-semibold text-foreground'>Protokol Mitigasi Agronomi Lapang: </span>
+                        <span className='text-muted-foreground'>{selectedCrop.climate_vulnerability.mitigation_strategy}</span>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </div>

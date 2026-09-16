@@ -96,6 +96,9 @@ export interface ClimateVulnerability {
   rainfed_pct: number
   el_nino_sensitivity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'
   la_nina_flood_risk: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'
+  el_nino_score?: number
+  la_nina_score?: number
+  mitigation_strategy?: string
 }
 
 export interface DistrictData {

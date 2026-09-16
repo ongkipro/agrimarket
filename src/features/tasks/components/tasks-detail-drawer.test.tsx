@@ -6,7 +6,9 @@ import { TasksProvider } from './tasks-provider'
 import { TasksDetailDrawer } from './tasks-detail-drawer'
 
 vi.mock('@tanstack/react-router', () => ({
-  Link: ({ children, className }: any) => <a className={className}>{children}</a>,
+  Link: ({ children, className }: { children?: React.ReactNode; className?: string }) => (
+    <a className={className}>{children}</a>
+  ),
 }))
 
 const MOCK_TASK: Task = {

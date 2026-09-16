@@ -1,74 +1,101 @@
-# volum-admin
+# AgriMarket — Indonesia Agricultural Market Intelligence Dashboard
 
-Primary reference implementation for our admin dashboards. Upstream provenance and attribution are recorded in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+Platform intelijen pasar pertanian strategis Indonesia berbasis data sensus resmi BPS RI (KSA, SPH, ST2023), Kementerian Pertanian, dan Bank Indonesia (PIHPS). Memetakan permodelan berjenjang **TAM, SAM, dan SOM** secara presisi untuk 13 komoditas strategis di 38 provinsi dan 514 kabupaten/kota seluruh Indonesia.
 
-Reuse the shell, navigation, tables, forms, overlays, themes, and responsive patterns. Business modules are examples: dashboard metrics, tasks, users, app connections, and chats use demo data. The ordinary `_authenticated` layout is **not an authentication guard**. Clerk is an optional, separate integration; its user table still uses demo data.
+**Live Production:** [https://agrimarket-five.vercel.app](https://agrimarket-five.vercel.app)
 
-## Run locally
+---
 
-Use Node.js 24 and pnpm with the committed lockfile:
+## 13 Komoditas Strategis Nasional
+
+1. **Padi (Rice)**: TAM 10.051.780 Ha | 52,66 Juta Ton GKG | Rp 376,52 Triliun
+2. **Jagung (Corn)**: TAM 2.553.420 Ha | 15,21 Juta Ton Pipilan Kering | Rp 79,09 Triliun
+3. **Cabai Agregat (Chili)**: TAM 311.300 Ha | 3,13 Juta Ton | Rp 92,38 Triliun
+4. **Bawang Merah (Shallot)**: TAM 188.584 Ha | 2,09 Juta Ton | Rp 44,85 Triliun
+5. **Kentang (Potato)**: TAM 72.840 Ha | 1,51 Juta Ton | Rp 13,31 Triliun
+6. **Kubis (Cabbage)**: TAM 63.400 Ha | 1,48 Juta Ton | Rp 4,14 Triliun
+7. **Tomat (Tomato)**: TAM 58.200 Ha | 1,42 Juta Ton | Rp 8,80 Triliun
+8. **Semangka (Watermelon)**: TAM 33.400 Ha | 0,61 Juta Ton | Rp 2,75 Triliun
+9. **Melon (Melon)**: TAM 9.850 Ha | 0,16 Juta Ton | Rp 1,36 Triliun
+10. **Kelapa Sawit (Oil Palm)**: TAM 16.835.000 Ha Total Areal | 238,45 Juta Ton TBS | Rp 631,89 Triliun
+11. **Alpukat (Avocado)**: TAM 42.100 Ha (8,42 Juta Pohon) | 0,92 Juta Ton | Rp 13,41 Triliun
+12. **Tembakau (Tobacco)**: TAM 226.500 Ha | 0,26 Juta Ton Rajangan Kering | Rp 12,48 Triliun
+13. **Anggrek (Orchid)**: TAM 6.480 Ha (Florikultura) | 162 Juta Tangkai | Rp 1,38 Triliun
+
+---
+
+## Fitur & Modul Utama
+
+1. **Executive Telemetry Dashboard (`/`)**
+   - 5 Macro KPI Telemetry Cards: Total TAM Ha (30.451.874 Ha), Farm-Gate Value (Rp 1.276,46 Triliun), SAM Area (21.185.714 Ha), Input Market Value (Rp 204,22 Triliun), dan Gate-0 Status (`100% [✓ VERIFIED]`).
+   - Sectoral Breakdown (Tanaman Pangan, Hortikultura Sayuran, Hortikultura Buah, Perkebunan, Florikultura).
+   - Strategic Agronomic Catalysts & Regulatory Alerts (Permentan No. 10/2022).
+2. **Commodity Deep Explorer (`/commodities`)**
+   - 6 Tab Analisis Agronomi: Funnel & Economics, 38-Provinces & Districts, Subrounds (SR 1-3) & Commercial Selling Window, Input Expenditure Decomposition, ST2023 Farmer Landholding Typology & Price Ladder, dan Commercial GTM Playbook.
+   - Water Infrastructure & Agro-Climate Vulnerability Index (Irigasi Teknis vs Tadah Hujan, Skor Risiko El Niño / La Niña, Protokol Mitigasi Lapang).
+3. **Kalender Tanam Nasional & Seasonal Wave Engine (`/calendar`)**
+   - Matriks Visual 12 Bulan x 13 Komoditas dengan 11 kode fase agronomis (`PL`, `TN`, `SM`, `VG`, `GN`, `PT`, `PN`, `PF`, `HC`, `LC`, `BR`).
+   - Panduan Glosarium Teknis 11 Fase Budidaya dan tindakan kritis lapang.
+   - Dynamic Monthly Commercial Selling Opportunities & Lead-Time Booking Kios.
+4. **Geospatial Map & 514-Regency Drilldown (`/map`)**
+   - Peta regional 38 provinsi di 6 gugus kepulauan besar.
+   - Drilldown interaktif paralel dari provinsi langsung ke seluruh Kabupaten/Kota sentra (514 kabupaten/kota terdata lengkap dengan Gate-0 balancing).
+   - Kluster kecamatan sentra (*sub-district clusters*) dan rasio penempatan tim sales agronomis.
+5. **Digital Advertising Intelligence & Growth Engine (`/ads`)**
+   - 5 Persona Pembeli Pertanian (Petani Maju, Petani Gurem, Juragan KPL, Mandor Sawit, Hobiis Florikultura).
+   - Competitor Ad Spy Matrix (8 brand agrokimia & benih nasional).
+   - Google Ads 3-Tier Search Intent Matrix (High Intent, Commercial Research, Problem Aware).
+   - Campaign Budget & RoAS Financial Modeling Simulator.
+6. **Field Operations & Agronomist Task Hub (`/tasks`)**
+   - 4 Multi-View Tabs: Table View, Kanban Board, Dispatch Calendar, dan OPT Outbreak Incident Desk.
+   - Slide-over Tasks Detail Drawer dengan Standard Operating Procedure (SOP) terstruktur dan shortcut lintas-modul.
+7. **Dynamic SOM Internal Capacity Simulator (`/simulator`)**
+   - Simulasi kapasitas riil perusahaan berdasarkan $N_{\text{sales}}$, kapasitas binaan kios per rep, rata-rata serap musiman, dan pagu modal kerja tempo yarnen.
+8. **BPS Data Audit Ledger & Export Center (`/audit`)**
+   - Rekonsiliasi matematis Gate-0 dengan deviasi 0.0000% antara angka nasional dan penjumlahan 38 provinsi.
+   - Ekspor satu-klik: Master Dataset JSON, Master National CSV, dan 38-Province Breakdown CSV.
+9. **System Update Log & Release Ledger (`/help-center`)**
+   - Riwayat rilis sistem kronologis (v1.0.0 s/d v1.5.0) dengan pencarian teks langsung dan filter kategori rilis.
+
+---
+
+## Tech Stack
+
+- **Framework:** React 19, TypeScript, Vite 8
+- **Styling:** Tailwind CSS v4, Radix UI primitives, Lucide Icons
+- **Routing:** TanStack Router v1 (file-based routing)
+- **Data Table:** TanStack Table v8
+- **Charts:** Recharts
+- **Testing:** Vitest Browser Mode, Playwright Chromium Headless
+
+---
+
+## Local Development
 
 ```sh
+# Clone & install dependencies
 pnpm install --frozen-lockfile
-pnpm dev
-```
 
-No credentials are needed for the ordinary demo pages. Clerk routes show setup guidance when no publishable key is configured. Never put private credentials into Vite client environment variables.
+# Start local development server
+pnpm run dev
+# Server ready at http://localhost:5173/
 
-With pnpm versions that require dependency build approval, review the reported packages and their lifecycle scripts before allowing individual builds. Do not disable the policy globally. A blocked install is not a successful installation.
-
-## Checks
-
-```sh
-pnpm lint
-pnpm build
+# Run full test suite (26 test files, 182 tests)
 pnpm test
-pnpm format:check
+
+# Run linter
+pnpm run lint
+
+# Run production build
+pnpm run build
 ```
 
-Tests use Vitest browser mode and Playwright Chromium. The declared Playwright version needs its matching browser binary. The upstream `test:browser:install` script also installs OS dependencies; inspect it before use. For a user-local browser download only, use `pnpm exec playwright install chromium`.
+---
 
-## Development dictionary
+## Data Governance & Gate-0 Integrity
 
-[DEVELOPMENT-MAP.xml](DEVELOPMENT-MAP.xml) is the canonical page/section inventory, not an execution queue. It maps URL patterns to route files, component owners, shared sections, fields, dialogs, data sources, and known implementation gaps. Its vocabulary is defined inside the XML.
-
-- Start with the page URL, then locate its section and source file.
-- Shared sections are defined once and referenced by ID.
-- `demo` means a UI example, not persisted business behavior.
-- `local` means browser-local behavior; `provider` means optional Clerk behavior.
-- `placeholder`, `disabled`, and `missing` are explicitly incomplete.
-- Update the map in the same change as a route or section change.
-- Source code wins if the map drifts; do not edit `src/routeTree.gen.ts` by hand.
-
-Agent instructions: [AGENTS.md](AGENTS.md).
-
-## Structure
-
-| Path                               | Responsibility                                       |
-| ---------------------------------- | ---------------------------------------------------- |
-| `src/routes/`                      | TanStack Router route definitions and URL validation |
-| `src/features/`                    | Page composition, forms, tables, demo data           |
-| `src/components/layout/`           | Sidebar, header, navigation, workspace switcher      |
-| `src/components/data-table/`       | Reusable table controls                              |
-| `src/components/ui/`               | Locally owned shadcn/Radix primitives                |
-| `src/context/`                     | Theme, font, direction, layout, search preferences   |
-| `src/hooks/use-table-url-state.ts` | Table search and pagination URL state                |
-| `src/styles/theme.css`             | Light/dark semantic tokens                           |
-| `src/stores/auth-store.ts`         | Demo client auth state, not server authorization     |
-
-Stack: React 19, TypeScript, Vite 8, Tailwind 4, TanStack Router/Query/Table v8, React Hook Form, Zod, Zustand, Recharts, and optional Clerk. Package versions are owned by `package.json` and `pnpm-lock.yaml`.
-
-## Pattern maintenance
-
-Preserve the existing density, responsive navigation, keyboard behavior, and light/dark themes. Rebranding currently uses the existing Command mark; a distinct logo is not yet designed. Keep provider logos and library names accurate.
-
-Some UI primitives have upstream RTL/custom modifications: scroll-area, sonner, separator, alert-dialog, calendar, command, dialog, dropdown-menu, select, table, sheet, sidebar, and switch. Inspect local differences before replacing components through the shadcn CLI.
-
-New operational modules need their own roles, permissions, lifecycle, API, loading/error states, and persistence contracts. Existing demo actions and success toasts are not those contracts. Terms/privacy links and several dashboard actions are not implemented; see the map.
-
-## Upstream provenance
-
-Baseline: `e16c87f213a5ba5e45964e9b67c792105ec74d26` (upstream package version 2.2.1).
-The root LICENSE file has been replaced by [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md), preserving the original copyright and permission notice in full. Rebranding does not remove that notice.
-
-Repository: [ongkipro/volum-admin](https://github.com/ongkipro/volum-admin) (private). This linked worktree uses the `volum` remote for this repository; `origin` still belongs to the upstream clone and is not a push target for Volum work. No production hostname or deployment target has been assigned.
+Seluruh data agregat makro dan mikro terikat oleh protokol validasi ketat **Gate-0 Reconciliation**:
+- $\Delta \le 0,05\%$ margin of tolerance untuk seluruh perbandingan makro-mikro.
+- Sum of 38 Provinces = National Total (0.0000% deviasi).
+- Sum of 514 Regencies = Provincial Total (0.00% zero-delta allocation).
+- Zero NaN, Zero Infinity, strictly positive agricultural yields.

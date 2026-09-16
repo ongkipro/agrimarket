@@ -7,6 +7,7 @@ import {
   DollarSign,
   ArrowLeftRight,
   Sparkles,
+  BookOpen,
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -488,6 +489,139 @@ export function CroppingCalendar() {
                   })}
                 </TableBody>
               </Table>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Agronomic Phase Technical Glossary & Action Guide */}
+        <Card className='border shadow-xs'>
+          <CardHeader className='pb-3'>
+            <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-2'>
+              <div>
+                <CardTitle className='text-sm font-semibold flex items-center gap-2'>
+                  <BookOpen className='h-4 w-4 text-emerald-600 dark:text-emerald-400' />
+                  Glosarium Kode Fase Budidaya &amp; Tindakan Kritis Lapang
+                </CardTitle>
+                <CardDescription className='text-xs'>
+                  Penjelasan singkat arti 11 kode fase budidaya pada matriks kalender dan fokus input agronomis
+                </CardDescription>
+              </div>
+              <Badge variant='outline' className='text-xs self-start sm:self-auto font-mono'>
+                Standar Operasional Lapang
+              </Badge>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className='grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 text-xs'>
+              <div className='rounded-lg border p-2.5 bg-stone-50/50 dark:bg-stone-900/30 border-stone-200 dark:border-stone-800 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-stone-900 dark:text-stone-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-stone-200 dark:bg-stone-800 text-[10px]'>PL</span>
+                  Olah Lahan (Land Prep)
+                </div>
+                <p className='text-[11px] text-stone-700 dark:text-stone-400 leading-snug'>
+                  Pembajakan, penggaruan, sanitasi sisa tanaman, dan penaburan kapur dolomit untuk netralisasi pH tanah masam.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-emerald-50/50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-900 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-emerald-900 dark:text-emerald-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-emerald-200 dark:bg-emerald-900 text-[10px]'>TN</span>
+                  Tanam Raya (Planting)
+                </div>
+                <p className='text-[11px] text-emerald-700 dark:text-emerald-400 leading-snug'>
+                  Penanaman bibit atau sebar benih serentak di hamparan sentra untuk meminimalisir sebaran hama penyakit.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-teal-50/50 dark:bg-teal-950/20 border-teal-200 dark:border-teal-900 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-teal-900 dark:text-teal-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-teal-200 dark:bg-teal-900 text-[10px]'>SM</span>
+                  Persemaian (Nursery)
+                </div>
+                <p className='text-[11px] text-teal-700 dark:text-teal-400 leading-snug'>
+                  Penyemaian benih unggul di tray/bedengan pembibitan dengan proteksi insektisida seed treatment sebelum pindah tanam.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-blue-50/50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-blue-900 dark:text-blue-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-blue-200 dark:bg-blue-900 text-[10px]'>VG</span>
+                  Vegetatif Cepat
+                </div>
+                <p className='text-[11px] text-blue-700 dark:text-blue-400 leading-snug'>
+                  Fase pembentukan anakan, akar, dan tajuk daun aktif. Fokus utama aplikasi pupuk berunsur Nitrogen tinggi &amp; Fosfat.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-purple-50/50 dark:bg-purple-950/20 border-purple-200 dark:border-purple-900 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-purple-900 dark:text-purple-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-purple-200 dark:bg-purple-900 text-[10px]'>GN</span>
+                  Generatif / Pembungaan
+                </div>
+                <p className='text-[11px] text-purple-700 dark:text-purple-400 leading-snug'>
+                  Inisiasi bunga, pembentukan buah, dan pengisian bulir/umbi. Membutuhkan asupan Kalium tinggi, Kalsium, dan Boron.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-rose-50/50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-900 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-rose-900 dark:text-rose-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-rose-200 dark:bg-rose-900 text-[10px]'>PT</span>
+                  Serangan OPT Kritis
+                </div>
+                <p className='text-[11px] text-rose-700 dark:text-rose-400 leading-snug'>
+                  Puncak ledakan hama/patogen (wereng, ulat grayak, patek antraknosa). Memerlukan aplikasi fungisida &amp; insektisida kuratif intensif.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-amber-50/50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-900 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-amber-900 dark:text-amber-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-amber-200 dark:bg-amber-900 text-[10px]'>PN</span>
+                  Panen Raya (Harvest)
+                </div>
+                <p className='text-[11px] text-amber-700 dark:text-amber-400 leading-snug'>
+                  Pemetikan/pemanenan massal hasil panen di sentra utama. Periode likuidasi hasil panen dan pelunasan pinjaman tempo yarnen.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-indigo-50/50 dark:bg-indigo-950/20 border-indigo-200 dark:border-indigo-900 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-indigo-900 dark:text-indigo-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-indigo-200 dark:bg-indigo-900 text-[10px]'>PF</span>
+                  Pemupukan Sawit (PF)
+                </div>
+                <p className='text-[11px] text-indigo-700 dark:text-indigo-400 leading-snug'>
+                  Aplikasi pupuk makro terprogram (Urea, MOP, Kieserit, Borat) di piringan pohon sawit sebelum masuk musim kemarau atau hujan lebat.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-orange-50/50 dark:bg-orange-950/20 border-orange-200 dark:border-orange-900 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-orange-900 dark:text-orange-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-orange-200 dark:bg-orange-900 text-[10px]'>HC</span>
+                  High Crop Sawit (Puncak)
+                </div>
+                <p className='text-[11px] text-orange-700 dark:text-orange-400 leading-snug'>
+                  Puncak produksi bulanan Tandan Buah Segar (TBS) kelapa sawit di mana kapasitas pabrik kelapa sawit (PKS) terisi maksimal.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-zinc-50/50 dark:bg-zinc-900/30 border-zinc-200 dark:border-zinc-800 space-y-1'>
+                <div className='flex items-center gap-1.5 font-bold text-zinc-900 dark:text-zinc-200'>
+                  <span className='px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-[10px]'>LC</span>
+                  Low Crop Sawit (Trek)
+                </div>
+                <p className='text-[11px] text-zinc-700 dark:text-zinc-400 leading-snug'>
+                  Masa istirahat fisiologis pohon sawit di mana produksi TBS anjlok. Fokus pemulihan nutrisi piringan dan perbaikan drainase.
+                </p>
+              </div>
+
+              <div className='rounded-lg border p-2.5 bg-muted/40 border-border space-y-1 sm:col-span-2 lg:col-span-1 xl:col-span-2'>
+                <div className='flex items-center gap-1.5 font-bold text-foreground'>
+                  <span className='px-1.5 py-0.5 rounded bg-muted-foreground/20 text-[10px]'>BR</span>
+                  Bera Lahan (Fallow)
+                </div>
+                <p className='text-[11px] text-muted-foreground leading-snug'>
+                  Lahan diistirahatkan tanpa tanaman budidaya untuk memutus siklus hidup hama tanah, aerasi matahari, dan pemulihan mikroorganisme hara.
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>

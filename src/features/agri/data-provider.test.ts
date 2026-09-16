@@ -183,5 +183,25 @@ describe('Agrimarket Data Engine', () => {
       expect(opps.length).toBeGreaterThan(0)
     }
   })
+
+  it('validates Climate Vulnerability and Irrigation footprint across all 13 crops', () => {
+    const crops = getCommodities()
+    crops.forEach((crop) => {
+      expect(crop.climate_vulnerability).toBeDefined()
+      expect(typeof crop.climate_vulnerability.irrigated_pct).toBe('number')
+      expect(typeof crop.climate_vulnerability.rainfed_pct).toBe('number')
+      expect(crop.climate_vulnerability.irrigated_pct + crop.climate_vulnerability.rainfed_pct).toBeCloseTo(100, 1)
+      expect(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']).toContain(crop.climate_vulnerability.el_nino_sensitivity)
+      expect(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']).toContain(crop.climate_vulnerability.la_nina_flood_risk)
+      expect(crop.climate_vulnerability.mitigation_strategy).toBeTruthy()
+    })
+
+    const padi = getCommodityById('COMM_01_PADI')!
+    expect(padi.climate_vulnerability.el_nino_sensitivity).toBe('CRITICAL')
+    expect(padi.climate_vulnerability.irrigated_pct).toBeGreaterThan(50)
+
+    const cabai = getCommodityById('COMM_03_CABAI')!
+    expect(cabai.climate_vulnerability.la_nina_flood_risk).toBe('CRITICAL')
+  })
 })
 

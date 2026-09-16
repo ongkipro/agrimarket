@@ -316,5 +316,41 @@
   - Sync all specifications to `~/Documents/work/prd/agrimarket/`.
   - Stage, commit cleanly (noreply author, no AI trailers), push to GitHub, and deploy to Vercel via CLI `vercel --prod --yes`.
 
+---
+
+### Phase 14: Field Operations Tasks Modernization & SOP Detail Drawer (COMPLETED & VERIFIED)
+- [x] **TASK-66:** Implement Agronomic SOP Guide & Tasks Detail Drawer (`src/features/tasks/components/tasks-detail-drawer.tsx`):
+  - Add interactive slide-over drawer triggered by clicking any task row across Table, Kanban, Dispatch, and OPT views.
+  - Render full task telemetry: priority, status, category, target location (kabupaten & sentra cluster), assigned field agronomist, and target execution date.
+  - Render step-by-step Standard Operating Procedure (SOP) with structured checklists and commercial guidelines.
+  - Implement direct cross-module action buttons linking to `/commodities`, `/calendar`, `/map`, `/ads`, and `/distribution`.
+
+---
+
+### Phase 15: System Update Log & Release Ledger Engine (COMPLETED & VERIFIED)
+- [x] **TASK-67:** Overhaul Help Center into Full System Update Log (`src/features/help-center/index.tsx`):
+  - Transform `/help-center` into a dynamic, filterable Update Log & Release Ledger.
+  - Document all milestone releases (v1.4.0, v1.3.0, v1.2.0, v1.1.0, v1.0.0) covering geospatial census, fertilizer selling windows, phenology fixes, and layout hardening.
+  - Implement real-time search input, release category filter pills (`ALL`, `FEATURES`, `DATA`, `UI_POLISH`), quick stat badges, and interactive navigation shortcuts.
+  - Update sidebar navigation from `Help Center` (`HelpCircle`) to `Update Log` (`History`).
+
+---
+
+### Phase 16: Macro KPI Telemetry Cards Responsive Typography & Gate-0 Micro-Badge (COMPLETED & VERIFIED)
+- [x] **TASK-68:** Refine Executive Dashboard Macro KPI Cards (`src/features/dashboard/components/macro-kpi-cards.tsx`):
+  - Decouple `100% VERIFIED` from monolithic 24px bold text into precise metric value `100%` paired with an elegant micro-badge status `[✓ VERIFIED]`.
+  - Calibrate font sizing across all 5 macro KPI cards to `text-lg sm:text-xl font-bold tracking-tight tabular-nums`.
+  - Optimize card padding to `p-3.5 sm:p-4 gap-2.5` to eliminate horizontal crowding on 5-column desktop screens and mobile viewports.
+
+---
+
+### Phase 17: Water Infrastructure, Agro-Climate Vulnerability Index & Calendar Phase Glossary (COMPLETED & VERIFIED)
+- [x] **TASK-69:** Expose Climate Index & Water Infrastructure Engine:
+  - Extend `ClimateVulnerability` interface in `src/features/agri/types.ts` with `el_nino_score`, `la_nina_score`, and `mitigation_strategy`.
+  - Normalize `climate_vulnerability` in `src/features/agri/data-provider.ts` integrating BPS SPH technical irrigation footprints, BMKG risk scores, and 13-crop agronomic mitigation protocols.
+  - Implement **Water Infrastructure & Agro-Climate Vulnerability Index** card in `src/features/commodities/index.tsx` with dual El Niño & La Niña risk telemetry and mitigation strategy banners.
+  - Implement **Glosarium Kode Fase Budidaya & Tindakan Kritis Lapang** in `src/features/calendar/index.tsx` detailing all 11 agronomic phase codes (`PL`, `TN`, `SM`, `VG`, `GN`, `PT`, `PN`, `PF`, `HC`, `LC`, `BR`).
+  - Expand unit test suite in `src/features/agri/data-provider.test.ts` verifying climate vulnerability invariants across all 13 crops.
+
 
 
