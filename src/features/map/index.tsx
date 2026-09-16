@@ -206,7 +206,7 @@ export function GeospatialMap() {
                   <div className='rounded-md border p-2.5 bg-muted/20'>
                     <div className='text-muted-foreground text-[11px]'>Provincial Yield</div>
                     <div className='font-mono font-bold text-sm text-foreground mt-0.5'>
-                      {selectedProvince.yield_ton_per_ha.toFixed(2)} Ton/Ha
+                      {(selectedProvince.yield_ton_per_ha ?? 0).toFixed(2)} Ton/Ha
                     </div>
                   </div>
                   <div className='rounded-md border p-2.5 bg-muted/20'>

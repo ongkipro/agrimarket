@@ -7,6 +7,9 @@ import {
   DollarSign,
   Users,
   BookOpen,
+  Sparkles,
+  ShoppingBag,
+  Clock,
 } from 'lucide-react'
 import {
   Bar,
@@ -39,6 +42,7 @@ import {
   formatTon,
   formatPct,
   formatIDR,
+  getCommercialSellingGuide,
 } from '@/features/agri/data-provider'
 
 const route = getRouteApi('/_authenticated/commodities/')
@@ -58,6 +62,8 @@ export function CommoditiesExplorer() {
   const setSelectedCropId = (id: string) => setUserSelectedCropId(id)
 
   const selectedCrop = commodities.find((c) => c.id === selectedCropId) || commodities[0]
+  const sellingGuide = selectedCrop ? getCommercialSellingGuide(selectedCrop.id) : undefined
+
 
   return (
     <>
@@ -122,6 +128,12 @@ export function CommoditiesExplorer() {
                   <Badge variant='outline' className='text-xs'>
                     {selectedCrop.sector}
                   </Badge>
+                  {sellingGuide && (
+                    <span className='inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-400 text-xs font-semibold'>
+                      <Sparkles className='h-3.5 w-3.5 text-amber-500 shrink-0' />
+                      Waktu Jual Pupuk: {sellingGuide.golden_months_label}
+                    </span>
+                  )}
                 </div>
                 <p className='text-xs text-muted-foreground mt-1'>
                   Sizing pasar komoditas nasional: permodelan berjenjang TAM, SAM, SOM, kurva tanam subround BPS, dan valuasi saprodi per hektar.
@@ -138,7 +150,7 @@ export function CommoditiesExplorer() {
                 <div className='rounded-md border bg-muted/40 p-2 text-center min-w-0 sm:min-w-[110px]'>
                   <div className='text-muted-foreground text-[10px] sm:text-[11px]'>National Yield</div>
                   <div className='font-bold text-xs sm:text-sm text-foreground truncate'>
-                    {selectedCrop.tam.yield_ton_per_ha.toFixed(2)} Ton/Ha
+                    {(selectedCrop.tam?.yield_ton_per_ha ?? 0).toFixed(2)} Ton/Ha
                   </div>
                 </div>
                 <div className='rounded-md border bg-muted/40 p-2 text-center min-w-0 sm:min-w-[120px]'>
@@ -335,7 +347,7 @@ export function CommoditiesExplorer() {
                         </div>
                         <div className='flex justify-between text-muted-foreground'>
                           <span>Yield:</span>
-                          <span className='font-mono font-medium text-foreground'>{district.yield_ton_per_ha.toFixed(2)} Ton/Ha</span>
+                          <span className='font-mono font-medium text-foreground'>{(district.yield_ton_per_ha ?? 0).toFixed(2)} Ton/Ha</span>
                         </div>
                         <div className='flex justify-between text-muted-foreground pt-1 border-t border-border/50'>
                           <span>National Share:</span>
@@ -392,7 +404,7 @@ export function CommoditiesExplorer() {
                             {formatTon(prov.production_ton)}
                           </TableCell>
                           <TableCell className='text-right font-mono text-xs'>
-                            {prov.yield_ton_per_ha.toFixed(2)}
+                            {(prov.yield_ton_per_ha ?? 0).toFixed(2)}
                           </TableCell>
                           <TableCell className='text-right font-mono text-xs font-semibold'>
                             {prov.pct_national_production.toFixed(2)}%
@@ -484,6 +496,196 @@ export function CommoditiesExplorer() {
                 </CardContent>
               </Card>
             </div>
+
+            {/* COMMERCIAL FERTILIZER & AGROCHEMICAL SELLING WINDOW (WAKTU TERBAIK JUALAN PUPUK) */}
+            {sellingGuide && (
+              <Card className='border shadow-xs border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-card to-card'>
+                <CardHeader className='pb-3'>
+                  <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-2'>
+                    <div className='flex items-center gap-2'>
+                      <Sparkles className='h-4 w-4 text-amber-500 shrink-0' />
+                      <CardTitle className='text-sm font-semibold'>
+                        Waktu Terbaik Penjualan Pupuk & Saprodi ({selectedCrop.name})
+                      </CardTitle>
+                    </div>
+                    <Badge className='bg-amber-500 text-white dark:text-black font-semibold text-xs w-fit'>
+                      Bulan Emas: {sellingGuide.golden_months_label}
+                    </Badge>
+                  </div>
+                  <CardDescription className='text-xs'>
+                    Jadwal komersial presisi bagi agronomist dan distributor: kapan petani membutuhkan pupuk dasar, vegetatif, booster pembungaan (generatif), dan kapan kios KPL harus dibooking.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className='space-y-4'>
+                  {/* 4 Commercial Telemetry Cards */}
+                  <div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-4'>
+                    <div className='rounded-lg border p-3 bg-muted/30'>
+                      <div className='text-[10px] font-semibold text-muted-foreground uppercase tracking-wider'>
+                        Waktu Emas Penjualan
+                      </div>
+                      <div className='text-base font-bold text-foreground mt-0.5'>
+                        {sellingGuide.golden_months_label}
+                      </div>
+                      <p className='text-[10px] text-muted-foreground mt-0.5'>
+                        Fase puncak serapan pupuk & agrokimia
+                      </p>
+                    </div>
+
+                    <div className='rounded-lg border p-3 bg-muted/30'>
+                      <div className='text-[10px] font-semibold text-muted-foreground uppercase tracking-wider'>
+                        Lead Time Booking Kios KPL
+                      </div>
+                      <div className='text-base font-bold text-foreground mt-0.5'>
+                        {sellingGuide.lead_time_booking}
+                      </div>
+                      <p className='text-[10px] text-muted-foreground mt-0.5'>
+                        Waktu tim sales mengunci PO dari kios
+                      </p>
+                    </div>
+
+                    <div className='rounded-lg border p-3 bg-muted/30'>
+                      <div className='text-[10px] font-semibold text-muted-foreground uppercase tracking-wider'>
+                        Produk Prioritas Utama
+                      </div>
+                      <div className='text-xs font-bold text-foreground mt-0.5 line-clamp-2'>
+                        {sellingGuide.primary_target_input}
+                      </div>
+                      <p className='text-[10px] text-muted-foreground mt-0.5'>
+                        Kategori input dengan omzet tertinggi
+                      </p>
+                    </div>
+
+                    <div className='rounded-lg border p-3 bg-muted/30'>
+                      <div className='text-[10px] font-semibold text-muted-foreground uppercase tracking-wider'>
+                        Sentra Distribusi Kunci
+                      </div>
+                      <div className='text-xs font-bold text-foreground mt-0.5 line-clamp-2'>
+                        {sellingGuide.key_production_hubs}
+                      </div>
+                      <p className='text-[10px] text-muted-foreground mt-0.5'>
+                        Wilayah alokasi stok fisik distributor
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Kiosk Stocking Action Box */}
+                  <div className='rounded-lg border p-3 bg-amber-500/10 border-amber-500/30 flex items-start gap-2.5'>
+                    <ShoppingBag className='h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5' />
+                    <div className='text-xs space-y-0.5'>
+                      <div className='font-semibold text-amber-900 dark:text-amber-300'>
+                        Instruksi Operasional Sales & Kios KPL:
+                      </div>
+                      <div className='text-amber-800 dark:text-amber-300/90 leading-relaxed text-[11px]'>
+                        {sellingGuide.kiosk_stocking_action}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 12-Month Selling Wave Visual Strip */}
+                  <div className='space-y-1.5'>
+                    <div className='text-xs font-semibold text-foreground flex items-center justify-between'>
+                      <span className='flex items-center gap-1.5'>
+                        <Clock className='h-3.5 w-3.5 text-primary' />
+                        Siklus Penjualan Pupuk 12 Bulan (Januari – Desember)
+                      </span>
+                      <span className='text-[10px] text-muted-foreground'>
+                        Kuning: Puncak Emas (Golden) | Biru: Aktif | Abu-abu: Pemeliharaan/Off
+                      </span>
+                    </div>
+                    <div className='grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-1.5 text-xs text-center'>
+                      {[
+                        { num: 1, name: 'Jan' },
+                        { num: 2, name: 'Feb' },
+                        { num: 3, name: 'Mar' },
+                        { num: 4, name: 'Apr' },
+                        { num: 5, name: 'Mei' },
+                        { num: 6, name: 'Jun' },
+                        { num: 7, name: 'Jul' },
+                        { num: 8, name: 'Agu' },
+                        { num: 9, name: 'Sep' },
+                        { num: 10, name: 'Okt' },
+                        { num: 11, name: 'Nov' },
+                        { num: 12, name: 'Des' },
+                      ].map((m) => {
+                        const isGolden = sellingGuide.golden_selling_months.includes(m.num)
+                        const matchingPhase = sellingGuide.phases.find((p) => p.target_months.includes(m.num))
+                        return (
+                          <div
+                            key={m.num}
+                            className={`rounded-md border p-1.5 transition-all ${
+                              isGolden
+                                ? 'bg-amber-500/20 border-amber-500 text-foreground font-bold shadow-xs'
+                                : matchingPhase
+                                  ? 'bg-blue-500/10 border-blue-500/30 text-foreground font-medium'
+                                  : 'bg-muted/30 border-border text-muted-foreground'
+                            }`}
+                          >
+                            <div className='text-[11px] font-bold'>{m.name}</div>
+                            <div className='text-[9px] mt-0.5 truncate'>
+                              {isGolden ? '★ EMAS' : matchingPhase ? 'AKTIF' : '-'}
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Detailed Stage-by-Stage Selling Opportunities */}
+                  <div className='space-y-2 pt-2'>
+                    <div className='text-xs font-semibold text-foreground'>
+                      Rincian Tahapan Penjualan Berdasarkan Siklus Agronomi:
+                    </div>
+                    <div className='grid gap-3 md:grid-cols-2'>
+                      {sellingGuide.phases.map((phase, idx) => (
+                        <div
+                          key={idx}
+                          className={`rounded-lg border p-3.5 space-y-2 text-xs transition-all ${
+                            phase.urgency === 'GOLDEN_PEAK'
+                              ? 'bg-amber-500/10 border-amber-500/50 shadow-xs ring-1 ring-amber-500/20'
+                              : 'bg-muted/20 border-border'
+                          }`}
+                        >
+                          <div className='flex items-start justify-between gap-1.5'>
+                            <div>
+                              <div className='font-bold text-xs text-foreground'>
+                                {phase.phase_name}
+                              </div>
+                              <div className='text-[11px] text-muted-foreground font-medium mt-0.5'>
+                                Waktu Aplikasi di Kebun: <span className='text-foreground font-semibold'>{phase.target_months_label}</span>
+                              </div>
+                            </div>
+                            {phase.urgency === 'GOLDEN_PEAK' ? (
+                              <Badge className='bg-amber-500 text-white dark:text-black font-semibold text-[10px] shrink-0'>
+                                GOLDEN PEAK
+                              </Badge>
+                            ) : (
+                              <Badge variant='outline' className='text-[10px] shrink-0'>
+                                {phase.category.replace('PUPUK_', '')}
+                              </Badge>
+                            )}
+                          </div>
+
+                          <div className='rounded bg-background p-2 border text-[11px] space-y-1'>
+                            <div className='text-muted-foreground'>
+                              <span className='font-semibold text-foreground'>Waktu Booking Kios: </span>
+                              {phase.kiosk_booking_window}
+                            </div>
+                            <div className='text-foreground leading-relaxed'>
+                              <span className='font-semibold text-amber-700 dark:text-amber-400'>Rekomendasi Produk: </span>
+                              {phase.product_recommendations.join(', ')}
+                            </div>
+                          </div>
+
+                          <p className='text-[11px] text-muted-foreground leading-relaxed'>
+                            {phase.commercial_rationale}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </TabsContent>
 
           {/* TAB 4: INPUT DECOMPOSITION */}

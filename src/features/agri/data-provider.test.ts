@@ -10,6 +10,8 @@ import {
   formatHa,
   formatTon,
   formatPct,
+  getCommercialSellingGuide,
+  getMonthlyActiveSellingOpportunities,
 } from './data-provider'
 
 describe('Agrimarket Data Engine', () => {
@@ -130,4 +132,56 @@ describe('Agrimarket Data Engine', () => {
     expect(formatTon(52_660_000)).toContain('Ton')
     expect(formatPct(68.912)).toBe('68,91%')
   })
+
+  it('guarantees Alpukat (COMM_11_ALPUKAT) yield_ton_per_ha is valid and does not crash toFixed', () => {
+    const crops = getCommodities()
+    const alpukat = crops.find((c) => c.id === 'COMM_11_ALPUKAT')
+    expect(alpukat).toBeDefined()
+    expect(alpukat!.tam.yield_ton_per_ha).toBeDefined()
+    expect(typeof alpukat!.tam.yield_ton_per_ha).toBe('number')
+    expect(alpukat!.tam.yield_ton_per_ha).toBeGreaterThan(20)
+    expect(alpukat!.tam.yield_ton_per_ha.toFixed(2)).toBe('21.96')
+
+    // Verify all 13 crops have valid positive yield_ton_per_ha
+    crops.forEach((c) => {
+      expect(typeof c.tam.yield_ton_per_ha).toBe('number')
+      expect(c.tam.yield_ton_per_ha).toBeGreaterThan(0)
+      expect(() => c.tam.yield_ton_per_ha.toFixed(2)).not.toThrow()
+    })
+  })
+
+  it('validates Commercial Fertilizer Selling Guides across all 13 crops', () => {
+    const crops = getCommodities()
+    crops.forEach((crop) => {
+      const guide = crop.id ? getCommercialSellingGuide(crop.id) : undefined
+      expect(guide).toBeDefined()
+      expect(guide!.golden_selling_months.length).toBeGreaterThan(0)
+      expect(guide!.golden_months_label).toBeTruthy()
+      expect(guide!.primary_target_input).toBeTruthy()
+      expect(guide!.lead_time_booking).toBeTruthy()
+      expect(guide!.kiosk_stocking_action).toBeTruthy()
+      expect(guide!.phases.length).toBeGreaterThanOrEqual(2)
+
+      // Ensure each phase has valid months and products
+      guide!.phases.forEach((p) => {
+        expect(p.target_months.length).toBeGreaterThan(0)
+        expect(p.product_recommendations.length).toBeGreaterThan(0)
+        expect(['GOLDEN_PEAK', 'HIGH', 'MEDIUM']).toContain(p.urgency)
+      })
+    })
+
+    // Alpukat specific verification: peak flower booster in June-July (months 6 & 7)
+    const alpukatGuide = getCommercialSellingGuide('COMM_11_ALPUKAT')!
+    expect(alpukatGuide.golden_selling_months).toContain(6)
+    expect(alpukatGuide.golden_selling_months).toContain(7)
+    expect(alpukatGuide.primary_target_input).toContain('Kalsium')
+    expect(alpukatGuide.primary_target_input).toContain('Boron')
+
+    // Verify 12-month active opportunities lookup
+    for (let month = 1; month <= 12; month++) {
+      const opps = getMonthlyActiveSellingOpportunities(month)
+      expect(opps.length).toBeGreaterThan(0)
+    }
+  })
 })
+

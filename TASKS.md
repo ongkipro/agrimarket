@@ -227,3 +227,33 @@
   - Calibrate sidebar group title to `'Preferences'` to avoid substring collision with `'System'` theme trigger in `search-provider.test.tsx`.
   - Verify 100% test pass rate (23 test files, 145/145 tests passing).
   - Verify 0 ESLint errors and warnings, and successful Vite production compilation.
+
+---
+
+### Phase 11: Alpukat Crash Resolution, Calendar Phase Completeness & Commercial Fertilizer Selling Window (COMPLETED & VERIFIED)
+- [x] **TASK-52:** Alpukat Crash Resolution & Defensive Yield Normalization Engine:
+  - In `src/data/market-intel-dataset.json`, update `COMM_11_ALPUKAT.tam` to explicitly include `"yield_ton_per_ha": 21.9596` (calculated from 924.500 Ton / 42.100 Ha = 21.96 Ton/Ha, consistent with 109.8 kg/tree × 200 trees/Ha).
+  - In `src/features/agri/data-provider.ts`, implement defensive normalization in `normalizeCommodity` for `tam.yield_ton_per_ha` with fallback calculation `(prodTon / harvestArea)`.
+  - In `src/features/commodities/index.tsx`, `src/features/audit/index.tsx`, and `src/features/map/index.tsx`, wrap all yield renderings in defensive optional chaining `(crop.tam?.yield_ton_per_ha ?? 0).toFixed(2)` to make runtime crashes structurally impossible.
+- [x] **TASK-53:** National Cropping Calendar Matrix Phase Standardization & 10-Phase Legend Badges:
+  - Calibrate `calendarMatrix` in `src/features/calendar/index.tsx` across all 13 crops to ensure complete representation of:
+    * Pengolahan Lahan (`PL`) present in all crops during pre-season land prep & post-harvest orchard sanitization.
+    * Generatif (`GN`) present in all crops (flowering, fruit set, tuber bulbing, and grain filling phases).
+    * Harmonized transitions: Tanam (`TN`), Vegetatif (`VG`), Panen Raya (`PN`), Bera (`BR`), Persemaian (`SM`), Pemupukan Sawit (`PF`), High/Low Crop (`HC`/`LC`).
+  - Expand legend badges on `Matriks Kalender Tanam Nasional` to render all 10 distinct agronomic status codes with color-coded tokens and clear tooltips.
+- [x] **TASK-54:** Commercial Fertilizer & Agrochemical Selling Window Engine (*Waktu Terbaik Penjualan Pupuk & Saprodi*):
+  - Author structured dataset `src/features/agri/commercial-selling-data.ts` covering all 13 commodities with:
+    * Golden selling months (e.g. Juni–Juli for Alpukat flower booster, Maret–April for basal/recovery).
+    * Primary target inputs (Kalsium Boron, MKP 0-52-34, KNO3 Putih, NPK 16-16-16, Kalium Sulfat ZK, Herbisida, Insektisida).
+    * Sales agronomist lead time & KPL kiosk booking windows (T-30 s/d T-45 hari).
+    * Kiosk stocking instructions and key regional distribution hubs.
+    * Stage-by-stage agronomic and commercial rationale cards with urgency tiers (`GOLDEN_PEAK`, `HIGH`, `MEDIUM`).
+  - Implement interactive Commercial Selling Window modules:
+    * In `src/features/commodities/index.tsx`: Quick Golden Month Badge in commodity header + full interactive Commercial Selling Guide in Tab 3 (Subrounds) with 12-month visual selling strip and stage cards.
+    * In `src/features/calendar/index.tsx`: Dynamic monthly active selling opportunities card highlighting crops in golden buying windows for the currently selected month.
+- [x] **TASK-55:** Quality Gate, Full Contract Verification & Production Deployment:
+  - Unit tests in `src/features/agri/data-provider.test.ts` expanded to 147 tests (100% pass rate) verifying Alpukat yield integrity and 13-crop selling guide validity.
+  - Zero ESLint errors (`pnpm run lint`).
+  - Successful Vite production build (`tsc -b && vite build` in 899ms).
+  - Full delivery contract verification passed (`project-check --full /Users/ongki/Projects/agrimarket` VERIFIED 3/3 checks passed).
+

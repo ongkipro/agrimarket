@@ -373,5 +373,11 @@ Each commodity possesses its own dedicated sub-menu following an identical, rigo
 - [x] **Phase 8: Field Operations Tasks Modernization & Multi-View Execution Engine:** Revamped agronomic task dataset, multi-view tabs (Table, Kanban, Agronomist Dispatch Calendar, OPT Outbreak Incident Desk), and KPI metrics.
 - [x] **Phase 9: Data Integrity, Regulatory Calibration & Mathematical Audit:** Elimination of Kelapa Sawit macro deviation, Permentan 10/2022 policy alert accuracy, SOM capacity alignment, and Level 1 macro reconciliation.
 - [x] **Phase 10: AI Slop Cleansing & Mobile Responsive Over-Width Hardening:** Elimination of generic LLM fluff, CSS flexbox min-w-0 layout defense, independent horizontal scroll wrappers for tables/tabs, and concise sidebar labels.
+- [x] **Phase 11: Alpukat Crash Resolution, Calendar Phase Completeness & Commercial Fertilizer Selling Window:**
+  * Fixed fatal `TypeError: Cannot read properties of undefined (reading 'toFixed')` on Alpukat by providing explicit national yield `21.96 Ton/Ha` in dataset and defensive fallback normalization.
+  * Standardized National Cropping Calendar matrix to guarantee complete `PL` (Pengolahan Lahan / Persiapan) and `GN` (Generatif / Pembungaan / Pengisian) coverage across all 13 strategic crops, complete with 10-phase visual legend badges.
+  * Engineered Commercial Fertilizer & Agrochemical Selling Window (*Waktu Terbaik Penjualan Pupuk & Saprodi*): 13-commodity structured dataset mapping golden selling windows, T-30/T-45 KPL kiosk booking timelines, priority input products (Kalsium Boron, MKP 0-52-34, KNO3 Putih, NPK 16-16-16, Kalium Sulfat ZK), regional distribution hubs, and agronomic rationale.
+  * Integrated interactive Commercial Selling modules into both Commodity Explorer (Tab Subrounds with 12-month selling wave strip) and Kalender Tanam Nasional (monthly active selling opportunities card).
+
 
 

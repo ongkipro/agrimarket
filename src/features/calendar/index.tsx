@@ -6,6 +6,7 @@ import {
   Clock,
   DollarSign,
   ArrowLeftRight,
+  Sparkles,
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -22,13 +23,14 @@ import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
-import { getCommodities } from '@/features/agri/data-provider'
+import { getCommodities, getMonthlyActiveSellingOpportunities } from '@/features/agri/data-provider'
 
 
 export function CroppingCalendar() {
   const commodities = getCommodities()
   const [selectedMonth, setSelectedMonth] = useState<number>(9) // Default: September (Bulan 9)
   const [selectedSector, setSelectedSector] = useState<string>('ALL')
+  const activeOpportunities = getMonthlyActiveSellingOpportunities(selectedMonth)
 
   const months = [
     { num: 1, name: 'Januari', subround: 'SR 1 (Jan-Apr)' },
@@ -128,19 +130,19 @@ export function CroppingCalendar() {
 
   // 13 Crops monthly schedule matrix
   const calendarMatrix: Record<string, string[]> = {
-    COMM_01_PADI: ['VG', 'VG', 'PN', 'PN', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'VG'],
-    COMM_02_JAGUNG: ['VG', 'GN', 'PN', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN'],
-    COMM_03_CABAI: ['PT', 'PT', 'PL', 'TN', 'VG', 'PN', 'PN', 'PN', 'PL', 'TN', 'VG', 'PT'],
-    COMM_04_BAWANG_MERAH: ['PL', 'TN', 'VG', 'PN', 'TN', 'VG', 'PN', 'PN', 'PL', 'TN', 'VG', 'PN'],
-    COMM_05_KENTANG: ['PT', 'GN', 'PN', 'PL', 'TN', 'PT', 'GN', 'PN', 'PL', 'TN', 'PT', 'GN'],
-    COMM_06_KUBIS: ['GN', 'PN', 'PL', 'TN', 'VG', 'PN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN'],
-    COMM_07_TOMAT: ['PT', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL'],
-    COMM_08_SEMANGKA: ['BR', 'PL', 'TN', 'VG', 'GN', 'PN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN'],
+    COMM_01_PADI: ['VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'VG'],
+    COMM_02_JAGUNG: ['VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN'],
+    COMM_03_CABAI: ['PN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'PN', 'PL', 'TN', 'VG', 'GN'],
+    COMM_04_BAWANG_MERAH: ['PL', 'TN', 'GN', 'PN', 'PL', 'TN', 'GN', 'PN', 'PL', 'TN', 'GN', 'PN'],
+    COMM_05_KENTANG: ['GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN'],
+    COMM_06_KUBIS: ['GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN'],
+    COMM_07_TOMAT: ['PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL'],
+    COMM_08_SEMANGKA: ['BR', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'BR'],
     COMM_09_MELON: ['BR', 'PL', 'TN', 'VG', 'GN', 'PN', 'PL', 'TN', 'VG', 'GN', 'PN', 'BR'],
-    COMM_10_KELAPA_SAWIT: ['PN', 'LC', 'LC', 'PF', 'PF', 'PN', 'HC', 'HC', 'HC', 'HC', 'PF', 'PN'],
+    COMM_10_KELAPA_SAWIT: ['PN', 'LC', 'PF', 'PF', 'VG', 'PN', 'HC', 'HC', 'PF', 'HC', 'PF', 'PN'],
     COMM_11_ALPUKAT: ['PN', 'PN', 'BR', 'PL', 'VG', 'VG', 'GN', 'GN', 'VG', 'VG', 'PN', 'PN'],
-    COMM_12_TEMBAKAU: ['BR', 'BR', 'SM', 'PL', 'TN', 'VG', 'PT', 'PN', 'PN', 'PN', 'BR', 'BR'],
-    COMM_13_ANGGREK: ['PN', 'PN', 'VG', 'VG', 'PN', 'VG', 'VG', 'VG', 'VG', 'VG', 'PN', 'PN'],
+    COMM_12_TEMBAKAU: ['BR', 'BR', 'SM', 'PL', 'TN', 'VG', 'GN', 'PN', 'PN', 'PN', 'BR', 'BR'],
+    COMM_13_ANGGREK: ['PN', 'PN', 'PL', 'VG', 'VG', 'GN', 'PN', 'VG', 'VG', 'GN', 'GN', 'PN'],
   }
 
   // Monthly Commercial Input Action Guide
@@ -330,25 +332,99 @@ export function CroppingCalendar() {
           </CardContent>
         </Card>
 
+        {/* Active Commercial Selling Opportunities for Selected Month */}
+        <Card className='border shadow-xs border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-card to-card'>
+          <CardHeader className='pb-2'>
+            <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-2'>
+              <div className='flex items-center gap-2'>
+                <Sparkles className='h-4 w-4 text-amber-500 shrink-0' />
+                <CardTitle className='text-sm font-semibold'>
+                  Waktu Emas Penjualan Pupuk & Saprodi Bulan {months[selectedMonth - 1]?.name}
+                </CardTitle>
+              </div>
+              <Badge variant='outline' className='text-xs border-amber-500/40 text-amber-700 dark:text-amber-400 w-fit'>
+                {activeOpportunities.filter((o) => o.isGoldenPeak).length} Komoditas di Puncak Pembelian Pupuk
+              </Badge>
+            </div>
+            <CardDescription className='text-xs'>
+              Daftar komoditas strategis yang berada di jendela waktu pembelian pupuk aktif oleh petani pada bulan {months[selectedMonth - 1]?.name}. Gunakan untuk panduan tim sales agronomist & dealer stocking.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-3'>
+              {activeOpportunities.map((item, idx) => (
+                <div
+                  key={`${item.cropId}-${idx}`}
+                  className={`rounded-lg border p-3 transition-all ${
+                    item.isGoldenPeak
+                      ? 'bg-amber-500/10 border-amber-500/40 shadow-xs'
+                      : 'bg-card/70 border-border hover:bg-muted/30'
+                  }`}
+                >
+                  <div className='flex items-start justify-between gap-1'>
+                    <div>
+                      <span className='font-bold text-sm text-foreground'>{item.cropName}</span>
+                      <div className='text-[10px] text-muted-foreground font-medium'>
+                        {item.phase.target_months_label}
+                      </div>
+                    </div>
+                    {item.isGoldenPeak ? (
+                      <Badge className='bg-amber-500 text-white dark:text-black font-semibold text-[10px] px-1.5 py-0 shrink-0'>
+                        GOLDEN PEAK
+                      </Badge>
+                    ) : (
+                      <Badge variant='secondary' className='text-[10px] px-1.5 py-0 shrink-0'>
+                        {item.phase.category.replace('PUPUK_', '')}
+                      </Badge>
+                    )}
+                  </div>
+
+                  <div className='mt-2 space-y-1.5 text-xs'>
+                    <div className='font-medium text-foreground text-[11px]'>
+                      {item.phase.phase_name}
+                    </div>
+                    <div className='text-muted-foreground text-[11px]'>
+                      <span className='font-semibold text-foreground'>Booking KPL: </span>
+                      {item.phase.kiosk_booking_window}
+                    </div>
+                    <div className='rounded bg-background/80 p-1.5 border text-[11px] font-mono leading-tight text-foreground'>
+                      <span className='font-sans font-semibold text-amber-700 dark:text-amber-400'>Produk: </span>
+                      {item.phase.product_recommendations.slice(0, 3).join(', ')}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Master 12-Month Matrix Table */}
         <Card className='border shadow-xs'>
           <CardHeader className='pb-3'>
-            <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2'>
-              <div>
-                <CardTitle className='text-sm font-semibold'>
-                  Matriks Kalender Tanam Nasional (12 Bulan × 13 Komoditas)
-                </CardTitle>
-                <CardDescription>
-                  Warna blok menunjukkan fase budidaya dominan pada bulan berjalan
-                </CardDescription>
+            <div className='flex flex-col gap-3'>
+              <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2'>
+                <div>
+                  <CardTitle className='text-sm font-semibold'>
+                    Matriks Kalender Tanam Nasional (12 Bulan × 13 Komoditas)
+                  </CardTitle>
+                  <CardDescription>
+                    Warna blok menunjukkan fase budidaya dominan pada bulan berjalan
+                  </CardDescription>
+                </div>
               </div>
-              {/* Legend Badges */}
-              <div className='flex flex-wrap items-center gap-1 text-[11px]'>
-                <span className='px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-semibold'>TN: Tanam</span>
-                <span className='px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 font-semibold'>VG: Vegetatif</span>
-                <span className='px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 font-semibold'>GN: Generatif</span>
-                <span className='px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 font-semibold'>PT: Serangan OPT</span>
-                <span className='px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 font-semibold'>PN: Panen Raya</span>
+              {/* Legend Badges - Complete 10 Phase Codes */}
+              <div className='flex flex-wrap items-center gap-1.5 text-[11px] pt-1'>
+                <span className='px-1.5 py-0.5 rounded bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-300 font-semibold border border-stone-300 dark:border-stone-700'>PL: Olah Lahan</span>
+                <span className='px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-semibold border border-emerald-300 dark:border-emerald-800'>TN: Tanam</span>
+                <span className='px-1.5 py-0.5 rounded bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-300 font-semibold border border-teal-300 dark:border-teal-800'>SM: Persemaian</span>
+                <span className='px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 font-semibold border border-blue-300 dark:border-blue-800'>VG: Vegetatif</span>
+                <span className='px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 font-semibold border border-purple-300 dark:border-purple-800'>GN: Generatif</span>
+                <span className='px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 font-semibold border border-rose-300 dark:border-rose-800'>PT: Serangan OPT</span>
+                <span className='px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 font-semibold border border-amber-300 dark:border-amber-800'>PN: Panen Raya</span>
+                <span className='px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300 font-semibold border border-indigo-300 dark:border-indigo-800'>PF: Pemupukan Sawit</span>
+                <span className='px-1.5 py-0.5 rounded bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300 font-semibold border border-orange-300 dark:border-orange-800'>HC: High Crop</span>
+                <span className='px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 font-semibold border border-zinc-300 dark:border-zinc-700'>LC: Low Crop</span>
+                <span className='px-1.5 py-0.5 rounded bg-muted text-muted-foreground font-semibold border border-border'>BR: Bera Lahan</span>
               </div>
             </div>
           </CardHeader>

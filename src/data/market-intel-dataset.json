@@ -4806,6 +4806,7 @@
         "equivalent_area_ha": 42100,
         "production_ton": 924500,
         "yield_kg_per_tree": 109.7981,
+        "yield_ton_per_ha": 21.9596,
         "farmgate_price_idr_per_kg": 14500,
         "gross_output_value_trillion_idr": 13.41,
         "yoy_trees_growth_pct": 4.14,

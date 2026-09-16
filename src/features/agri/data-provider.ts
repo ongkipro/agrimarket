@@ -12,10 +12,35 @@ type RawDistrict = {
 function normalizeCommodity(c: CommodityData & Record<string, unknown>): CommodityData {
   if (!c) return c
 
-  const harvestArea = c.tam?.harvest_area_ha || 0
+  const harvestArea = c.tam?.harvest_area_ha || (c.tam as unknown as Record<string, number>)?.equivalent_area_ha || 0
   const prodTon = c.tam?.production_ton || 0
   const eligibleArea = c.sam?.eligible_area_ha || harvestArea * 0.7
   const inputMarketTrillion = c.sam?.total_input_market_value_trillion_idr || 1
+
+  const rawYield = c.tam?.yield_ton_per_ha
+  const yieldTonPerHa =
+    typeof rawYield === 'number' && !isNaN(rawYield)
+      ? rawYield
+      : harvestArea > 0
+      ? Number((prodTon / harvestArea).toFixed(2))
+      : 0
+
+  const tam = {
+    ...c.tam,
+    harvest_area_ha: harvestArea,
+    production_ton: prodTon,
+    yield_ton_per_ha: yieldTonPerHa,
+    farmgate_price_idr_per_kg: c.tam?.farmgate_price_idr_per_kg || 0,
+    gross_output_value_trillion_idr: c.tam?.gross_output_value_trillion_idr || 0,
+    yoy_prod_growth_pct:
+      c.tam?.yoy_prod_growth_pct ??
+      (c.tam as unknown as Record<string, number>)?.yoy_production_growth_pct ??
+      0,
+    yoy_area_growth_pct:
+      c.tam?.yoy_area_growth_pct ??
+      (c.tam as unknown as Record<string, number>)?.yoy_trees_growth_pct ??
+      0,
+  }
 
   // 1. Normalize top_districts -> key_producing_districts
   const rawDistricts = (c.top_districts || c.key_producing_districts || []) as unknown as RawDistrict[]
@@ -134,6 +159,7 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
 
   return {
     ...c,
+    tam,
     key_producing_districts,
     top_districts: rawDistricts,
     price_ladder,
@@ -313,3 +339,6 @@ export function calculateDynamicSOM(
     isWorkingCapitalConstrained,
   }
 }
+
+export * from './commercial-selling-data'
+
