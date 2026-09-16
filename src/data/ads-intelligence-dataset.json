@@ -522,6 +522,58 @@
         "avg_cpl_idr": "Rp 6.800 - Rp 12.500",
         "conversion_to_wa_rate": "11.2%"
       }
+    },
+    {
+      "id": "CREATIVE_04",
+      "concept_title": "Video Before-After 45 Detik 'Pohon Sawit Trek Kembali Berbuah'",
+      "format": "Video Reels / TikTok 9:16 (Vertikal)",
+      "target_crops": ["Kelapa Sawit"],
+      "objective": "B2B WhatsApp Leads dari Pemilik Kebun & Mandor Swadaya",
+      "hook_breakdown": {
+        "visual": "Kamera merekam pelepah sawit yang menguning dan sengkleh tanpa buah -> 'Pohon sawit di kebun Anda lagi mogok berbuah dan trek berbulan-bulan? Jangan biarkan omzet kebun terjun bebas!'",
+        "audio_opening": "Pohon sawit di kebun Anda lagi mogok berbuah dan pelepah sengkleh karena trek berkepanjangan? Ini rahasianya!",
+        "hook_duration_seconds": 3.9
+      },
+      "body_breakdown": {
+        "visual_flow": "Aplikasi mikro boron & kieserit di piringan pohon -> 6 minggu kemudian kamera memperlihatkan dompolan bunga betina mekar dan tandan TBS melingkar padat -> Timbangan PKS naik.",
+        "talking_points": "Pohon sawit butuh mikronutrien aktif untuk memicu diferensiasi bunga betina pasca panen raya. Pupuk mikro larut air langsung diserap akar tanpa menguap.",
+        "duration_seconds": 38
+      },
+      "offer_and_cta": {
+        "offer_text": "Paket Uji Coba 1 Drum (200 Liter) + Konsultasi Analisis Daun Gratis dengan Agronomis Perkebunan.",
+        "cta_text": "Klik tombol WhatsApp untuk jadwalkan survei kebun dan proposal harga distributor!"
+      },
+      "performance_benchmarks": {
+        "avg_ctr": "2.1% - 3.2%",
+        "avg_cpl_idr": "Rp 18.000 - Rp 28.000",
+        "conversion_to_wa_rate": "15.5%"
+      }
+    },
+    {
+      "id": "CREATIVE_05",
+      "concept_title": "Katalog Visual Bundling 3-in-1 'Paket Semprot Hemat Panen Sayur Buah'",
+      "format": "Carousel Image 1:1 (Facebook & Instagram Feed 4 Slides)",
+      "target_crops": ["Cabai", "Bawang Merah", "Tomat", "Semangka & Melon"],
+      "objective": "High Direct Conversion & Low CPL via Click-to-WhatsApp",
+      "hook_breakdown": {
+        "visual": "Slide 1: Foto produk bundling estetik 3 botol dengan stempel merah 'HEMAT 35% DIBANDING BELI ECERAN' berlatar panen cabai/bawang merah mengkilap.",
+        "audio_opening": "Tanpa audio (Headline visual katalog penawaran)",
+        "hook_duration_seconds": 0
+      },
+      "body_breakdown": {
+        "visual_flow": "Slide 2: Botol 1 - Insektisida Pembasmi Ulat Tuntas -> Slide 3: Botol 2 - Pupuk Kalsium Boron Anti Rontok Bunga -> Slide 4: Botol 3 - Perekat Penembus Tahan Hujan.",
+        "talking_points": "Satu paket lengkap untuk perlindungan total tanaman dari fase vegetatif hingga panen. Tidak perlu bingung mencampur obat sembarangan.",
+        "duration_seconds": 0
+      },
+      "offer_and_cta": {
+        "offer_text": "Harga Spesial Paket 3-in-1 Diskon 35% + Gratis Ongkir COD ke Seluruh Pelosok Desa Indonesia.",
+        "cta_text": "Geser gambar ke kanan dan klik tombol Chat WhatsApp untuk klaim voucher promo hari ini!"
+      },
+      "performance_benchmarks": {
+        "avg_ctr": "3.5% - 4.9%",
+        "avg_cpl_idr": "Rp 7.000 - Rp 11.500",
+        "conversion_to_wa_rate": "12.0%"
+      }
     }
   ],
   "copywriting_blueprints": [
@@ -584,6 +636,48 @@
       "pest_target": "Pohon Trek, Defisiensi Boron & Gulma Berkayu",
       "platform": "Facebook Sawit Community & Meta Feed Ads",
       "script_content": "[PERHATIAN MANDOR & PEMILIK KEBUN SAWIT]\nProduksi TBS kebun Anda turun drastis karena pohon lagi 'trek' berbulan-bulan? Pelepah sengkleh dan bunga betina rontok?\n\nJangan cuma andalkan pupuk makro NPK biasa! Tanaman sawit membutuhkan mikronutrien esensial Boron, Magnesium, dan Seng untuk merangsang pembentukan bakal tandan buah segar.\n\nPupuk Mikro Khusus Sawit Berkualitas Ekspor:\n✅ Mempercepat pemulihan pohon dari masa trek\n✅ Meningkatkan berat tandan (BJR) rata-rata naik 15% - 22%\n✅ Meningkatkan rendemen minyak kelapa sawit (CPO) saat timbangan PKS\n\nJuga tersedia herbisida pembasmi gulma berkayu dan paku-pakuan kebun sawit yang tahan cuci hujan deras!\n\nPengiriman kargo drum dan pail siap kirim langsung ke afdeling kebun Anda di Riau, Sumut, Jambi, Sumsel, Kalbar, dan Kalteng.\n\nKlik 'Hubungi Kami' untuk proposal uji coba dan konsultasi kebun sawit Anda!"
+    },
+    {
+      "commodity_id": "COMM_02",
+      "crop_name": "Jagung Hibrida",
+      "pest_target": "Ulat Grayak Terompet (FAW) & Penyakit Bulai",
+      "platform": "Meta Reels & Facebook Feed (Jatim, Jateng, Lampung, NTB)",
+      "script_content": "[HOOK VIDEO LAPANGAN]\nPucuk jagung umur 20 hari bolong-bolong penuh kotoran serbuk gergaji? Waspada ulat FAW (Spodoptera frugiperda)! Telat 3 hari saja, titik tumbuh jagung putus dan gagal panen tongkol!\n\n[MASALAH PETANI]\nUlat tentara FAW ini sembunyi rapat di dalam terompet daun. Disemprot racun kontak dari atas, ulatnya tidak kena dan malah makin rakus makan pucuk.\n\n[SOLUSI PRODUK]\nPakai formula spesialis ulat terompet jagung:\n✅ Efek Gas Penembus: Uap insektisida masuk ke sela terompet terdalam\n✅ Ulat berhenti makan dalam 10 menit, mati kaku dalam 1 jam\n✅ Daun baru tumbuh mulus, tanaman serempak tinggi dan tongkol berisi penuh sampai ujung\n\n[TESTIMONI]\nPak Slamet (Tuban): 'Musim lalu 2 hektar jagung saya selamat dari ulat FAW. Bobot timbangan pas pipil kering naik 1,2 ton per hektar!'\n\n[PENAWARAN & COD]\n📦 Siap kirim ke desa Anda, BAYAR DI TEMPAT (COD)\n🎁 Beli 3 botol subsidi ongkir 50% + bonus gelas ukur takar tangki\n\n👉 Klik tombol Kirim Pesan di bawah untuk konsultasi dosis per tangki!"
+    },
+    {
+      "commodity_id": "COMM_05",
+      "crop_name": "Kentang Granola & Atlantic",
+      "pest_target": "Busuk Daun (Phytophthora infestans) & Pembesar Umbi",
+      "platform": "Facebook Komunitas Tani Dieng & Pangalengan",
+      "script_content": "[PERINGATAN MUSIM HUJAN DINGIN]\nKabut tebal dan gerimis terus-menerus di kebun kentang? Awas serangan hawar daun (Phytophthora infestans)! Sekali daun menghitam bau busuk basah, 2 hari kemudian 1 petak bisa gosong total!\n\n[MENGAPA FUNGISIDA LAMA SERING GAGAL?]\nFungisida kontak mudah tercuci air hujan dataran tinggi. Spora jamur tetap hidup di bawah lapisan daun dan masuk ke batang.\n\n[FORMULA UNGGULAN PETANI KENTANG]\nKombinasi fungisida sistemik translaminar + ZPT penguat sel:\n1. Tahan guyuran hujan (hujan deras setelah 1 jam semprot tetap nempel efektif)\n2. Menghentikan penularan bercak hitam busuk daun seketika\n3. Batang tetap hijau kokoh, translokasi nutrisi ke umbi lancar bikin umbi kentang mulus masuk Grade Super\n\n[KEMUDAHAN ORDER]\nPembayaran praktis: BISA COD saat barang tiba di rumah. Jaminan 100% Produk Original dari pabrik resmi.\n\nKonsultasikan luas lahan dan umur tanaman kentang Anda sekarang dengan menekan tombol WhatsApp di bawah!"
+    },
+    {
+      "commodity_id": "COMM_07",
+      "crop_name": "Tomat Sayur & Servo F1",
+      "pest_target": "Busuk Pantat Buah (Blossom End Rot) & Rontok Bunga",
+      "platform": "Meta Ads (Instagram & Facebook Feed/Reels)",
+      "script_content": "[BUAH TOMAT PANTATNYA HITAM & PECAH?]\nLagi senang-senangnya lihat pohon tomat berbuah lebat, pas dipetik ternyata bagian pantat buah menghitam dan busuk kering? Itu tanda darurat defisiensi KALSIUM BORON aktif!\n\n[JANGAN SALAH OBAT]\nBanyak petani mengira ini jamur dan malah boros beli fungisida mahal. Padahal dinding sel buah kekurangan kalsium yang siap diserap.\n\n[NUTRISI KALSIUM MIKRO ORGANIK]\nCukup semprotkan Pupuk Kalsium Boron Water Soluble murni:\n🍅 Kulit tomat jadi tebal, kenyal, mengkilap, dan tidak gampang pecah kena hujan\n🍅 Bunga baru tidak rontok, buah jadi seragam lebat dari cabang bawah sampai atas\n🍅 Tahan simpan pengiriman jarak jauh ke Pasar Induk Kramat Jati tanpa susut bonyok!\n\n[HARGA HEMAT]\n1 kemasan cukup untuk 20 tangki semprot. Biaya per tangki tidak sampai Rp 3.000!\n\n👉 Klik 'Pesan Sekarang' untuk order sistem COD Bayar di Tempat!"
+    },
+    {
+      "commodity_id": "COMM_08",
+      "crop_name": "Semangka & Melon Komersial",
+      "pest_target": "Brix Kemanisan Rendah, Buah Pecah & Netting Gagal",
+      "platform": "Facebook Video & TikTok Ads (Banyuwangi, Grobogan, Lampung)",
+      "script_content": "[RAHASIA SEMANGKA & MELON DIBURU PENEBAS DENGAN HARGA TERTINGGI!]\nPenebas dan bakul buah pasar induk selalu cari semangka yang bobotnya berat mantap, daging merah padat tanpa rongga, dan rasa manis legit di atas 12 Brix!\n\n[FORMULA PEMBENTUK GULA & BOBOT]\nGunakan paket pembuahan fase generatif (HST 35 - 55):\n🍉 Kalium Nitrat Murni Bebas Klorin: Memicu akumulasi kadar gula alami secara maksimal\n🍉 Boron Mikro: Mencegah buah pecah (cracking) saat penyiraman atau perubahan cuaca\n🍉 Penguat Jaring Netting Melon: Bikin jaring rapat timbul merata, lolos sortir grade supermarket premium!\n\n[TESTIMONI LAPANG]\nPak Hendro (Banyuwangi): 'Musim ini panen 3 hektar semangka non-biji, rata-rata buah tembus 6-8 kg, penebas langsung bayar kontan tanpa tawar!'\n\n📦 Pembayaran aman COD ke seluruh kecamatan di Indonesia.\nKlik link WhatsApp sekarang untuk dapatkan jadwal pemupukan semangka/melon dari agronomis kami!"
+    },
+    {
+      "commodity_id": "COMM_11",
+      "crop_name": "Alpukat Miki & Aligator",
+      "pest_target": "Pohon Enggan Berbunga & Rontok Pentil Buah",
+      "platform": "Meta Ads (Facebook & Instagram Feed/Reels Komunitas Pekebun)",
+      "script_content": "[POHON ALPUKAT SUDAH TAHUNAN DITANAM TAPI BELUM PERNAH BERBUAH?]\nAtau pas bunga keluar banyak, eh tiba-tiba rontok massal disapu hujan deras sampai sisa daun saja?\n\n[KUNCI PEMBUAHAN DI LUAR MUSIM (OFF-SEASON)]\nPohon alpukat butuh stimulasi hormon pemacu bunga dan kalsium pengikat tangkai buah:\n🥑 Booster Pembungaan Khusus: Menekan pertumbuhan daun liar vegetatif dan merangsang keluarnya dompolan bunga serentak\n🥑 Asam Amino & ZPT Retensi: Memperkuat tangkai putik bunga agar tidak gugur saat curah hujan tinggi\n🥑 Hasil: Pentil buah menempel kuat, berkembang jadi alpukat jumbo mulus berbobot 800 gram - 1,5 kg per buah!\n\n[PROMO BULAN INI]\nBeli Paket Booster Alpukat (Pupuk Bunga + Anti Rontok), dapatkan BONUS panduan pangkas pucuk & jadwal aplikasi pupuk.\n\nBisa Bayar di Tempat (COD) saat barang sampai di rumah. Klik tombol di bawah untuk pesan sekarang!"
+    },
+    {
+      "commodity_id": "COMM_12",
+      "crop_name": "Tembakau Madura & Temanggung",
+      "pest_target": "Daun Kusam, Mutu Grader Rendah & Kadar Klorin",
+      "platform": "Facebook Komunitas Tembakau (Temanggung, Madura, Lombok)",
+      "script_content": "[PERINGATAN KERAS PETANI TEMBAKAU]\nJangan sembarangan pakai pupuk Kalium yang mengandung Klorin (KCl)! Klorin merusak daya bakar daun, bikin asap rokok berbau menyengat, dan grader pabrik rokok langsung tolak atau potong harga drastis!\n\n[PUPUK KALIUM SULFAT ZK MURNI 100% BEBAS KLORIN]\nFormula khusus daun tembakau emas:\n🍃 Daun tebal, lentur, berbobot, dan mengeluarkan aroma getah wangi khas\n🍃 Hasil rajangan halus, warna kuning emas cerah, tidak remuk atau gosong saat dijemur\n🍃 Daya bakar daun sempurna, lolos uji bakar laboratorium pabrik rokok besar\n\nSudah menjadi andalan ribuan petani tembakau di lereng Gunung Sumbing, Sindoro, Pamekasan, dan Lombok Timur.\n\nPesan sekarang untuk stok musim tanam kemarau. Pembayaran fleksibel COD langsung ke rumah Anda!\nKlik tombol Kirim Pesan di bawah untuk info harga grosir per sak!"
     }
   ],
   "google_ads_keywords": [

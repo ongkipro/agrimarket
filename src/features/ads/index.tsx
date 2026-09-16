@@ -16,6 +16,11 @@ import {
   Calculator,
   Flame,
   Award,
+  Sliders,
+  MapPin,
+  CheckCircle2,
+  ShieldCheck,
+  Zap,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import {
@@ -60,6 +65,121 @@ import {
   calculateRoAS,
 } from '@/features/agri/ads-data-provider'
 import type { BuyerPersona, CompetitorProfile, AdScript } from '@/features/agri/ads-types'
+
+const metaAdsTargetingClusters = [
+  {
+    id: 'cluster-brands',
+    title: 'Cluster A: Multinasional & Brand Pestisida/Pupuk Terkemuka',
+    badge: 'Brand Authority',
+    badgeColor: 'border-blue-300 text-blue-700 bg-blue-50/60 dark:bg-blue-950/40 dark:text-blue-300',
+    description: 'Menjangkau petani komersial & pemilik kios tani yang terbiasa menggunakan produk paten bermutu tinggi.',
+    keywords: [
+      'Bayer Crop Science',
+      'Syngenta',
+      'Petrokimia Gresik',
+      'Corteva Agriscience',
+      'BASF Agricultural Solutions',
+      'PT Pupuk Indonesia',
+      'Nufarm',
+      'FMC Corporation',
+      'UPL Indonesia',
+    ],
+  },
+  {
+    id: 'cluster-agronomy',
+    title: 'Cluster B: Komoditas Hortikultura & Praktik Perlindungan Tanaman',
+    badge: 'High Intent Farmers',
+    badgeColor: 'border-emerald-300 text-emerald-700 bg-emerald-50/60 dark:bg-emerald-950/40 dark:text-emerald-300',
+    description: 'Petani aktif yang sering mencari solusi hama, penyakit patek, wereng, ulat grayak, dan teknik pemupukan.',
+    keywords: [
+      'Pertanian',
+      'Pupuk',
+      'Pestisida',
+      'Bawang merah',
+      'Cabai',
+      'Padi',
+      'Jagung',
+      'Kementerian Pertanian Republik Indonesia',
+      'Insektisida',
+      'Fungisida',
+      'Herbisida',
+    ],
+  },
+  {
+    id: 'cluster-plantation',
+    title: 'Cluster C: Perkebunan Sawit Swadaya & B2B Agribisnis',
+    badge: 'High Ticket B2B',
+    badgeColor: 'border-amber-300 text-amber-700 bg-amber-50/60 dark:bg-amber-950/40 dark:text-amber-300',
+    description: 'Pemilik kebun sawit 5-50 Ha, mandor afdeling, dan pengusaha perkebunan di Sumatera & Kalimantan.',
+    keywords: [
+      'Kelapa sawit',
+      'Minyak kelapa sawit',
+      'Pabrik kelapa sawit',
+      'Perkebunan',
+      'Traktor pertanian',
+      'Pupuk organik',
+      'Agribisnis',
+      'Gapoktan',
+    ],
+  },
+]
+
+const sentraGeotargeting = [
+  {
+    region: 'Sentra Hortikultura Sayur & Bawang (Jawa)',
+    provinces: 'Jawa Tengah, Jawa Timur, Jawa Barat',
+    regencies: [
+      'Brebes',
+      'Nganjuk',
+      'Temanggung',
+      'Magelang',
+      'Wonosobo',
+      'Malang',
+      'Banyuwangi',
+      'Garut',
+      'Cianjur',
+      'Bandung Barat',
+      'Probolinggo',
+    ],
+    cpmBenchmark: 'Rp 18.000 - Rp 24.000',
+    targetCrops: 'Cabai, Bawang Merah, Kentang, Tomat',
+  },
+  {
+    region: 'Sentra Pangan Padi & Jagung',
+    provinces: 'Jawa Barat, Jawa Timur, Lampung, Sulsel, NTB',
+    regencies: [
+      'Karawang',
+      'Subang',
+      'Indramayu',
+      'Ngawi',
+      'Tuban',
+      'Sragen',
+      'Grobogan',
+      'Lampung Tengah',
+      'Pinrang',
+      'Bima',
+    ],
+    cpmBenchmark: 'Rp 14.000 - Rp 19.000',
+    targetCrops: 'Padi Sawah, Jagung Hibrida',
+  },
+  {
+    region: 'Sentra Perkebunan Kelapa Sawit (Sumatera & Kalimantan)',
+    provinces: 'Riau, Sumatera Utara, Sumatera Selatan, Kalteng, Kalbar',
+    regencies: [
+      'Kampar',
+      'Rokan Hulu',
+      'Siak',
+      'Asahan',
+      'Labuhanbatu',
+      'Banyuasin',
+      'Musi Banyuasin',
+      'Kotawaringin Timur',
+      'Ketapang',
+    ],
+    cpmBenchmark: 'Rp 26.000 - Rp 34.000',
+    targetCrops: 'Kelapa Sawit (TBS), Karet',
+  },
+]
 
 export function AdsGrowthEngine() {
   const demographics = getNationalDemographics()
@@ -152,6 +272,15 @@ export function AdsGrowthEngine() {
     setCopiedScript(true)
     toast.success('Ad script berhasil disalin ke clipboard!')
     setTimeout(() => setCopiedScript(false), 2500)
+  }
+
+  const [copiedCluster, setCopiedCluster] = useState<string | null>(null)
+
+  const handleCopyCluster = (clusterId: string, keywords: string[]) => {
+    navigator.clipboard.writeText(keywords.join(', '))
+    setCopiedCluster(clusterId)
+    toast.success('Daftar target minat Meta Ads berhasil disalin!')
+    setTimeout(() => setCopiedCluster(null), 2500)
   }
 
   const handleCopyAllNegatives = () => {
@@ -811,6 +940,167 @@ export function AdsGrowthEngine() {
                     <pre className='p-4 bg-muted/50 rounded-lg text-xs font-sans whitespace-pre-wrap leading-relaxed text-foreground border overflow-x-auto max-h-[380px] no-scrollbar'>
                       {activeScript.script_content}
                     </pre>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Meta Ads Manager Campaign Setup & Audience Targeting Matrix */}
+              <Card className='border-indigo-200 dark:border-indigo-900/60 shadow-sm'>
+                <CardHeader className='pb-3'>
+                  <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3'>
+                    <div>
+                      <CardTitle className='text-base flex items-center gap-2'>
+                        <Sliders className='h-4 w-4 text-indigo-600' />
+                        Meta Ads Manager Setup & Audience Targeting Matrix
+                      </CardTitle>
+                      <CardDescription className='text-xs'>
+                        Panduan arsitektur kampanye, geotargeting sentra pertanian, dan cluster minat petani siap pakai untuk Ads Manager.
+                      </CardDescription>
+                    </div>
+                    <Badge variant='outline' className='text-xs border-indigo-300 text-indigo-700 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/40 w-fit'>
+                      Execution Blueprint
+                    </Badge>
+                  </div>
+                </CardHeader>
+
+                <CardContent className='space-y-6'>
+                  {/* Campaign Setup Architecture Best Practices */}
+                  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs'>
+                    <div className='p-3 rounded-lg border bg-muted/40 space-y-1.5'>
+                      <div className='flex items-center gap-1.5 font-semibold text-foreground'>
+                        <Zap className='h-3.5 w-3.5 text-amber-500' />
+                        <span>Campaign Objective</span>
+                      </div>
+                      <p className='text-muted-foreground text-[11px] leading-relaxed'>
+                        Pilih <strong>Sales</strong> atau <strong>Leads</strong> dengan Conversion Location ke <strong>Messaging Apps</strong> (WhatsApp Business).
+                      </p>
+                    </div>
+
+                    <div className='p-3 rounded-lg border bg-muted/40 space-y-1.5'>
+                      <div className='flex items-center gap-1.5 font-semibold text-foreground'>
+                        <CheckCircle2 className='h-3.5 w-3.5 text-emerald-500' />
+                        <span>Optimization Goal</span>
+                      </div>
+                      <p className='text-muted-foreground text-[11px] leading-relaxed'>
+                        Optimasi untuk <strong>Conversations</strong> (bukan Link Clicks) agar algoritma mencari petani yang aktif chat langsung.
+                      </p>
+                    </div>
+
+                    <div className='p-3 rounded-lg border bg-muted/40 space-y-1.5'>
+                      <div className='flex items-center gap-1.5 font-semibold text-foreground'>
+                        <Smartphone className='h-3.5 w-3.5 text-blue-500' />
+                        <span>Placements & Devices</span>
+                      </div>
+                      <p className='text-muted-foreground text-[11px] leading-relaxed'>
+                        <strong>Mobile Android Only</strong>. Utamakan FB Feed, FB Video Feeds, dan IG/FB Reels. <em>Exclude Audience Network</em>.
+                      </p>
+                    </div>
+
+                    <div className='p-3 rounded-lg border bg-muted/40 space-y-1.5'>
+                      <div className='flex items-center gap-1.5 font-semibold text-foreground'>
+                        <ShieldCheck className='h-3.5 w-3.5 text-rose-500' />
+                        <span>Demographics & Exclusion</span>
+                      </div>
+                      <p className='text-muted-foreground text-[11px] leading-relaxed'>
+                        Usia <strong>28 – 58 tahun</strong>. Exclude minat Pelajar, Mahasiswa, Loker Tani, dan kota metropolitan non-lahan.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 1-Click Copy Detailed Targeting Clusters */}
+                  <div className='space-y-3 pt-2'>
+                    <div className='flex items-center justify-between'>
+                      <h4 className='text-xs sm:text-sm font-semibold text-foreground flex items-center gap-2'>
+                        <Target className='h-4 w-4 text-indigo-600' />
+                        Copyable Interest Targeting Keyword Clusters
+                      </h4>
+                      <span className='text-[11px] text-muted-foreground'>
+                        Salin dan tempel langsung ke Detailed Targeting Ads Manager
+                      </span>
+                    </div>
+
+                    <div className='grid grid-cols-1 lg:grid-cols-3 gap-3'>
+                      {metaAdsTargetingClusters.map((cluster) => (
+                        <div
+                          key={cluster.id}
+                          className='p-3.5 rounded-lg border bg-card flex flex-col justify-between space-y-3'
+                        >
+                          <div className='space-y-1.5'>
+                            <div className='flex items-center justify-between'>
+                              <Badge variant='outline' className={`text-[10px] ${cluster.badgeColor}`}>
+                                {cluster.badge}
+                              </Badge>
+                              <Button
+                                size='sm'
+                                variant='ghost'
+                                className='h-7 px-2 text-[11px] text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/60'
+                                onClick={() => handleCopyCluster(cluster.title, cluster.keywords)}
+                              >
+                                {copiedCluster === cluster.title ? (
+                                  <>
+                                    <Check className='h-3 w-3 mr-1 text-emerald-600' />
+                                    Tersalin
+                                  </>
+                                ) : (
+                                  <>
+                                    <Copy className='h-3 w-3 mr-1' />
+                                    Copy All
+                                  </>
+                                )}
+                              </Button>
+                            </div>
+                            <h5 className='font-semibold text-xs text-foreground leading-snug'>
+                              {cluster.title}
+                            </h5>
+                            <p className='text-[11px] text-muted-foreground leading-relaxed'>
+                              {cluster.description}
+                            </p>
+                          </div>
+
+                          <div className='flex flex-wrap gap-1 pt-2 border-t'>
+                            {cluster.keywords.map((kw) => (
+                              <span
+                                key={kw}
+                                className='px-1.5 py-0.5 rounded text-[10px] font-mono bg-muted text-foreground/80 border'
+                              >
+                                {kw}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Geotargeting Sentra Agribisnis */}
+                  <div className='space-y-3 pt-2'>
+                    <h4 className='text-xs sm:text-sm font-semibold text-foreground flex items-center gap-2'>
+                      <MapPin className='h-4 w-4 text-emerald-600' />
+                      Geotargeting Sentra Agribisnis Komersial Indonesia
+                    </h4>
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
+                      {sentraGeotargeting.map((sentra, idx) => (
+                        <div key={idx} className='p-3.5 rounded-lg border bg-muted/20 space-y-2 text-xs'>
+                          <div className='flex items-center justify-between'>
+                            <span className='font-semibold text-foreground text-xs'>
+                              {sentra.region}
+                            </span>
+                            <Badge variant='secondary' className='text-[10px] font-mono'>
+                              {sentra.cpmBenchmark}
+                            </Badge>
+                          </div>
+                          <div className='text-[11px] text-muted-foreground'>
+                            <strong>Provinsi:</strong> {sentra.provinces}
+                          </div>
+                          <div className='text-[11px] text-muted-foreground'>
+                            <strong>Komoditas Kunci:</strong> {sentra.targetCrops}
+                          </div>
+                          <div className='pt-1 text-[11px] leading-relaxed text-foreground/90 font-mono'>
+                            {sentra.regencies.join(', ')}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
