@@ -282,12 +282,14 @@ Each commodity possesses its own dedicated sub-menu following an identical, rigo
 - **Interactive Tooltip & Province Selection:** Hovering over or clicking any of the 38 provinces initiates territorial inspection.
 - **Hierarchical Drilldown Architecture (Nasional -> 38 Provinsi -> Rincian Kabupaten/Kota):**
   - **Dynamic Drilldown Transition:** When a province is clicked, the geospatial interface switches from the national overview into a granular **District-Level (Kabupaten/Kota) Agronomic Heatmap & Data Table**.
+  - **Comprehensive Regency Roster (514 Kab/Kota):** Encompasses full coverage of authentic Indonesian regencies per province (e.g. 27 Kab/Kota in Jawa Barat, 38 in Jawa Timur, 35 in Jawa Tengah, 33 in Sumatera Utara, 24 in Sulawesi Selatan, 12 in Riau, 17 in Sumatera Selatan, 15 in Lampung, 10 in NTB, 23 in Aceh, 22 in NTT).
+  - **Micro Sub-District Clusters (Kecamatan Sentra):** Each key agricultural hub includes verified sub-district cluster annotations (e.g. Indramayu: Kandanghaur, Anjatan, Losarang; Brebes: Larangan, Wanasari, Bulakamba; Nganjuk: Bagor, Sukomoro, Rejoso; Kediri: Pare, Plemahan; Tuban: Merakurak, Semanding; Rokan Hulu: Tambusai, Ujung Batu) for precise sales territory routing.
   - **Breadcrumb & Swift Navigation:** Features a prominent `← Kembali ke Peta 38 Provinsi` toggle alongside a direct province selector dropdown to seamlessly explore neighboring provinces without navigating back to the root.
   - **Provincial Macro Header:** Summarizes provincial Harvest Area (Ha), Production Volume (Ton), Average Yield (Ton/Ha), National Share (%), KPL Kiosk Density, and count of tracked regencies.
   - **Intra-Provincial Visual Density Grid:** Kabupaten cards with proportional color badges reflecting intra-provincial production contribution (Top Hubs, Secondary Centers, Buffer Districts).
-  - **Detailed Kabupaten Agronomic Table:** TanStack table with live search by regency name, multi-column sorting (Production, Area, Yield, Alphabetical), status classification badges (`Sentra Utama #1`, `Sentra Utama`, `Sentra Penyangga`, `Potensial`), percentage progress bars, and localized commercial action recommendations.
+  - **Detailed Kabupaten Agronomic Table:** TanStack table with live search by regency/subdistrict name, multi-column sorting (Production, Area, Yield, Alphabetical), status classification badges (`Sentra Utama #1`, `Sentra Utama`, `Sentra Penyangga`, `Potensial`), percentage progress bars, sub-district cluster annotations, and localized commercial action recommendations.
   - **Dedicated Provincial Sidebar Telemetry:** Dynamically updates the side drawer to calculate intra-provincial Pareto concentration (e.g. Top 3 districts controlling X% of provincial volume), territorial agronomist deployment ratios, and depot stocking suggestions.
-  - **Parallel Mathematical Integrity:** Enforces zero undefined/NaN invariants, strict positivity, and exact reconciliation across all 13 commodities and all 38 provinces.
+  - **Parallel Mathematical Integrity & Gate-0 Reconciliation:** Enforces zero undefined/NaN invariants, strict positivity, and exact reconciliation ($\sum \text{districts} = \text{provincial total}$) across all 13 commodities and all 38 provinces.
 
 
 ### 5.4 Menu 4: Dynamic SOM Simulation Engine (Gap 7)

@@ -288,4 +288,33 @@
   - Verify project delivery contract via `project-check --full /Users/ongki/Projects/agrimarket` (VERIFIED 3/3 checks passed).
   - Stage, commit cleanly (noreply author, no AI trailers), push to GitHub, and deploy to Vercel via CLI `vercel --prod --yes`.
 
+---
+
+### Phase 13: Full District Census, Sub-District Cluster Intelligence & Precision QA Engine (COMPLETED & VERIFIED)
+- [x] **TASK-61:** Deep Research & 514-Regency Census Architecture Specification:
+  - Author comprehensive update to `docs/spec/DISTRICT-DATA-ENGINE-SPEC.md` documenting the full census of 514 Indonesian Kabupaten/Kota across 38 provinces.
+  - Document sub-district (*kecamatan sentra*) cluster mappings for core production hubs across all 13 commodities.
+  - Establish exact Gate-0 zero-delta mathematical balancing algorithm so $\sum \text{districts} = \text{provincial total}$ with 0.00% discrepancy.
+- [x] **TASK-62:** Build Comprehensive Precision District Dataset (`src/features/agri/province-districts-data.ts`):
+  - Expand `PROVINCE_DEFAULT_REGENCIES` to include the complete roster of authentic Kabupaten/Kota for all 38 provinces (27 in Jabar, 38 in Jatim, 35 in Jateng, 33 in Sumut, 24 in Sulsel, 17 in Sumsel, 15 in Lampung, 12 in Riau, 10 in NTB, 23 in Aceh, 22 in NTT, 14 in Kalbar/Kalteng, etc. totaling exactly 514 regencies).
+  - Enrich `EXACT_DISTRICT_BENCHMARKS` with verified BPS KSA/SPH records across all major producing provinces for each of the 13 commodities.
+  - Add `subdistrict_clusters?: string` property for key agricultural hubs (e.g. Kandanghaur/Anjatan for Indramayu; Larangan/Bulakamba for Brebes; Bagor/Sukomoro for Nganjuk; Tosari/Bromo for Pasuruan; Tambusai/Ujung Batu for Rokan Hulu).
+  - Implement `distributeGateZero` allocator so $\sum \text{districts} = \text{provincial total}$ exactly (0.00% delta) without floating-point accumulation drift.
+- [x] **TASK-63:** Enhance Geospatial Map UI (`src/features/map/index.tsx`) with Micro-Cluster Intelligence:
+  - Display sub-district cluster badges and annotations in Kabupaten cards and data table.
+  - Add search filter supporting both Kabupaten names and Kecamatan cluster keywords.
+  - Display total tracked regency badge (e.g. `27 Kabupaten/Kota Terdata` in Jabar, `38 Kabupaten/Kota Terdata` in Jatim).
+  - Add smart collapsible toggle button (`Tampilkan Seluruh X Kabupaten/Kota` / `Ciutkan (Top 12)`) for provinces with > 12 regencies.
+- [x] **TASK-64:** Author Comprehensive QA Test Suite (`src/features/agri/district-breakdown-qa.test.ts`):
+  - Test deep district integrity across all 38 provinces and 13 commodities (494 matrix points).
+  - Assert coverage of all 514 authentic regencies across Indonesia.
+  - Assert zero discrepancy: sum of districts matches provincial total for harvest area and production volume ($\Delta \le 1$).
+  - Assert sub-district cluster annotations exist for verified hubs.
+  - Verify 100% test pass rate across 25 test files and 179 total tests.
+- [x] **TASK-65:** Full Quality Gate, Staging Sync, Git Commit & Vercel Production Deployment:
+  - Run `pnpm run lint` (0 errors, 0 warnings), `pnpm run test` (179/179 passing), `pnpm run build` (built in 1.07s), and `project-check --full` (3/3 checks passed).
+  - Sync all specifications to `~/Documents/work/prd/agrimarket/`.
+  - Stage, commit cleanly (noreply author, no AI trailers), push to GitHub, and deploy to Vercel via CLI `vercel --prod --yes`.
+
+
 

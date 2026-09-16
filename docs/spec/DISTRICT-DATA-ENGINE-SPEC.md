@@ -140,6 +140,53 @@ Untuk memastikan bahwa **seluruh 38 provinsi di Indonesia** memiliki data rincia
    - Menampilkan dropdown switcher provinsi cepat.
 3. **Komponen View Kabupaten:**
    - **Header Metrik:** Ringkasan Provinsi (Luas, Tonase, Produktivitas, Kios KPL, Jumlah Sentra Terdata).
-   - **Grid Kartu Kabupaten:** Kartu visual dengan intensitas warna sesuai persentase kontribusi terhadap provinsi.
-   - **Tabel Rinci Kabupaten:** Fitur pencarian live, sorting multi-kolom, badge status, bar progress, dan rekomendasi operasional.
+   - **Grid Kartu Kabupaten:** Kartu visual dengan intensitas warna sesuai persentase kontribusi terhadap provinsi, lengkap dengan anotasi kecamatan sentra.
+   - **Tabel Rinci Kabupaten:** Fitur pencarian live (nama kabupaten & kecamatan), sorting multi-kolom, badge status, bar progress, dan rekomendasi operasional.
    - **Panel Samping Dinamis:** Ringkasan konsentrasi Pareto (Top 3 Kabupaten), rekomendasi penempatan tim agronomis lapang, dan titik buffer stock distributor.
+
+---
+
+## 5. SENSUS KABUPATEN/KOTA NASIONAL & KLASTER KECAMATAN SENTRA (GAP RESOLUTION)
+
+### 5.1 Cakupan Sensus 514 Kabupaten/Kota per Provinsi
+Untuk memberikan data mikro yang presisi dan tervalidasi, sistem memuat sensus resmi kabupaten/kota di seluruh 38 provinsi di Indonesia:
+- **Jawa Barat (27 Kab/Kota):** Indramayu, Karawang, Subang, Cianjur, Majalengka, Cirebon, Garut, Bandung, Bandung Barat, Sukabumi, Tasikmalaya, Ciamis, Kuningan, Sumedang, Purwakarta, Bekasi, Bogor, Pangandaran, Kota Banjar, Kota Tasikmalaya, Kota Cirebon, Kota Sukabumi, Kota Bogor, Kota Bekasi, Kota Depok, Kota Cimahi, Kota Bandung.
+- **Jawa Timur (38 Kab/Kota):** Lamongan, Ngawi, Bojonegoro, Jember, Tuban, Banyuwangi, Kediri, Blitar, Nganjuk, Pasuruan, Probolinggo, Malang, Pamekasan, Sumenep, Sampang, Bangkalan, Lumajang, Bondowoso, Situbondo, Tulungagung, Trenggalek, Ponorogo, Pacitan, Magetan, Madiun, Gresik, Sidoarjo, Mojokerto, Jombang, Kota Batu, Kota Surabaya, Kota Malang, Kota Kediri, Kota Blitar, Kota Probolinggo, Kota Pasuruan, Kota Mojokerto, Kota Madiun.
+- **Jawa Tengah (35 Kab/Kota):** Grobogan, Sragen, Cilacap, Demak, Pati, Brebes, Temanggung, Magelang, Wonosobo, Banjarnegara, Boyolali, Klaten, Sukoharjo, Karanganyar, Wonogiri, Blora, Rembang, Kudus, Jepara, Semarang, Kendal, Batang, Pekalongan, Pemalang, Tegal, Banyumas, Purbalingga, Kebumen, Purworejo, Kota Magelang, Kota Surakarta, Kota Salatiga, Kota Semarang, Kota Pekalongan, Kota Tegal.
+- **Sumatera Utara (33 Kab/Kota):** Deli Serdang, Serdang Bedagai, Simalungun, Asahan, Karo, Dairi, Humbang Hasundutan, Toba, Tapanuli Utara, Tapanuli Selatan, Tapanuli Tengah, Mandailing Natal, Labuhanbatu, Labuhanbatu Utara, Labuhanbatu Selatan, Batubara, Langkat, Pakpak Bharat, Samosir, Nias, Nias Selatan, Nias Utara, Nias Barat, Padang Lawas, Padang Lawas Utara, Kota Medan, Kota Binjai, Kota Pematangsiantar, Kota Tebing Tinggi, Kota Tanjungbalai, Kota Sibolga, Kota Padang Sidempuan, Kota Gunungsitoli.
+- **Sulawesi Selatan (24 Kab/Kota):** Bone, Wajo, Pinrang, Sidrap, Luwu, Luwu Utara, Luwu Timur, Soppeng, Enrekang, Jeneponto, Bantaeng, Bulukumba, Sinjai, Gowa, Takalar, Maros, Pangkajene dan Kepulauan, Barru, Tana Toraja, Toraja Utara, Selayar, Kota Makassar, Kota Parepare, Kota Palopo.
+- **Riau (12 Kab/Kota):** Rokan Hulu, Rokan Hilir, Kampar, Pelalawan, Siak, Indragiri Hilir, Indragiri Hulu, Kuantan Singingi, Bengkalis, Kepulauan Meranti, Kota Dumai, Kota Pekanbaru.
+- **Sumatera Selatan (17 Kab/Kota):** Banyuasin, OKU Timur, Musi Banyuasin, Ogan Ilir, Ogan Komering Ilir, Lahat, Muara Enim, Musi Rawas, Musi Rawas Utara, OKU, OKU Selatan, Empat Lawang, Penukal Abab Lematang Ilir, Kota Palembang, Kota Prabumulih, Kota Pagar Alam, Kota Lubuklinggau.
+- **Lampung (15 Kab/Kota):** Lampung Tengah, Lampung Timur, Lampung Selatan, Way Kanan, Tanggamus, Pringsewu, Pesawaran, Tulang Bawang, Tulang Bawang Barat, Mesuji, Lampung Barat, Pesisir Barat, Lampung Utara, Kota Bandar Lampung, Kota Metro.
+- **Nusa Tenggara Barat (10 Kab/Kota):** Sumbawa, Dompu, Bima, Lombok Timur, Lombok Tengah, Lombok Barat, Lombok Utara, Sumbawa Barat, Kota Mataram, Kota Bima.
+- **Aceh (23 Kab/Kota):** Aceh Utara, Pidie, Pidie Jaya, Bireuen, Aceh Besar, Aceh Timur, Aceh Barat, Nagan Raya, Aceh Barat Daya, Aceh Selatan, Aceh Singkil, Aceh Tamiang, Aceh Tengah, Bener Meriah, Aceh Tenggara, Gayo Lues, Simeulue, Aceh Jaya, Kota Banda Aceh, Kota Sabang, Kota Lhokseumawe, Kota Langsa, Kota Subulussalam.
+- **Bali, NTT, Kalimantan, Sulawesi, Maluku & Papua:** Lengkap sesuai kode wilayah Ditjen Dukcapil & BPS RI.
+
+### 5.2 Pemetaan Klaster Kecamatan Sentra Utama (Sub-District Clusters)
+Setiap sentra utama primer dilengkapi data klaster kecamatan strategis untuk mengarahkan rute kanvasing tim agronomis lapang:
+1. **Kab. Indramayu (Padi #1):** Kec. Kandanghaur, Anjatan, Losarang, Gabuswetan, Haurgeulis, Kroya.
+2. **Kab. Karawang (Padi #2):** Kec. Rawamerta, Cilamaya Wetan, Tempuran, Lemahabang, Pedes, Rengasdengklok.
+3. **Kab. Subang (Padi #3):** Kec. Pamanukan, Binong, Ciasem, Pusakanagara, Patokbeusi.
+4. **Kab. Brebes (Bawang Merah #1):** Kec. Larangan, Wanasari, Bulakamba, Kersana, Jatibarang, Songgom.
+5. **Kab. Nganjuk (Bawang Merah Jatim):** Kec. Bagor, Sukomoro, Rejoso, Wilangan, Gondang.
+6. **Kab. Tuban (Jagung #1 Jatim):** Kec. Merakurak, Semanding, Jenu, Palang, Kerek, Montong.
+7. **Kab. Grobogan (Jagung & Padi Jateng):** Kec. Purwodadi, Wirosari, Toroh, Pulokulon, Ngaringan.
+8. **Kab. Kediri (Cabai Sentra Pasar Lelang):** Kec. Pare, Plemahan, Kepung, Puncu, Plosoklaten.
+9. **Kab. Pasuruan (Kentang & Alpukat Bromo):** Kec. Tosari, Tutur (Nongkojajar), Puspo, Lumbang.
+10. **Kab. Banjarnegara (Kentang Dieng):** Kec. Batur, Pejawaran, Wanayasa, Karangkobar.
+11. **Kab. Bandung Barat (Sayuran Dataran Tinggi Lembang):** Kec. Lembang, Parongpong, Cisarua.
+12. **Kab. Banyuwangi (Semangka & Melon #1):** Kec. Tegaldlimo, Purwoharjo, Muncar, Cluring, Bangorejo.
+13. **Kab. Rokan Hulu (Kelapa Sawit #1 Riau):** Kec. Tambusai, Tambusai Utara, Ujung Batu, Rambah Samo, Kepenuhan.
+14. **Kab. Kotawaringin Timur (Kelapa Sawit #1 Kalteng):** Kec. Parenggean, Mentawa Baru Ketapang, Baamang, Telawang, Antang Kalang.
+15. **Kab. Pamekasan (Tembakau Madura):** Kec. Proppo, Pegantenan, Pakong, Waru, Kadur.
+16. **Kab. Lombok Timur (Tembakau Virginia NTB):** Kec. Sikur, Sakra, Terara, Montong Gading, Pringgabaya.
+17. **Kota Tangerang Selatan (Anggrek Florikultura):** Kec. Setu (Puspitek), Pamulang, Serpong.
+
+---
+
+## 6. METODOLOGI REKONSILIASI MATEMATIKA TOTAL (ZERO DELTA GATE)
+
+Untuk seluruh 13 komoditas dan 38 provinsi:
+$$\sum_{i=1}^{N_{\text{kab}}} \text{Production}_{\text{kab}, i} = \text{Production}_{\text{prov}} \pm 0,00\%$$
+$$\sum_{i=1}^{N_{\text{kab}}} \text{HarvestArea}_{\text{kab}, i} = \text{HarvestArea}_{\text{prov}} \pm 0,00\%$$
+Algoritma balancing mendistribusikan sisa tonase/areal secara proporsional ke kabupaten penyangga sekunder sehingga totalitas matriks berderajat Gate-0 audit sempurna tanpa pembulatan liar.

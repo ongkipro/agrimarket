@@ -9,6 +9,8 @@ import {
   Layers,
   Sparkles,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Filter,
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -45,6 +47,7 @@ export function GeospatialMap() {
   const [viewMode, setViewMode] = useState<'provinces' | 'districts'>('provinces')
   const [districtSearch, setDistrictSearch] = useState<string>('')
   const [districtSortBy, setDistrictSortBy] = useState<'production' | 'area' | 'yield' | 'name'>('production')
+  const [showAllCards, setShowAllCards] = useState<boolean>(false)
 
   // Island groupings for Indonesian geography
   const islandGroups: Record<string, string[]> = {
@@ -91,17 +94,25 @@ export function GeospatialMap() {
     setSelectedProvinceCode(code)
     setViewMode('districts')
     setDistrictSearch('')
+    setShowAllCards(false)
   }
 
-  // Filtered and sorted districts
+  // Filtered and sorted districts (supports searching regency name & sub-district clusters)
   const filteredDistricts = provinceDistricts
-    .filter((d) => d.kabupaten.toLowerCase().includes(districtSearch.toLowerCase()))
+    .filter((d) => {
+      const q = districtSearch.toLowerCase()
+      return (
+        d.kabupaten.toLowerCase().includes(q) ||
+        (d.subdistrict_clusters && d.subdistrict_clusters.toLowerCase().includes(q))
+      )
+    })
     .sort((a, b) => {
       if (districtSortBy === 'production') return b.production_ton - a.production_ton
       if (districtSortBy === 'area') return b.harvest_area_ha - a.harvest_area_ha
       if (districtSortBy === 'yield') return b.yield_ton_per_ha - a.yield_ton_per_ha
       return a.kabupaten.localeCompare(b.kabupaten)
     })
+
 
   const renderStatusBadge = (status: DistrictStatus) => {
     switch (status) {
@@ -409,34 +420,72 @@ export function GeospatialMap() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5'>
-                      {provinceDistricts.map((d) => {
-                        const colorClass = getDistrictColorIntensity(d.production_ton)
-                        return (
-                          <div
-                            key={d.kabupaten}
-                            className={`p-3 rounded-lg border transition-all ${colorClass}`}
-                          >
-                            <div className='flex items-center justify-between gap-1'>
-                              <div className='font-semibold text-xs truncate'>{d.kabupaten}</div>
-                              {d.is_verified_hub && (
-                                <Badge className='bg-background/80 text-foreground text-[9px] px-1 py-0 h-4 shrink-0 font-mono'>
-                                  BPS KSA
-                                </Badge>
-                              )}
-                            </div>
-                            <div className='mt-2 flex items-baseline justify-between text-xs font-mono'>
-                              <span className='font-bold text-sm'>{formatTon(d.production_ton)}</span>
-                              <span className='font-medium'>{d.pct_of_province.toFixed(1)}% Prov</span>
-                            </div>
-                            <div className='mt-1 pt-1.5 border-t border-current/20 flex items-center justify-between text-[11px] opacity-85 font-mono'>
-                              <span>{formatHa(d.harvest_area_ha)}</span>
-                              <span>{d.yield_ton_per_ha.toFixed(2)} T/Ha</span>
-                            </div>
+                    {(() => {
+                      const displayedCards = showAllCards ? provinceDistricts : provinceDistricts.slice(0, 12)
+                      return (
+                        <>
+                          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5'>
+                            {displayedCards.map((d) => {
+                              const colorClass = getDistrictColorIntensity(d.production_ton)
+                              return (
+                                <div
+                                  key={d.kabupaten}
+                                  className={`p-3 rounded-lg border transition-all ${colorClass}`}
+                                >
+                                  <div className='flex items-center justify-between gap-1'>
+                                    <div className='font-semibold text-xs truncate'>{d.kabupaten}</div>
+                                    {d.is_verified_hub && (
+                                      <Badge className='bg-background/80 text-foreground text-[9px] px-1 py-0 h-4 shrink-0 font-mono'>
+                                        BPS KSA
+                                      </Badge>
+                                    )}
+                                  </div>
+                                  <div className='mt-2 flex items-baseline justify-between text-xs font-mono'>
+                                    <span className='font-bold text-sm'>{formatTon(d.production_ton)}</span>
+                                    <span className='font-medium'>{d.pct_of_province.toFixed(1)}% Prov</span>
+                                  </div>
+                                  <div className='mt-1 pt-1.5 border-t border-current/20 flex items-center justify-between text-[11px] opacity-85 font-mono'>
+                                    <span>{formatHa(d.harvest_area_ha)}</span>
+                                    <span>{d.yield_ton_per_ha.toFixed(2)} T/Ha</span>
+                                  </div>
+                                  {d.subdistrict_clusters && (
+                                    <div
+                                      className='mt-1 text-[10px] opacity-85 truncate'
+                                      title={`Sentra Kecamatan: ${d.subdistrict_clusters}`}
+                                    >
+                                      📍 {d.subdistrict_clusters}
+                                    </div>
+                                  )}
+                                </div>
+                              )
+                            })}
                           </div>
-                        )
-                      })}
-                    </div>
+                          {provinceDistricts.length > 12 && (
+                            <div className='mt-3 text-center'>
+                              <button
+                                type='button'
+                                onClick={() => setShowAllCards(!showAllCards)}
+                                className='inline-flex items-center gap-1.5 text-xs font-medium text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 py-1 px-3 rounded-md border border-emerald-600/30 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors cursor-pointer'
+                              >
+                                {showAllCards ? (
+                                  <>
+                                    <ChevronUp className='h-3.5 w-3.5' />
+                                    <span>Ciutkan (Tampilkan Top 12)</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <ChevronDown className='h-3.5 w-3.5' />
+                                    <span>
+                                      Tampilkan Seluruh {provinceDistricts.length} Kabupaten/Kota ({provinceDistricts.length - 12} Lainnya)
+                                    </span>
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          )}
+                        </>
+                      )
+                    })()}
                   </CardContent>
                 </Card>
 
@@ -529,6 +578,15 @@ export function GeospatialMap() {
                                       />
                                     )}
                                   </div>
+                                  {d.subdistrict_clusters && (
+                                    <div
+                                      className='text-[10px] text-muted-foreground font-normal mt-0.5 flex items-center gap-1'
+                                      title={`Sentra Kecamatan: ${d.subdistrict_clusters}`}
+                                    >
+                                      <span className='text-emerald-600 dark:text-emerald-400 font-semibold shrink-0'>Kec:</span>
+                                      <span className='truncate max-w-[200px]'>{d.subdistrict_clusters}</span>
+                                    </div>
+                                  )}
                                 </td>
                                 <td className='py-2.5 px-3'>
                                   {renderStatusBadge(d.status)}
