@@ -15,6 +15,7 @@ const taskSearchSchema = z.object({
     .optional()
     .catch([]),
   filter: z.string().optional().catch(''),
+  taskId: z.string().optional().catch(''),
 })
 
 export const Route = createFileRoute('/_authenticated/tasks/')({

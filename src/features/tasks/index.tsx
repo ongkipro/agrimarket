@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getRouteApi } from '@tanstack/react-router'
 import {
   ListTodo,
   Columns3,
@@ -11,6 +12,7 @@ import {
   MapPin,
   User,
   Send,
+  Eye,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -28,11 +30,27 @@ import { TasksProvider, useTasks } from './components/tasks-provider'
 import { TasksTable } from './components/tasks-table'
 import { tasks as initialTasks, type TaskItem } from './data/tasks'
 
+const route = getRouteApi('/_authenticated/tasks/')
+
 function TasksContent() {
-  const { setOpen, setCurrentRow } = useTasks()
+  const search = route.useSearch()
+  const { setOpen, currentRow, setCurrentRow } = useTasks()
   const [taskList, setTaskList] = useState<TaskItem[]>(initialTasks)
   const [selectedView, setSelectedView] = useState<string>('table')
   const [categoryFilter, setCategoryFilter] = useState<string>('ALL')
+
+  // Deep-link to specific task if taskId is provided in search params
+  useEffect(() => {
+    if (search.taskId) {
+      const found = taskList.find(
+        (t) => t.id.toLowerCase() === search.taskId?.toLowerCase()
+      )
+      if (found) {
+        setCurrentRow(found)
+        setOpen('detail')
+      }
+    }
+  }, [search.taskId, taskList, setCurrentRow, setOpen])
 
   // KPI calculations
   const totalTasks = taskList.length
@@ -60,6 +78,7 @@ function TasksContent() {
   // Dispatch Calendar 7-Day Agenda
   const dispatchSchedule = [
     {
+      taskId: 'TASK-1008',
       day: 'Senin, 15 Sep',
       target: 'Audit Kios KPL & Verifikasi Stok Saprotan',
       location: 'Kab. Nganjuk & Klaten',
@@ -69,6 +88,7 @@ function TasksContent() {
       status: 'Terjadwal 08:30 WIB',
     },
     {
+      taskId: 'TASK-1001',
       day: 'Selasa, 16 Sep',
       target: 'Aplikasi Fungisida Translaminar Demoplot Cabai',
       location: 'Parakan, Kab. Temanggung',
@@ -78,6 +98,7 @@ function TasksContent() {
       status: 'Terjadwal 06:30 WIB (Pagi)',
     },
     {
+      taskId: 'TASK-1002',
       day: 'Rabu, 17 Sep',
       target: 'Temu Lapang (Field Day) Ubinan Bersama Poktan',
       location: 'Wanasari, Kab. Brebes',
@@ -87,6 +108,7 @@ function TasksContent() {
       status: 'Konfirmasi 45 Petani Hadir',
     },
     {
+      taskId: 'TASK-1004',
       day: 'Kamis, 18 Sep',
       target: 'Inspeksi Tajuk Sawit & Uji Nutrisi Pelepah Boron',
       location: 'Tapung Hilir, Kab. Kampar, Riau',
@@ -96,6 +118,7 @@ function TasksContent() {
       status: 'Koordinasi Mandor Kebun',
     },
     {
+      taskId: 'TASK-1024',
       day: 'Jumat, 19 Sep',
       target: 'Follow-up 35 Prospek Petani Cabai Hasil Meta Ads',
       location: 'Blitar & Tulungagung',
@@ -105,6 +128,7 @@ function TasksContent() {
       status: '14 Paket Siap Kirim COD',
     },
     {
+      taskId: 'TASK-1014',
       day: 'Sabtu, 20 Sep',
       target: 'Gerakan Pengendalian Massal (Gerdal) Wereng Coklat',
       location: 'Rawamerta, Kab. Karawang',
@@ -114,6 +138,7 @@ function TasksContent() {
       status: 'Alokasi 60 Botol Insektisida',
     },
     {
+      taskId: 'TASK-1007',
       day: 'Minggu, 21 Sep',
       target: 'Konsolidasi Mingguan & Perencanaan Rute Minggu Depan',
       location: 'Head Office & Agronomist Zoom Desk',
@@ -128,6 +153,7 @@ function TasksContent() {
   const optIncidents = [
     {
       id: 'INC-OPT-01',
+      taskId: 'TASK-1014',
       pest: 'Wereng Batang Coklat (WBC) Biotipe 4',
       commodity: 'Padi Sawah',
       location: 'Kec. Rawamerta, Kab. Karawang',
@@ -138,6 +164,7 @@ function TasksContent() {
     },
     {
       id: 'INC-OPT-02',
+      taskId: 'TASK-1015',
       pest: 'Antraknosa / Patek Kering Buah',
       commodity: 'Cabai Rawit',
       location: 'Kec. Wongsorejo, Kab. Banyuwangi',
@@ -148,6 +175,7 @@ function TasksContent() {
     },
     {
       id: 'INC-OPT-03',
+      taskId: 'TASK-1016',
       pest: 'Ulat Grayak (Spodoptera exigua) Resisten',
       commodity: 'Bawang Merah',
       location: 'Kec. Bulakamba, Kab. Brebes',
@@ -158,6 +186,7 @@ function TasksContent() {
     },
     {
       id: 'INC-OPT-04',
+      taskId: 'TASK-1017',
       pest: 'Ulat Api (Setothosea asigna) Pelepah',
       commodity: 'Kelapa Sawit',
       location: 'Kec. Bilah Hilir, Kab. Labuhanbatu, Sumut',
@@ -168,6 +197,7 @@ function TasksContent() {
     },
     {
       id: 'INC-OPT-05',
+      taskId: 'TASK-1018',
       pest: 'Layu Bakteri Hijau (Ralstonia solanacearum)',
       commodity: 'Tomat Dataran Tinggi',
       location: 'Kec. Samarang, Kab. Garut',
@@ -182,9 +212,22 @@ function TasksContent() {
     toast.success(`Aksi "${actionName}" untuk ${incidentId} berhasil dikirim ke tim agronomis lapangan!`)
   }
 
-  const handleEditTask = (task: TaskItem) => {
+  const handleViewTaskDetail = (task: TaskItem) => {
     setCurrentRow(task)
-    setOpen('update')
+    setOpen('detail')
+  }
+
+  const handleTaskStatusChange = (taskId: string, newStatus: string) => {
+    setTaskList((prev) =>
+      prev.map((t) =>
+        t.id === taskId
+          ? { ...t, status: newStatus as TaskItem['status'], updatedAt: new Date() }
+          : t
+      )
+    )
+    if (currentRow && currentRow.id === taskId) {
+      setCurrentRow({ ...currentRow, status: newStatus as TaskItem['status'] })
+    }
   }
 
   const handleMoveKanbanStatus = (
@@ -381,7 +424,7 @@ function TasksContent() {
                           <div
                             key={t.id}
                             className='p-3 bg-card rounded-lg border shadow-xs hover:border-indigo-400 transition-all space-y-2 cursor-pointer'
-                            onClick={() => handleEditTask(t)}
+                            onClick={() => handleViewTaskDetail(t)}
                           >
                             <div className='flex items-center justify-between'>
                               <span className='font-mono text-[10px] text-muted-foreground'>
@@ -498,7 +541,11 @@ function TasksContent() {
                   {dispatchSchedule.map((item, idx) => (
                     <div
                       key={idx}
-                      className='p-4 hover:bg-muted/40 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-3'
+                      className='p-4 hover:bg-muted/40 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-3 cursor-pointer group'
+                      onClick={() => {
+                        const found = taskList.find((t) => t.id === item.taskId)
+                        if (found) handleViewTaskDetail(found)
+                      }}
                     >
                       <div className='flex items-start gap-3 min-w-0'>
                         <div className='w-28 shrink-0'>
@@ -511,7 +558,7 @@ function TasksContent() {
                         </div>
 
                         <div className='space-y-1 min-w-0'>
-                          <div className='font-semibold text-sm text-foreground flex items-center gap-2 flex-wrap'>
+                          <div className='font-semibold text-sm text-foreground group-hover:text-primary transition-colors flex items-center gap-2 flex-wrap'>
                             <span>{item.target}</span>
                             <Badge variant='secondary' className='text-[10px]'>
                               {item.type}
@@ -537,9 +584,25 @@ function TasksContent() {
                       <div className='flex items-center gap-2 self-end md:self-center shrink-0'>
                         <Button
                           size='sm'
+                          variant='secondary'
+                          className='h-8 text-xs font-semibold'
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            const found = taskList.find((t) => t.id === item.taskId)
+                            if (found) handleViewTaskDetail(found)
+                          }}
+                        >
+                          <Eye className='h-3.5 w-3.5 mr-1.5 text-primary' />
+                          Detail Tugas
+                        </Button>
+                        <Button
+                          size='sm'
                           variant='outline'
                           className='h-8 text-xs'
-                          onClick={() => toast.success(`Reminder WA dikirim ke ${item.agronomist}`)}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            toast.success(`Reminder WA dikirim ke ${item.agronomist}`)
+                          }}
                         >
                           <Send className='h-3 w-3 mr-1' />
                           Kirim Pengingat
@@ -587,10 +650,20 @@ function TasksContent() {
                     </thead>
                     <tbody className='divide-y'>
                       {optIncidents.map((inc) => (
-                        <tr key={inc.id} className='hover:bg-muted/30 transition-colors'>
+                        <tr
+                          key={inc.id}
+                          className='hover:bg-muted/30 transition-colors cursor-pointer group'
+                          onClick={() => {
+                            const found = taskList.find((t) => t.id === inc.taskId)
+                            if (found) handleViewTaskDetail(found)
+                          }}
+                        >
                           <td className='py-3 px-4'>
-                            <div className='font-mono text-[10px] text-muted-foreground'>{inc.id}</div>
-                            <div className='font-bold text-foreground mt-0.5'>{inc.pest}</div>
+                            <div className='font-mono text-[10px] text-muted-foreground flex items-center gap-1'>
+                              <span>{inc.id}</span>
+                              <span className='text-primary/70 font-semibold'>({inc.taskId})</span>
+                            </div>
+                            <div className='font-bold text-foreground group-hover:text-primary transition-colors mt-0.5'>{inc.pest}</div>
                           </td>
                           <td className='py-3 px-4'>
                             <Badge variant='outline' className='text-[10px] mb-1'>
@@ -627,8 +700,24 @@ function TasksContent() {
                               <Button
                                 size='sm'
                                 variant='outline'
+                                className='h-7 text-[11px] px-2 text-primary border-primary/30 hover:bg-primary/10'
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  const found = taskList.find((t) => t.id === inc.taskId)
+                                  if (found) handleViewTaskDetail(found)
+                                }}
+                              >
+                                <Eye className='h-3 w-3 mr-1' />
+                                Detail Tugas
+                              </Button>
+                              <Button
+                                size='sm'
+                                variant='outline'
                                 className='h-7 text-[11px] px-2 text-rose-700 border-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40'
-                                onClick={() => handleDispatchAction(inc.id, 'Dispatch Agronomis Lapangan')}
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  handleDispatchAction(inc.id, 'Dispatch Agronomis Lapangan')
+                                }}
                               >
                                 Dispatch Tim
                               </Button>
@@ -636,7 +725,10 @@ function TasksContent() {
                                 size='sm'
                                 variant='default'
                                 className='h-7 text-[11px] px-2 bg-emerald-600 hover:bg-emerald-700 text-white'
-                                onClick={() => handleDispatchAction(inc.id, 'Alokasi Stok Darurat Kios')}
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  handleDispatchAction(inc.id, 'Alokasi Stok Darurat Kios')
+                                }}
                               >
                                 Alokasi Stok
                               </Button>
@@ -653,7 +745,7 @@ function TasksContent() {
         </Tabs>
       </Main>
 
-      <TasksDialogs />
+      <TasksDialogs onStatusChange={handleTaskStatusChange} />
     </>
   )
 }

@@ -2,9 +2,14 @@ import { showSubmittedData } from '@/lib/show-submitted-data'
 import { ConfirmDialog } from '@/components/confirm-dialog'
 import { TasksImportDialog } from './tasks-import-dialog'
 import { TasksMutateDrawer } from './tasks-mutate-drawer'
+import { TasksDetailDrawer } from './tasks-detail-drawer'
 import { useTasks } from './tasks-provider'
 
-export function TasksDialogs() {
+type TasksDialogsProps = {
+  onStatusChange?: (taskId: string, newStatus: string) => void
+}
+
+export function TasksDialogs({ onStatusChange }: TasksDialogsProps = {}) {
   const { open, setOpen, currentRow, setCurrentRow } = useTasks()
   return (
     <>
@@ -22,6 +27,21 @@ export function TasksDialogs() {
 
       {currentRow && (
         <>
+          <TasksDetailDrawer
+            key={`task-detail-${currentRow.id}`}
+            open={open === 'detail'}
+            onOpenChange={(isOpen) => {
+              if (!isOpen) {
+                setOpen(null)
+                setTimeout(() => {
+                  setCurrentRow(null)
+                }, 500)
+              }
+            }}
+            task={currentRow}
+            onStatusChange={onStatusChange}
+          />
+
           <TasksMutateDrawer
             key={`task-update-${currentRow.id}`}
             open={open === 'update'}
