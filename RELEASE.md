@@ -7,10 +7,11 @@ Declared-Risk: R1
 Rollback-Ref: 5eda4e0
 Rollback-Command: git reset --hard 5eda4e0 && vercel --prod
 Backup-Proof: NOT_REQUIRED
-Status: READY
+Status: DEPLOYED
 Live-URL: https://agrimarket-five.vercel.app
+Deployment-ID: dpl_52SMRzoBMkuvhwSedJmNfA1AwY9J
 Target-Git-Ref: refs/heads/main
-Verified-By: vitest + eslint + vite build
+Verified-By: vitest + eslint + vite build + smoke-test
 
 ## Contract
 
