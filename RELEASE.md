@@ -9,9 +9,9 @@ Rollback-Command: git reset --hard 707a9d9 && vercel --prod
 Backup-Proof: NOT_REQUIRED
 Status: DEPLOYED
 Live-URL: https://agrimarket-five.vercel.app
-Deployment-ID: agrimarket-five.vercel.app
+Deployment-ID: agrimarket-28o4fuekj-ongkipro.vercel.app
 Target-Git-Ref: refs/heads/main
-Verified-By: vitest (31 files, 208 tests) + eslint + vite build
+Verified-By: vitest (31 files, 208 tests) + eslint + vite build + smoke-test (HTTP 200)
 
 ## Contract
 
