@@ -7,11 +7,11 @@ Declared-Risk: R1
 Rollback-Ref: f404797
 Rollback-Command: git reset --hard f404797 && vercel --prod
 Backup-Proof: NOT_REQUIRED
-Status: READY
+Status: DEPLOYED
 Live-URL: https://agrimarket-five.vercel.app
-Deployment-ID: PENDING
+Deployment-ID: agrimarket-k2t1fva2g-ongkipro.vercel.app
 Target-Git-Ref: refs/heads/main
-Verified-By: vitest (29 files, 198 tests) + eslint + vite build + browser-render
+Verified-By: vitest (29 files, 198 tests) + eslint + vite build + smoke-test (HTTP 200)
 
 ## Contract
 
