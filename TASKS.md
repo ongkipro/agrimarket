@@ -352,5 +352,47 @@
   - Implement **Glosarium Kode Fase Budidaya & Tindakan Kritis Lapang** in `src/features/calendar/index.tsx` detailing all 11 agronomic phase codes (`PL`, `TN`, `SM`, `VG`, `GN`, `PT`, `PN`, `PF`, `HC`, `LC`, `BR`).
   - Expand unit test suite in `src/features/agri/data-provider.test.ts` verifying climate vulnerability invariants across all 13 crops.
 
+---
+
+### Phase 18: BMKG Agro-Climatic Intelligence & Multi-Year Dynamic Cropping Calendar (COMPLETED & VERIFIED)
+- [x] **TASK-70:** Author Authoritative BMKG 699 ZOM & ENSO Telemetry Layer (`src/features/agri/climate-bmkg-data.ts`):
+  - Model 699 ZOM (1991-2020 Normal Klimatologis) with real-time Nino 3.4 (+1.68°C) and IOD (+0.76°C) telemetry.
+  - Model 6 regional agro-climatic corridors (Jawa, Sumatera, Bali-Nusra, Sulawesi, Kalimantan, Maluku-Papua) with HTH and reservoir statuses.
+  - Reconcile multi-model ENSO 2026-2027 probabilities (decay to 72% Neutral in Q2 2027 and 58% Weak La Niña in H2 2027).
+  - Define 4 Katam Terpadu field SOPs (Rescheduling, AWD Irrigation, Fungicide Stocking, Palm Recovery).
+- [x] **TASK-71:** Implement Agro-Climate Explorer (`/climate`) & Multi-Year Cropping Calendar (`/calendar`):
+  - Add `/climate` route with 5 macro telemetry KPIs, ENSO stacked bar probability chart, 13-commodity matrix, and regional drilldowns.
+  - Upgrade `/calendar` with multi-year matrix mode switcher (`2026_EL_NINO`, `2027_PROJECTED`, `CLIMATOLOGICAL_NORMAL`) and 3 subround operational cards.
+  - Pass all 29 test files, 198 tests, clean lint, and production deployment on Vercel (`REL-20260924-01`).
+
+---
+
+### Phase 19: Product Catalog Intelligence, Multi-Product Synergy & Climate Meta Ads Engine (COMPLETED & VERIFIED)
+- [x] **TASK-72:** Build Product Catalog Master Data Engine (`src/features/agri/products-catalog-data.ts`):
+  - Ingest 100% of Notion product knowledge across all 4 strategic SKUs: `AUSSIE Sawit`, `BENSU Hortikultura`, `SARATOGA Serum`, and `KOJIEN Activator`.
+  - Model complete technical, market, and agronomic specifications: positioning, formula, mechanism, claim boundaries, severity levels, dosages, farmer demographics, buyer psychology, and CS decision trees.
+  - Define cross-product Mix & Match rules: crop synergies, application sequences, tank mixing limits, and rotation schedules.
+  - Model 15-month dynamic climate-synchronized campaign roadmap (Oct 2026 - Dec 2027) harmonizing BMKG El Niño/La Niña phases with monthly commercial golden selling windows and Meta Ads hooks.
+  - Generate Mermaid Mindmap diagram data mapping the entire multi-product commercial ecosystem.
+- [x] **TASK-73:** Expose Product Catalog APIs & Type Definitions (`src/features/agri/types.ts` & `src/features/agri/data-provider.ts`):
+  - Add TypeScript interfaces for products, severity stages, dosage matrices, demographics, and campaign schedules.
+  - Export accessors: `getProductsCatalog()`, `getProductById(id)`, `getMixMatchRules()`, `getMonthlyProductCampaigns()`, and `getProductMindmapDiagram()`.
+- [x] **TASK-74:** Configure Sidebar Navigation with Collapsible Product Sub-Menu (`src/components/layout/data/sidebar-data.ts`):
+  - Add `Katalog Produk` nav item with sub-items: `Overview & Mindmap` (`/products`), `AUSSIE Sawit` (`/products/aussie`), `BENSU Hortikultura` (`/products/bensu`), `SARATOGA Serum` (`/products/saratoga`), `KOJIEN Activator` (`/products/kojien`), `Mix & Match Matrix` (`/products/mix-match`), `Kampanye Iklim 2026-27` (`/products/campaigns`).
+- [x] **TASK-75:** Build Product Catalog Views (`src/features/products/`):
+  - `index.tsx`: Executive Overview Hub with 4 Product Showcases, comparison table, interactive Mermaid mindmap diagram, and quick jump navigation.
+  - `product-detail-view.tsx`: Rich multi-tab product dossier component (Overview, Formula, Dosage & Timing, Severity Matrix, Demographics & Sentra, Commercial & CS Tree, Climate Sync 2026-2027, Meta Ads Playbook, FAQ & Objections).
+  - `mix-match-view.tsx`: Interactive Mix & Match engine with crop & season selector, tank-mixing compatibility rules, and rotation schedules.
+  - `campaigns-view.tsx`: 15-Month Climate-Synchronized Campaign Playbook (Oct 2026 - Dec 2027) with El Niño/La Niña dynamics, monthly golden windows, targeting personas, ad copy hooks, and RoAS benchmarks.
+- [x] **TASK-76:** Author TanStack Router Routes (`src/routes/_authenticated/products/`):
+  - Create file-based routes for `index.tsx`, `aussie.tsx`, `bensu.tsx`, `saratoga.tsx`, `kojien.tsx`, `mix-match.tsx`, and `campaigns.tsx`.
+- [x] **TASK-77:** Update Repository Architecture & Contracts:
+  - Update `DEVELOPMENT-MAP.xml` registering `/products` and all sub-routes.
+  - Update `README.md` documenting the new Product Catalog Intelligence module.
+- [x] **TASK-78:** Comprehensive Test Verification & Production Build:
+  - Author unit tests (`src/features/agri/products-catalog-data.test.ts`) verifying product data integrity, mix-match rules, and 15-month campaign schedule.
+  - Author browser render tests (`src/features/products/products-render.test.tsx`).
+  - Execute `pnpm run lint`, `pnpm test`, and `pnpm run build` (100% clean, 0 errors, 10/10 tests passed).
+
 
 

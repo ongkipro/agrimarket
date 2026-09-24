@@ -45,25 +45,31 @@ Platform intelijen pasar pertanian strategis Indonesia berbasis data sensus resm
    - Drilldown 6 Koridor Agroklimat Regional (Jawa, Sumatera, Bali-Nusra, Sulawesi, Kalimantan, Maluku-Papua) dengan data hari tanpa hujan (HTH) dan kapasitas tampung waduk/embung.
    - Proyeksi multi-model ENSO 2027 (peluruhan El Niño di Q1 2027, fase netral 72% di Q2 2027, dan potensi La Niña lemah 58% di semester 2 2027).
    - Matriks sensitivitas 13 komoditas strategis terhadap anomali iklim ekstrem serta SOP Katam Terpadu (AWD macak-macak, pompanisasi, dan buffer stocking fungisida).
-5. **Geospatial Map & 514-Regency Drilldown (`/map`)**
+5. **Product Catalog Intelligence, Multi-Product Synergy & Climate Meta Ads Engine (`/products`)**
+   - **4 Strategic SKUs Knowledge Dossiers:** `AUSSIE Sawit` (Recovery Anti-Kulat & Ganoderma), `BENSU Hortikultura` (Growth Restart & Weather Stress Stimulator), `SARATOGA Plant Serum` (Japanese Pro-Plant Complex™ ±47.5% Asam Amino), dan `KOJIEN Activator` (Crop Stability & Yield Support System).
+   - **Multi-Tab Dossier Views:** Formula bio-kimia presisi, batas klaim teknis, matriks dosis & timing semprot/kocor/oles, 4-stage severity recovery prognosis, demografi petani BPS, dan CS objection decision tree.
+   - **Matriks Sinergi Mix & Match (`/products/mix-match`):** 5 protokol kombinasi lapang teruji (Hortikultura, Padi Sawah, Kelapa Sawit, Jagung Hibrida, Bawang Merah) serta standar baku universal keselamatan tangki semprot (jar-test & prohibited tank-mixes).
+   - **Kalender Kampanye Komersial Iklim 15 Bulan (`/products/campaigns`):** Sinkronisasi bulan-per-bulan (Okt 2026 – Des 2027) terkalibrasi dengan anomali El Niño 2026 s/d La Niña 2027, rekomendasi headline & hook Meta Ads, aksi distributor/kios saprotan, serta panduan agronomist lapang.
+   - **Topologi Arsitektur Ekosistem Mindmap:** Diagram terstruktur memetakan portofolio produk terhadap komoditas, dinamika iklim, fenologi tanaman, dan corong pemasaran digital.
+6. **Geospatial Map & 514-Regency Drilldown (`/map`)**
    - Peta regional 38 provinsi di 6 gugus kepulauan besar.
    - Drilldown interaktif paralel dari provinsi langsung ke seluruh Kabupaten/Kota sentra (514 kabupaten/kota terdata lengkap dengan Gate-0 balancing).
    - Kluster kecamatan sentra (*sub-district clusters*) dan rasio penempatan tim sales agronomis.
-6. **Digital Advertising Intelligence & Growth Engine (`/ads`)**
+7. **Digital Advertising Intelligence & Growth Engine (`/ads`)**
    - 5 Persona Pembeli Pertanian (Petani Maju, Petani Gurem, Juragan KPL, Mandor Sawit, Hobiis Florikultura).
    - Competitor Ad Spy Matrix (8 brand agrokimia & benih nasional).
    - Google Ads 3-Tier Search Intent Matrix (High Intent, Commercial Research, Problem Aware).
    - Campaign Budget & RoAS Financial Modeling Simulator.
-7. **Field Operations & Agronomist Task Hub (`/tasks`)**
+8. **Field Operations & Agronomist Task Hub (`/tasks`)**
    - 4 Multi-View Tabs: Table View, Kanban Board, Dispatch Calendar, dan OPT Outbreak Incident Desk.
    - Slide-over Tasks Detail Drawer dengan Standard Operating Procedure (SOP) terstruktur dan shortcut lintas-modul.
-8. **Dynamic SOM Internal Capacity Simulator (`/simulator`)**
+9. **Dynamic SOM Internal Capacity Simulator (`/simulator`)**
    - Simulasi kapasitas riil perusahaan berdasarkan $N_{\text{sales}}$, kapasitas binaan kios per rep, rata-rata serap musiman, dan pagu modal kerja tempo yarnen.
-9. **BPS Data Audit Ledger & Export Center (`/audit`)**
-   - Rekonsiliasi matematis Gate-0 dengan deviasi 0.0000% antara angka nasional dan penjumlahan 38 provinsi.
-   - Ekspor satu-klik: Master Dataset JSON, Master National CSV, dan 38-Province Breakdown CSV.
-10. **System Update Log & Release Ledger (`/help-center`)**
-   - Riwayat rilis sistem kronologis (v1.0.0 s/d v1.5.0) dengan pencarian teks langsung dan filter kategori rilis.
+10. **BPS Data Audit Ledger & Export Center (`/audit`)**
+    - Rekonsiliasi matematis Gate-0 dengan deviasi 0.0000% antara angka nasional dan penjumlahan 38 provinsi.
+    - Ekspor satu-klik: Master Dataset JSON, Master National CSV, dan 38-Province Breakdown CSV.
+11. **System Update Log & Release Ledger (`/help-center`)**
+    - Riwayat rilis sistem kronologis (v1.0.0 s/d v1.6.0) dengan pencarian teks langsung dan filter kategori rilis.
 
 ---
 

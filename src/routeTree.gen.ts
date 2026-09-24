@@ -29,6 +29,7 @@ import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSimulatorIndexRouteImport } from './routes/_authenticated/simulator/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedProductsIndexRouteImport } from './routes/_authenticated/products/index'
 import { Route as AuthenticatedMatrixIndexRouteImport } from './routes/_authenticated/matrix/index'
 import { Route as AuthenticatedMapIndexRouteImport } from './routes/_authenticated/map/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
@@ -47,6 +48,12 @@ import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
+import { Route as AuthenticatedProductsSaratogaRouteImport } from './routes/_authenticated/products/saratoga'
+import { Route as AuthenticatedProductsMixMatchRouteImport } from './routes/_authenticated/products/mix-match'
+import { Route as AuthenticatedProductsKojienRouteImport } from './routes/_authenticated/products/kojien'
+import { Route as AuthenticatedProductsCampaignsRouteImport } from './routes/_authenticated/products/campaigns'
+import { Route as AuthenticatedProductsBensuRouteImport } from './routes/_authenticated/products/bensu'
+import { Route as AuthenticatedProductsAussieRouteImport } from './routes/_authenticated/products/aussie'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
 const ClerkRouteRoute = ClerkRouteRouteImport.update({
@@ -149,6 +156,12 @@ const AuthenticatedSettingsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedProductsIndexRoute =
+  AuthenticatedProductsIndexRouteImport.update({
+    id: '/products/',
+    path: '/products/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedMatrixIndexRoute =
   AuthenticatedMatrixIndexRouteImport.update({
     id: '/matrix/',
@@ -250,6 +263,42 @@ const AuthenticatedSettingsAccountRoute =
     path: '/account',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedProductsSaratogaRoute =
+  AuthenticatedProductsSaratogaRouteImport.update({
+    id: '/products/saratoga',
+    path: '/products/saratoga',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProductsMixMatchRoute =
+  AuthenticatedProductsMixMatchRouteImport.update({
+    id: '/products/mix-match',
+    path: '/products/mix-match',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProductsKojienRoute =
+  AuthenticatedProductsKojienRouteImport.update({
+    id: '/products/kojien',
+    path: '/products/kojien',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProductsCampaignsRoute =
+  AuthenticatedProductsCampaignsRouteImport.update({
+    id: '/products/campaigns',
+    path: '/products/campaigns',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProductsBensuRoute =
+  AuthenticatedProductsBensuRouteImport.update({
+    id: '/products/bensu',
+    path: '/products/bensu',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProductsAussieRoute =
+  AuthenticatedProductsAussieRouteImport.update({
+    id: '/products/aussie',
+    path: '/products/aussie',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -272,6 +321,12 @@ export interface FileRoutesByFullPath {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/products/aussie': typeof AuthenticatedProductsAussieRoute
+  '/products/bensu': typeof AuthenticatedProductsBensuRoute
+  '/products/campaigns': typeof AuthenticatedProductsCampaignsRoute
+  '/products/kojien': typeof AuthenticatedProductsKojienRoute
+  '/products/mix-match': typeof AuthenticatedProductsMixMatchRoute
+  '/products/saratoga': typeof AuthenticatedProductsSaratogaRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -290,6 +345,7 @@ export interface FileRoutesByFullPath {
   '/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/map/': typeof AuthenticatedMapIndexRoute
   '/matrix/': typeof AuthenticatedMatrixIndexRoute
+  '/products/': typeof AuthenticatedProductsIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/simulator/': typeof AuthenticatedSimulatorIndexRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
@@ -309,6 +365,12 @@ export interface FileRoutesByTo {
   '/503': typeof errors503Route
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/products/aussie': typeof AuthenticatedProductsAussieRoute
+  '/products/bensu': typeof AuthenticatedProductsBensuRoute
+  '/products/campaigns': typeof AuthenticatedProductsCampaignsRoute
+  '/products/kojien': typeof AuthenticatedProductsKojienRoute
+  '/products/mix-match': typeof AuthenticatedProductsMixMatchRoute
+  '/products/saratoga': typeof AuthenticatedProductsSaratogaRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -327,6 +389,7 @@ export interface FileRoutesByTo {
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/map': typeof AuthenticatedMapIndexRoute
   '/matrix': typeof AuthenticatedMatrixIndexRoute
+  '/products': typeof AuthenticatedProductsIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/simulator': typeof AuthenticatedSimulatorIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
@@ -351,6 +414,12 @@ export interface FileRoutesById {
   '/(errors)/503': typeof errors503Route
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/products/aussie': typeof AuthenticatedProductsAussieRoute
+  '/_authenticated/products/bensu': typeof AuthenticatedProductsBensuRoute
+  '/_authenticated/products/campaigns': typeof AuthenticatedProductsCampaignsRoute
+  '/_authenticated/products/kojien': typeof AuthenticatedProductsKojienRoute
+  '/_authenticated/products/mix-match': typeof AuthenticatedProductsMixMatchRoute
+  '/_authenticated/products/saratoga': typeof AuthenticatedProductsSaratogaRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -369,6 +438,7 @@ export interface FileRoutesById {
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/_authenticated/map/': typeof AuthenticatedMapIndexRoute
   '/_authenticated/matrix/': typeof AuthenticatedMatrixIndexRoute
+  '/_authenticated/products/': typeof AuthenticatedProductsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/simulator/': typeof AuthenticatedSimulatorIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
@@ -391,6 +461,12 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/errors/$error'
+    | '/products/aussie'
+    | '/products/bensu'
+    | '/products/campaigns'
+    | '/products/kojien'
+    | '/products/mix-match'
+    | '/products/saratoga'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -409,6 +485,7 @@ export interface FileRouteTypes {
     | '/help-center/'
     | '/map/'
     | '/matrix/'
+    | '/products/'
     | '/settings/'
     | '/simulator/'
     | '/tasks/'
@@ -428,6 +505,12 @@ export interface FileRouteTypes {
     | '/503'
     | '/'
     | '/errors/$error'
+    | '/products/aussie'
+    | '/products/bensu'
+    | '/products/campaigns'
+    | '/products/kojien'
+    | '/products/mix-match'
+    | '/products/saratoga'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -446,6 +529,7 @@ export interface FileRouteTypes {
     | '/help-center'
     | '/map'
     | '/matrix'
+    | '/products'
     | '/settings'
     | '/simulator'
     | '/tasks'
@@ -469,6 +553,12 @@ export interface FileRouteTypes {
     | '/(errors)/503'
     | '/_authenticated/'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/products/aussie'
+    | '/_authenticated/products/bensu'
+    | '/_authenticated/products/campaigns'
+    | '/_authenticated/products/kojien'
+    | '/_authenticated/products/mix-match'
+    | '/_authenticated/products/saratoga'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
@@ -487,6 +577,7 @@ export interface FileRouteTypes {
     | '/_authenticated/help-center/'
     | '/_authenticated/map/'
     | '/_authenticated/matrix/'
+    | '/_authenticated/products/'
     | '/_authenticated/settings/'
     | '/_authenticated/simulator/'
     | '/_authenticated/tasks/'
@@ -650,6 +741,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/products/': {
+      id: '/_authenticated/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof AuthenticatedProductsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/matrix/': {
       id: '/_authenticated/matrix/'
       path: '/matrix'
@@ -776,6 +874,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsAccountRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/products/saratoga': {
+      id: '/_authenticated/products/saratoga'
+      path: '/products/saratoga'
+      fullPath: '/products/saratoga'
+      preLoaderRoute: typeof AuthenticatedProductsSaratogaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/products/mix-match': {
+      id: '/_authenticated/products/mix-match'
+      path: '/products/mix-match'
+      fullPath: '/products/mix-match'
+      preLoaderRoute: typeof AuthenticatedProductsMixMatchRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/products/kojien': {
+      id: '/_authenticated/products/kojien'
+      path: '/products/kojien'
+      fullPath: '/products/kojien'
+      preLoaderRoute: typeof AuthenticatedProductsKojienRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/products/campaigns': {
+      id: '/_authenticated/products/campaigns'
+      path: '/products/campaigns'
+      fullPath: '/products/campaigns'
+      preLoaderRoute: typeof AuthenticatedProductsCampaignsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/products/bensu': {
+      id: '/_authenticated/products/bensu'
+      path: '/products/bensu'
+      fullPath: '/products/bensu'
+      preLoaderRoute: typeof AuthenticatedProductsBensuRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/products/aussie': {
+      id: '/_authenticated/products/aussie'
+      path: '/products/aussie'
+      fullPath: '/products/aussie'
+      preLoaderRoute: typeof AuthenticatedProductsAussieRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -813,6 +953,12 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedProductsAussieRoute: typeof AuthenticatedProductsAussieRoute
+  AuthenticatedProductsBensuRoute: typeof AuthenticatedProductsBensuRoute
+  AuthenticatedProductsCampaignsRoute: typeof AuthenticatedProductsCampaignsRoute
+  AuthenticatedProductsKojienRoute: typeof AuthenticatedProductsKojienRoute
+  AuthenticatedProductsMixMatchRoute: typeof AuthenticatedProductsMixMatchRoute
+  AuthenticatedProductsSaratogaRoute: typeof AuthenticatedProductsSaratogaRoute
   AuthenticatedAdsIndexRoute: typeof AuthenticatedAdsIndexRoute
   AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
   AuthenticatedAuditIndexRoute: typeof AuthenticatedAuditIndexRoute
@@ -824,6 +970,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
   AuthenticatedMapIndexRoute: typeof AuthenticatedMapIndexRoute
   AuthenticatedMatrixIndexRoute: typeof AuthenticatedMatrixIndexRoute
+  AuthenticatedProductsIndexRoute: typeof AuthenticatedProductsIndexRoute
   AuthenticatedSimulatorIndexRoute: typeof AuthenticatedSimulatorIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
@@ -833,6 +980,12 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedProductsAussieRoute: AuthenticatedProductsAussieRoute,
+  AuthenticatedProductsBensuRoute: AuthenticatedProductsBensuRoute,
+  AuthenticatedProductsCampaignsRoute: AuthenticatedProductsCampaignsRoute,
+  AuthenticatedProductsKojienRoute: AuthenticatedProductsKojienRoute,
+  AuthenticatedProductsMixMatchRoute: AuthenticatedProductsMixMatchRoute,
+  AuthenticatedProductsSaratogaRoute: AuthenticatedProductsSaratogaRoute,
   AuthenticatedAdsIndexRoute: AuthenticatedAdsIndexRoute,
   AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
   AuthenticatedAuditIndexRoute: AuthenticatedAuditIndexRoute,
@@ -844,6 +997,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
   AuthenticatedMapIndexRoute: AuthenticatedMapIndexRoute,
   AuthenticatedMatrixIndexRoute: AuthenticatedMatrixIndexRoute,
+  AuthenticatedProductsIndexRoute: AuthenticatedProductsIndexRoute,
   AuthenticatedSimulatorIndexRoute: AuthenticatedSimulatorIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,

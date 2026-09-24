@@ -17,6 +17,14 @@ import {
   ListTodo,
   Megaphone,
   CloudSun,
+  Package,
+  Layers,
+  ShieldAlert,
+  RefreshCw,
+  Award,
+  ShieldCheck,
+  GitCompare,
+  CalendarClock,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
@@ -96,6 +104,52 @@ export const sidebarData: SidebarData = {
           title: 'Meta Ads',
           url: '/ads',
           icon: Megaphone,
+        },
+      ],
+    },
+    {
+      title: 'Commercial & Products',
+      items: [
+        {
+          title: 'Katalog Produk',
+          icon: Package,
+          items: [
+            {
+              title: 'Overview & Mindmap',
+              url: '/products',
+              icon: Layers,
+            },
+            {
+              title: 'AUSSIE Sawit',
+              url: '/products/aussie',
+              icon: ShieldAlert,
+            },
+            {
+              title: 'BENSU Hortikultura',
+              url: '/products/bensu',
+              icon: RefreshCw,
+            },
+            {
+              title: 'SARATOGA Serum',
+              url: '/products/saratoga',
+              icon: Award,
+            },
+            {
+              title: 'KOJIEN Activator',
+              url: '/products/kojien',
+              icon: ShieldCheck,
+            },
+            {
+              title: 'Mix & Match Matrix',
+              url: '/products/mix-match',
+              icon: GitCompare,
+            },
+            {
+              title: 'Kampanye Iklim 2026-27',
+              url: '/products/campaigns',
+              icon: CalendarClock,
+            },
+          ],
         },
       ],
     },

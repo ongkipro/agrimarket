@@ -61,6 +61,37 @@
       <section id="climate.corridors" source="src/features/climate/index.tsx">6 regional corridors with drought severity, reservoir capacity, and field advisory</section>
       <section id="climate.enso-chart" source="src/features/climate/index.tsx">Multi-model ENSO probability stacked bar chart (Q3 2026 - Q4 2027)</section>
     </page>
+    <page id="products" url="/products" route="src/routes/_authenticated/products/index.tsx" source="src/features/products/index.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="products.header" source="src/features/products/index.tsx">Product catalog overview, 4 macro metrics, navigation links</section>
+      <section id="products.cards" source="src/features/products/index.tsx">4 product showcase cards with formula, climate role, tags, details link</section>
+      <section id="products.mindmap" source="src/features/products/index.tsx">Visual ecosystem mindmap tree mapping products to crops, climate, and ads</section>
+      <section id="products.matrix" source="src/features/products/index.tsx">Strategic comparison matrix across 4 SKUs</section>
+    </page>
+    <page id="products.aussie" url="/products/aussie" route="src/routes/_authenticated/products/aussie.tsx" source="src/features/products/product-detail-view.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="products.aussie.dossier" source="src/features/products/product-detail-view.tsx">AUSSIE Sawit complete knowledge dossier: Ganoderma recovery, dosage, demographics, CS decision tree, climate sync, Meta Ads kit</section>
+    </page>
+    <page id="products.bensu" url="/products/bensu" route="src/routes/_authenticated/products/bensu.tsx" source="src/features/products/product-detail-view.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="products.bensu.dossier" source="src/features/products/product-detail-view.tsx">BENSU Hortikultura complete knowledge dossier: growth restart, weather stress recovery, foliar/drench dosage, Brebes/Kediri sentra hubs</section>
+    </page>
+    <page id="products.saratoga" url="/products/saratoga" route="src/routes/_authenticated/products/saratoga.tsx" source="src/features/products/product-detail-view.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="products.saratoga.dossier" source="src/features/products/product-detail-view.tsx">SARATOGA Plant Serum dossier: Japanese Pro-Plant Complex 47.5% amino acids, fruit enlargement, Grade A quality</section>
+    </page>
+    <page id="products.kojien" url="/products/kojien" route="src/routes/_authenticated/products/kojien.tsx" source="src/features/products/product-detail-view.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="products.kojien.dossier" source="src/features/products/product-detail-view.tsx">KOJIEN Activator dossier: corn stability, anti-bulai, bio-silica 18%, tiller stimulation in rice, drought transpirational defense</section>
+    </page>
+    <page id="products.mix-match" url="/products/mix-match" route="src/routes/_authenticated/products/mix-match.tsx" source="src/features/products/mix-match-view.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="products.mix-match.rules" source="src/features/products/mix-match-view.tsx">5 field synergy rules (Horti, Padi, Sawit, Jagung, Bawang) and universal tank-mix safety standards</section>
+    </page>
+    <page id="products.campaigns" url="/products/campaigns" route="src/routes/_authenticated/products/campaigns.tsx" source="src/features/products/campaigns-view.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="products.campaigns.timeline" source="src/features/products/campaigns-view.tsx">15-month dynamic climate-synchronized marketing roadmap (Oct 2026 - Dec 2027) with Meta Ads headline hooks, kios actions, agronomist guidance</section>
+    </page>
     <page id="tasks" url="/tasks" route="src/routes/_authenticated/tasks/index.tsx" source="src/features/tasks/index.tsx" state="demo" layout="admin">
       <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
       <uses ref="table-toolbar"/><uses ref="table-pagination"/><uses ref="table-bulk"/><uses ref="table-url"/>

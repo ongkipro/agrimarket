@@ -17,6 +17,15 @@ import {
   type RainfallOnsetDistribution,
   type ENSOProbabilityItem,
 } from './climate-bmkg-data'
+import {
+  PRODUCTS_CATALOG,
+  MIX_MATCH_RULES,
+  MONTHLY_PRODUCT_CAMPAIGNS_2026_2027,
+  PRODUCTS_ECOSYSTEM_MINDMAP_MERMAID,
+  type ProductDetail,
+  type MixMatchRule,
+  type MonthlyProductCampaign,
+} from './products-catalog-data'
 import type { CommodityData, MarketIntelDataset, MacroSummary } from './types'
 
 type RawDistrict = {
@@ -547,4 +556,27 @@ export function getRainfallOnsetDistribution(): RainfallOnsetDistribution[] {
 
 export function getENSOProjections(): ENSOProbabilityItem[] {
   return ENSO_PROJECTIONS_2026_2027
+}
+
+// ----------------------------------------
+// Products Catalog Accessors (TASK-73)
+// ----------------------------------------
+export function getProductsCatalog(): ProductDetail[] {
+  return PRODUCTS_CATALOG
+}
+
+export function getProductById(id: string): ProductDetail | undefined {
+  return PRODUCTS_CATALOG.find((p) => p.id === id)
+}
+
+export function getMixMatchRules(): MixMatchRule[] {
+  return MIX_MATCH_RULES
+}
+
+export function getMonthlyProductCampaigns(): MonthlyProductCampaign[] {
+  return MONTHLY_PRODUCT_CAMPAIGNS_2026_2027
+}
+
+export function getProductMindmapDiagram(): string {
+  return PRODUCTS_ECOSYSTEM_MINDMAP_MERMAID
 }
