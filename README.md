@@ -34,27 +34,35 @@ Platform intelijen pasar pertanian strategis Indonesia berbasis data sensus resm
    - 6 Tab Analisis Agronomi: Funnel & Economics, 38-Provinces & Districts, Subrounds (SR 1-3) & Commercial Selling Window, Input Expenditure Decomposition, ST2023 Farmer Landholding Typology & Price Ladder, dan Commercial GTM Playbook.
    - Water Infrastructure & Agro-Climate Vulnerability Index (Irigasi Teknis vs Tadah Hujan, Skor Risiko El Niño / La Niña, Protokol Mitigasi Lapang).
 3. **Kalender Tanam Nasional & Seasonal Wave Engine (`/calendar`)**
+   - Selector Mode Multi-Tahun Dinamis: **Tahun Ini (2026 — El Niño Aktif)**, **Tahun Depan (2027 — Proyeksi Normalisasi Iklim)**, dan **Normal Klimatologis (ZOM9120)**.
+   - Analisis lengkap 3 Subround tahunan (SR 1 Jan-Apr, SR 2 Mei-Agu, SR 3 Sep-Des) dengan dinamika kemunduran onset tanam MT 1.
    - Matriks Visual 12 Bulan x 13 Komoditas dengan 11 kode fase agronomis (`PL`, `TN`, `SM`, `VG`, `GN`, `PT`, `PN`, `PF`, `HC`, `LC`, `BR`).
    - Panduan Glosarium Teknis 11 Fase Budidaya dan tindakan kritis lapang.
-   - Dynamic Monthly Commercial Selling Opportunities & Lead-Time Booking Kios.
-4. **Geospatial Map & 514-Regency Drilldown (`/map`)**
+   - Dynamic Monthly Commercial Selling Opportunities & Lead-Time Booking Kios KPL.
+4. **Agro-Climatic Intelligence & BMKG Weather Outlook (`/climate`)**
+   - Telemetri iklim makro: Status ENSO Nino 3.4 (+1.68°C El Niño Kuat), IOD (+0.76°C Positif), Dinamika Monsun Australia vs Asia, dan 61,08% ZOM mundur.
+   - Sebaran onset awal musim hujan 2026/2027 pada 699 Zona Musim (ZOM) seluruh Indonesia.
+   - Drilldown 6 Koridor Agroklimat Regional (Jawa, Sumatera, Bali-Nusra, Sulawesi, Kalimantan, Maluku-Papua) dengan data hari tanpa hujan (HTH) dan kapasitas tampung waduk/embung.
+   - Proyeksi multi-model ENSO 2027 (peluruhan El Niño di Q1 2027, fase netral 72% di Q2 2027, dan potensi La Niña lemah 58% di semester 2 2027).
+   - Matriks sensitivitas 13 komoditas strategis terhadap anomali iklim ekstrem serta SOP Katam Terpadu (AWD macak-macak, pompanisasi, dan buffer stocking fungisida).
+5. **Geospatial Map & 514-Regency Drilldown (`/map`)**
    - Peta regional 38 provinsi di 6 gugus kepulauan besar.
    - Drilldown interaktif paralel dari provinsi langsung ke seluruh Kabupaten/Kota sentra (514 kabupaten/kota terdata lengkap dengan Gate-0 balancing).
    - Kluster kecamatan sentra (*sub-district clusters*) dan rasio penempatan tim sales agronomis.
-5. **Digital Advertising Intelligence & Growth Engine (`/ads`)**
+6. **Digital Advertising Intelligence & Growth Engine (`/ads`)**
    - 5 Persona Pembeli Pertanian (Petani Maju, Petani Gurem, Juragan KPL, Mandor Sawit, Hobiis Florikultura).
    - Competitor Ad Spy Matrix (8 brand agrokimia & benih nasional).
    - Google Ads 3-Tier Search Intent Matrix (High Intent, Commercial Research, Problem Aware).
    - Campaign Budget & RoAS Financial Modeling Simulator.
-6. **Field Operations & Agronomist Task Hub (`/tasks`)**
+7. **Field Operations & Agronomist Task Hub (`/tasks`)**
    - 4 Multi-View Tabs: Table View, Kanban Board, Dispatch Calendar, dan OPT Outbreak Incident Desk.
    - Slide-over Tasks Detail Drawer dengan Standard Operating Procedure (SOP) terstruktur dan shortcut lintas-modul.
-7. **Dynamic SOM Internal Capacity Simulator (`/simulator`)**
+8. **Dynamic SOM Internal Capacity Simulator (`/simulator`)**
    - Simulasi kapasitas riil perusahaan berdasarkan $N_{\text{sales}}$, kapasitas binaan kios per rep, rata-rata serap musiman, dan pagu modal kerja tempo yarnen.
-8. **BPS Data Audit Ledger & Export Center (`/audit`)**
+9. **BPS Data Audit Ledger & Export Center (`/audit`)**
    - Rekonsiliasi matematis Gate-0 dengan deviasi 0.0000% antara angka nasional dan penjumlahan 38 provinsi.
    - Ekspor satu-klik: Master Dataset JSON, Master National CSV, dan 38-Province Breakdown CSV.
-9. **System Update Log & Release Ledger (`/help-center`)**
+10. **System Update Log & Release Ledger (`/help-center`)**
    - Riwayat rilis sistem kronologis (v1.0.0 s/d v1.5.0) dengan pencarian teks langsung dan filter kategori rilis.
 
 ---

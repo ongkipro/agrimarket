@@ -46,6 +46,21 @@
       <section id="dashboard.analytics-referrers" source="src/features/dashboard/components/analytics.tsx">Direct; Product Hunt; Twitter; Blog</section>
       <section id="dashboard.analytics-devices" source="src/features/dashboard/components/analytics.tsx">Desktop; Mobile; Tablet</section>
     </page>
+    <page id="calendar" url="/calendar" route="src/routes/_authenticated/calendar/index.tsx" source="src/features/calendar/index.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="calendar.year-toggle" source="src/features/calendar/index.tsx">2026 El Nino, 2027 Projected, and Climatological Normal view selector</section>
+      <section id="calendar.subrounds" source="src/features/calendar/index.tsx">Subround 1-3 full-year dynamics and agronomic commentary</section>
+      <section id="calendar.matrix" source="src/features/calendar/index.tsx">Dynamic 12-month x 13-crop phase code matrix</section>
+      <section id="calendar.opportunities" source="src/features/calendar/index.tsx">Golden peak fertilizer &amp; input purchasing window</section>
+      <section id="calendar.glossary" source="src/features/calendar/index.tsx">11 agronomic phase definitions and critical field actions</section>
+    </page>
+    <page id="climate" url="/climate" route="src/routes/_authenticated/climate/index.tsx" source="src/features/climate/index.tsx" state="demo" layout="admin">
+      <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
+      <section id="climate.telemetry" source="src/features/climate/index.tsx">Macro climate telemetry: ENSO Nino 3.4, IOD, ZOM delay, Monsoon, Katam sync</section>
+      <section id="climate.tabs" source="src/features/climate/index.tsx">2026 dynamics, 2027 outlook, 13-commodity vulnerability matrix, Katam SOPs</section>
+      <section id="climate.corridors" source="src/features/climate/index.tsx">6 regional corridors with drought severity, reservoir capacity, and field advisory</section>
+      <section id="climate.enso-chart" source="src/features/climate/index.tsx">Multi-model ENSO probability stacked bar chart (Q3 2026 - Q4 2027)</section>
+    </page>
     <page id="tasks" url="/tasks" route="src/routes/_authenticated/tasks/index.tsx" source="src/features/tasks/index.tsx" state="demo" layout="admin">
       <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
       <uses ref="table-toolbar"/><uses ref="table-pagination"/><uses ref="table-bulk"/><uses ref="table-url"/>

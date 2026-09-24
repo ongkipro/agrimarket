@@ -41,3 +41,10 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Agronomic Technical Glossary: Added 11-phase budidaya action guide (`PL`, `TN`, `SM`, `VG`, `GN`, `PT`, `PN`, `PF`, `HC`, `LC`, `BR`) to `src/features/calendar/index.tsx`.
 - Test suite expanded to 26 test files and 182 passing tests (100% pass rate).
 
+## 2026-09-24 — Agro-Climate BMKG Intelligence & Dynamic 2026/2027 Cropping Calendar
+- BMKG 699 ZOM & SI Katam Terpadu Engine: Built `src/features/agri/climate-bmkg-data.ts` reconciling 699 Zona Musim with ENSO Nino 3.4 (+1.68°C El Niño), Positive IOD (+0.76°C), and 61.08% delayed rainfall onset distribution across Indonesia.
+- 2027 ENSO Multi-Model Projections: Modeled ENSO decaying to 72% Neutral in Q2 2027 and 58% Weak La Niña in H2 2027, including wet dry season agronomic dynamics and proactive fungicide stocking.
+- Dedicated Route & Sidebar Navigation: Added `/climate` (`src/routes/_authenticated/climate/index.tsx` and `src/features/climate/`) with 5 macro telemetry KPIs, Recharts ENSO stacked bar probability chart, 6 regional corridors drilldown, 13 strategic crop matrices, and 4 field Katam SOPs.
+- Multi-Year Dynamic Cropping Calendar: Upgraded `/calendar` with multi-year matrix mode switcher (`2026_EL_NINO`, `2027_PROJECTED`, `CLIMATOLOGICAL_NORMAL`), 3 subround operational cards (Jan-Apr, Mei-Agu, Sep-Des), contextual agroklimat deep-link banner, and zero-AI-slop layout.
+- Test Suite & Build Verification: Expanded test suite to 29 test files and 198 tests with 100% pass rate in Vitest browser mode. ESLint clean (0 errors, 0 warnings), Vite production build successful.
+

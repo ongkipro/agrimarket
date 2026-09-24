@@ -16,6 +16,7 @@ import {
   Calendar,
   ListTodo,
   Megaphone,
+  CloudSun,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
@@ -50,6 +51,11 @@ export const sidebarData: SidebarData = {
           title: 'Kalender Tanam',
           url: '/calendar',
           icon: Calendar,
+        },
+        {
+          title: 'Agro-Iklim (BMKG)',
+          url: '/climate',
+          icon: CloudSun,
         },
         {
           title: 'Geospatial Map',
@@ -136,4 +142,3 @@ export const sidebarData: SidebarData = {
     },
   ],
 }
-

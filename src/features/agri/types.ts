@@ -1,4 +1,8 @@
-export type DataIntegrityStatus = 'VERIFIED_VALUE' | 'CALCULATED' | 'ESTIMATED' | 'NOT_REPORTED'
+export type DataIntegrityStatus =
+  | 'VERIFIED_VALUE'
+  | 'CALCULATED'
+  | 'ESTIMATED'
+  | 'NOT_REPORTED'
 
 export interface DatasetMetadata {
   title: string
@@ -127,7 +131,12 @@ export interface CommodityData {
   name: string
   english_name: string
   scientific_name: string
-  sector: 'Tanaman Pangan' | 'Hortikultura Sayuran' | 'Hortikultura Buah' | 'Perkebunan' | 'Florikultura'
+  sector:
+    | 'Tanaman Pangan'
+    | 'Hortikultura Sayuran'
+    | 'Hortikultura Buah'
+    | 'Perkebunan'
+    | 'Florikultura'
   tam: TAMData
   sam: SAMData
   subrounds: SubroundsData
@@ -149,4 +158,4 @@ export interface MarketIntelDataset {
 export * from './ads-types'
 export * from './commercial-selling-data'
 export * from './province-districts-data'
-
+export * from './climate-bmkg-data'

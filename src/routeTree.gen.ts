@@ -34,6 +34,7 @@ import { Route as AuthenticatedMapIndexRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
 import { Route as AuthenticatedDistributionIndexRouteImport } from './routes/_authenticated/distribution/index'
 import { Route as AuthenticatedCommoditiesIndexRouteImport } from './routes/_authenticated/commodities/index'
+import { Route as AuthenticatedClimateIndexRouteImport } from './routes/_authenticated/climate/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as AuthenticatedCalendarIndexRouteImport } from './routes/_authenticated/calendar/index'
 import { Route as AuthenticatedAuditIndexRouteImport } from './routes/_authenticated/audit/index'
@@ -177,6 +178,12 @@ const AuthenticatedCommoditiesIndexRoute =
     path: '/commodities/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedClimateIndexRoute =
+  AuthenticatedClimateIndexRouteImport.update({
+    id: '/climate/',
+    path: '/climate/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedChatsIndexRoute = AuthenticatedChatsIndexRouteImport.update({
   id: '/chats/',
   path: '/chats/',
@@ -277,6 +284,7 @@ export interface FileRoutesByFullPath {
   '/audit/': typeof AuthenticatedAuditIndexRoute
   '/calendar/': typeof AuthenticatedCalendarIndexRoute
   '/chats/': typeof AuthenticatedChatsIndexRoute
+  '/climate/': typeof AuthenticatedClimateIndexRoute
   '/commodities/': typeof AuthenticatedCommoditiesIndexRoute
   '/distribution/': typeof AuthenticatedDistributionIndexRoute
   '/help-center/': typeof AuthenticatedHelpCenterIndexRoute
@@ -313,6 +321,7 @@ export interface FileRoutesByTo {
   '/audit': typeof AuthenticatedAuditIndexRoute
   '/calendar': typeof AuthenticatedCalendarIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
+  '/climate': typeof AuthenticatedClimateIndexRoute
   '/commodities': typeof AuthenticatedCommoditiesIndexRoute
   '/distribution': typeof AuthenticatedDistributionIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
@@ -354,6 +363,7 @@ export interface FileRoutesById {
   '/_authenticated/audit/': typeof AuthenticatedAuditIndexRoute
   '/_authenticated/calendar/': typeof AuthenticatedCalendarIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
+  '/_authenticated/climate/': typeof AuthenticatedClimateIndexRoute
   '/_authenticated/commodities/': typeof AuthenticatedCommoditiesIndexRoute
   '/_authenticated/distribution/': typeof AuthenticatedDistributionIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
@@ -393,6 +403,7 @@ export interface FileRouteTypes {
     | '/audit/'
     | '/calendar/'
     | '/chats/'
+    | '/climate/'
     | '/commodities/'
     | '/distribution/'
     | '/help-center/'
@@ -429,6 +440,7 @@ export interface FileRouteTypes {
     | '/audit'
     | '/calendar'
     | '/chats'
+    | '/climate'
     | '/commodities'
     | '/distribution'
     | '/help-center'
@@ -469,6 +481,7 @@ export interface FileRouteTypes {
     | '/_authenticated/audit/'
     | '/_authenticated/calendar/'
     | '/_authenticated/chats/'
+    | '/_authenticated/climate/'
     | '/_authenticated/commodities/'
     | '/_authenticated/distribution/'
     | '/_authenticated/help-center/'
@@ -672,6 +685,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCommoditiesIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/climate/': {
+      id: '/_authenticated/climate/'
+      path: '/climate'
+      fullPath: '/climate/'
+      preLoaderRoute: typeof AuthenticatedClimateIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/chats/': {
       id: '/_authenticated/chats/'
       path: '/chats'
@@ -798,6 +818,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAuditIndexRoute: typeof AuthenticatedAuditIndexRoute
   AuthenticatedCalendarIndexRoute: typeof AuthenticatedCalendarIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
+  AuthenticatedClimateIndexRoute: typeof AuthenticatedClimateIndexRoute
   AuthenticatedCommoditiesIndexRoute: typeof AuthenticatedCommoditiesIndexRoute
   AuthenticatedDistributionIndexRoute: typeof AuthenticatedDistributionIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
@@ -817,6 +838,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAuditIndexRoute: AuthenticatedAuditIndexRoute,
   AuthenticatedCalendarIndexRoute: AuthenticatedCalendarIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
+  AuthenticatedClimateIndexRoute: AuthenticatedClimateIndexRoute,
   AuthenticatedCommoditiesIndexRoute: AuthenticatedCommoditiesIndexRoute,
   AuthenticatedDistributionIndexRoute: AuthenticatedDistributionIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,

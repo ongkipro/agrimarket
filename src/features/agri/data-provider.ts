@@ -1,4 +1,22 @@
 import rawDataset from '@/data/market-intel-dataset.json'
+import {
+  BMKG_TELEMETRY_2026,
+  RAINFALL_ONSET_DISTRIBUTION_2026,
+  ENSO_PROJECTIONS_2026_2027,
+  REGIONAL_AGRO_CLIMATE_CORRIDORS,
+  COMMODITY_CLIMATE_PROFILES,
+  KATAM_ACTION_PROTOCOLS,
+  MATRIX_CLIMATOLOGICAL_NORMAL,
+  MATRIX_2026_EL_NINO,
+  MATRIX_2027_PROJECTED,
+  type CalendarYearMode,
+  type ClimateTelemetry,
+  type RegionalCorridorClimate,
+  type CommodityClimateProfile,
+  type KatamProtocol,
+  type RainfallOnsetDistribution,
+  type ENSOProbabilityItem,
+} from './climate-bmkg-data'
 import type { CommodityData, MarketIntelDataset, MacroSummary } from './types'
 
 type RawDistrict = {
@@ -9,10 +27,15 @@ type RawDistrict = {
   production_ton?: number
 }
 
-function normalizeCommodity(c: CommodityData & Record<string, unknown>): CommodityData {
+function normalizeCommodity(
+  c: CommodityData & Record<string, unknown>
+): CommodityData {
   if (!c) return c
 
-  const harvestArea = c.tam?.harvest_area_ha || (c.tam as unknown as Record<string, number>)?.equivalent_area_ha || 0
+  const harvestArea =
+    c.tam?.harvest_area_ha ||
+    (c.tam as unknown as Record<string, number>)?.equivalent_area_ha ||
+    0
   const prodTon = c.tam?.production_ton || 0
   const eligibleArea = c.sam?.eligible_area_ha || harvestArea * 0.7
   const inputMarketTrillion = c.sam?.total_input_market_value_trillion_idr || 1
@@ -22,8 +45,8 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
     typeof rawYield === 'number' && !isNaN(rawYield)
       ? rawYield
       : harvestArea > 0
-      ? Number((prodTon / harvestArea).toFixed(2))
-      : 0
+        ? Number((prodTon / harvestArea).toFixed(2))
+        : 0
 
   const tam = {
     ...c.tam,
@@ -31,7 +54,8 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
     production_ton: prodTon,
     yield_ton_per_ha: yieldTonPerHa,
     farmgate_price_idr_per_kg: c.tam?.farmgate_price_idr_per_kg || 0,
-    gross_output_value_trillion_idr: c.tam?.gross_output_value_trillion_idr || 0,
+    gross_output_value_trillion_idr:
+      c.tam?.gross_output_value_trillion_idr || 0,
     yoy_prod_growth_pct:
       c.tam?.yoy_prod_growth_pct ??
       (c.tam as unknown as Record<string, number>)?.yoy_production_growth_pct ??
@@ -43,22 +67,37 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
   }
 
   // 1. Normalize top_districts -> key_producing_districts
-  const rawDistricts = (c.top_districts || c.key_producing_districts || []) as unknown as RawDistrict[]
+  const rawDistricts = (c.top_districts ||
+    c.key_producing_districts ||
+    []) as unknown as RawDistrict[]
   const key_producing_districts = rawDistricts.map((d: RawDistrict) => ({
     kabupaten: d.district || d.kabupaten || 'Unknown',
     district: d.district || d.kabupaten || 'Unknown',
     province: d.province || '',
     harvest_area_ha: d.harvest_area_ha || 0,
     production_ton: d.production_ton || 0,
-    yield_ton_per_ha: d.harvest_area_ha && d.harvest_area_ha > 0 ? (d.production_ton || 0) / d.harvest_area_ha : 0,
-    pct_of_national: prodTon > 0 ? Number((((d.production_ton || 0) / prodTon) * 100).toFixed(2)) : 0,
+    yield_ton_per_ha:
+      d.harvest_area_ha && d.harvest_area_ha > 0
+        ? (d.production_ton || 0) / d.harvest_area_ha
+        : 0,
+    pct_of_national:
+      prodTon > 0
+        ? Number((((d.production_ton || 0) / prodTon) * 100).toFixed(2))
+        : 0,
   }))
 
   // 2. Normalize price_disparity -> price_ladder
-  const pd = (c.price_disparity || c.price_ladder || {}) as Record<string, number | undefined>
+  const pd = (c.price_disparity || c.price_ladder || {}) as Record<
+    string,
+    number | undefined
+  >
   const farmGate =
-    pd.farmgate_idr_per_kg || pd.farm_gate_idr_per_kg || c.tam?.farmgate_price_idr_per_kg || 5000
-  const wholesale = pd.wholesale_pasar_induk_idr_per_kg || Math.round(farmGate * 1.55)
+    pd.farmgate_idr_per_kg ||
+    pd.farm_gate_idr_per_kg ||
+    c.tam?.farmgate_price_idr_per_kg ||
+    5000
+  const wholesale =
+    pd.wholesale_pasar_induk_idr_per_kg || Math.round(farmGate * 1.55)
   const retail = pd.retail_consumer_idr_per_kg || Math.round(farmGate * 2.1)
   const farmerShare =
     pd.farmers_share_pct ||
@@ -75,10 +114,14 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
 
   // 3. Normalize farmer_typology
   const ft = (c.farmer_typology || {}) as unknown as Record<string, number>
-  const gurem = ft.gurem_under_0_5ha_pct ?? ft.gurem_less_than_half_ha_pct ?? 55.0
-  const menengah = ft.menengah_0_5_to_2ha_pct ?? ft.menengah_half_to_two_ha_pct ?? 35.0
-  const besar = ft.besar_over_2ha_pct ?? ft.korporasi_more_than_two_ha_pct ?? 10.0
-  const yarnen = ft.yarnen_credit_dependence_pct ?? ft.credit_yarnen_dependency_pct ?? 60.0
+  const gurem =
+    ft.gurem_under_0_5ha_pct ?? ft.gurem_less_than_half_ha_pct ?? 55.0
+  const menengah =
+    ft.menengah_0_5_to_2ha_pct ?? ft.menengah_half_to_two_ha_pct ?? 35.0
+  const besar =
+    ft.besar_over_2ha_pct ?? ft.korporasi_more_than_two_ha_pct ?? 10.0
+  const yarnen =
+    ft.yarnen_credit_dependence_pct ?? ft.credit_yarnen_dependency_pct ?? 60.0
 
   const farmer_typology = {
     gurem_under_0_5ha_pct: gurem,
@@ -92,27 +135,45 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
   }
 
   // 4. Normalize som_internal_capacity (Harmonized with operational capacity economics)
-  const rawSom = (c.som_internal_capacity || {}) as unknown as Record<string, number>
+  const rawSom = (c.som_internal_capacity || {}) as unknown as Record<
+    string,
+    number
+  >
   const baseReps = Math.max(8, Math.min(50, Math.round(eligibleArea / 180000)))
   const baseKiosks = baseReps * 25
   const defaultSalesPerKioskMillion = 75
   const defaultSeasonality = 1.2
   // Bottom-up operational launch capacity (Reps * Kiosks * Seasonal Sales * Seasonality)
-  const rawBottomUpRevBillion = (baseKiosks * (defaultSalesPerKioskMillion / 1000) * defaultSeasonality)
+  const rawBottomUpRevBillion =
+    baseKiosks * (defaultSalesPerKioskMillion / 1000) * defaultSeasonality
   const projectedRevBillion = Math.round(rawBottomUpRevBillion * 10) / 10
-  const tempoLimitBillion = Math.max(5, Math.round((projectedRevBillion / 2.5) * 10) / 10)
+  const tempoLimitBillion = Math.max(
+    5,
+    Math.round((projectedRevBillion / 2.5) * 10) / 10
+  )
   const spendingPerHa = c.sam?.input_spending_per_ha_idr || 5000000
-  const penHa = spendingPerHa > 0 ? Math.round((projectedRevBillion * 1_000_000_000) / spendingPerHa) : 0
+  const penHa =
+    spendingPerHa > 0
+      ? Math.round((projectedRevBillion * 1_000_000_000) / spendingPerHa)
+      : 0
   const targetShare =
-    Math.round(Math.min(12, Math.max(3.5, 45 / Math.sqrt(Math.max(1, inputMarketTrillion)))) * 10) / 10
+    Math.round(
+      Math.min(
+        12,
+        Math.max(3.5, 45 / Math.sqrt(Math.max(1, inputMarketTrillion)))
+      ) * 10
+    ) / 10
 
   const som_internal_capacity = {
     year1_sales_reps: rawSom.year1_sales_reps || baseReps,
     year1_active_kiosks: rawSom.year1_active_kiosks || baseKiosks,
-    year1_tempo_limit_billion_idr: rawSom.year1_tempo_limit_billion_idr || tempoLimitBillion,
+    year1_tempo_limit_billion_idr:
+      rawSom.year1_tempo_limit_billion_idr || tempoLimitBillion,
     year1_penetration_ha: rawSom.year1_penetration_ha || penHa,
-    year1_projected_revenue_billion_idr: rawSom.year1_projected_revenue_billion_idr || projectedRevBillion,
-    year3_target_market_share_pct: rawSom.year3_target_market_share_pct || targetShare,
+    year1_projected_revenue_billion_idr:
+      rawSom.year1_projected_revenue_billion_idr || projectedRevBillion,
+    year3_target_market_share_pct:
+      rawSom.year3_target_market_share_pct || targetShare,
   }
 
   // 5. Normalize input_decomposition
@@ -123,13 +184,15 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
       pct: ib.macro_fertilizers_npk_idr
         ? Math.round((ib.macro_fertilizers_npk_idr / totalInputCost) * 100)
         : 40,
-      cost_idr: ib.macro_fertilizers_npk_idr || Math.round(totalInputCost * 0.4),
+      cost_idr:
+        ib.macro_fertilizers_npk_idr || Math.round(totalInputCost * 0.4),
     },
     foliar_calcium_micro_nutrients: {
       pct: ib.micro_foliar_fertilizers_idr
         ? Math.round((ib.micro_foliar_fertilizers_idr / totalInputCost) * 100)
         : 15,
-      cost_idr: ib.micro_foliar_fertilizers_idr || Math.round(totalInputCost * 0.15),
+      cost_idr:
+        ib.micro_foliar_fertilizers_idr || Math.round(totalInputCost * 0.15),
     },
     fungicides: {
       pct: ib.fungicides_idr
@@ -158,13 +221,28 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
   }
 
   // 6. Normalize climate_vulnerability from climate_index
-  const ci = (c.climate_index || c.climate_vulnerability || {}) as Record<string, number | string>
-  const irrigated = typeof ci.technical_irrigated_pct === 'number' ? ci.technical_irrigated_pct : 35
-  const rainfed = typeof ci.rainfed_pct === 'number' ? ci.rainfed_pct : 100 - irrigated
-  const elNinoScore = typeof ci.el_nino_vulnerability_score === 'number' ? ci.el_nino_vulnerability_score : 5.0
-  const laNinaScore = typeof ci.la_nina_vulnerability_score === 'number' ? ci.la_nina_vulnerability_score : 5.0
+  const ci = (c.climate_index || c.climate_vulnerability || {}) as Record<
+    string,
+    number | string
+  >
+  const irrigated =
+    typeof ci.technical_irrigated_pct === 'number'
+      ? ci.technical_irrigated_pct
+      : 35
+  const rainfed =
+    typeof ci.rainfed_pct === 'number' ? ci.rainfed_pct : 100 - irrigated
+  const elNinoScore =
+    typeof ci.el_nino_vulnerability_score === 'number'
+      ? ci.el_nino_vulnerability_score
+      : 5.0
+  const laNinaScore =
+    typeof ci.la_nina_vulnerability_score === 'number'
+      ? ci.la_nina_vulnerability_score
+      : 5.0
 
-  const getRiskLabel = (score: number): 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' => {
+  const getRiskLabel = (
+    score: number
+  ): 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' => {
     if (score >= 8.5) return 'CRITICAL'
     if (score >= 6.5) return 'HIGH'
     if (score >= 4.0) return 'MEDIUM'
@@ -172,19 +250,32 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
   }
 
   const CLIMATE_MITIGATION_MAP: Record<string, string> = {
-    COMM_01_PADI: 'Pompa Air Alsintan, Varietas Inpari Toleran Kekeringan, Pengaturan Air Macak-Macak',
-    COMM_02_JAGUNG: 'Drainase Guludan, Benih Hibrida Tahan Cekaman Kekeringan, Pemupukan Kalium',
-    COMM_03_CABAI: 'Fungisida Protektif Patek/Antraknosa, Mulsa Plastik Hitam Perak (MPHP), Bedengan Tinggi 60 cm',
-    COMM_04_BAWANG_MERAH: 'Pompa Penguras Sawah, Fungisida Moler/Layu, Sungkup Plastik Penahan Hujan',
-    COMM_05_KENTANG: 'Fungisida Translaminar Berkala 2 Hari Sekali, Pengaturan Drainase Bedengan Lereng',
-    COMM_06_KUBIS: 'Aplikasi Kapur Dolomit Penurun Keasaman Tanah, Fungisida Tembaga Busuk Lunak',
-    COMM_07_TOMAT: 'Pupuk Kalsium Boron Penguat Dinding Sel Kulit Buah, Tali Ajir Kokoh Penahan Angin',
-    COMM_08_SEMANGKA: 'Penanaman Eksklusif Periode Kemarau, Drainase Pasir Cepat Buang Air Genangan',
-    COMM_09_MELON: 'Naungan Rain Shelter / Greenhouse, Kontrol Kelembaban untuk Brix Kemanisan Tinggi',
-    COMM_10_KELAPA_SAWIT: 'Pembuatan Rorak / Tapak Kuda Konservasi Air Tanah, Normalisasi Parit Primer',
-    COMM_11_ALPUKAT: 'ZPT Retensi Bunga, Biostimulan Asam Amino Anti-Rontok Pentil Buah',
-    COMM_12_TEMBAKAU: 'Larangan Mutlak Penanaman di Musim Hujan, Pengolahan Guludan Kering Pembakar Daun',
-    COMM_13_ANGGREK: 'Naungan Paranet 65-75%, Sprinkler Mikro Terjadwal, Fungisida Tembaga Sirkulasi Blower',
+    COMM_01_PADI:
+      'Pompa Air Alsintan, Varietas Inpari Toleran Kekeringan, Pengaturan Air Macak-Macak',
+    COMM_02_JAGUNG:
+      'Drainase Guludan, Benih Hibrida Tahan Cekaman Kekeringan, Pemupukan Kalium',
+    COMM_03_CABAI:
+      'Fungisida Protektif Patek/Antraknosa, Mulsa Plastik Hitam Perak (MPHP), Bedengan Tinggi 60 cm',
+    COMM_04_BAWANG_MERAH:
+      'Pompa Penguras Sawah, Fungisida Moler/Layu, Sungkup Plastik Penahan Hujan',
+    COMM_05_KENTANG:
+      'Fungisida Translaminar Berkala 2 Hari Sekali, Pengaturan Drainase Bedengan Lereng',
+    COMM_06_KUBIS:
+      'Aplikasi Kapur Dolomit Penurun Keasaman Tanah, Fungisida Tembaga Busuk Lunak',
+    COMM_07_TOMAT:
+      'Pupuk Kalsium Boron Penguat Dinding Sel Kulit Buah, Tali Ajir Kokoh Penahan Angin',
+    COMM_08_SEMANGKA:
+      'Penanaman Eksklusif Periode Kemarau, Drainase Pasir Cepat Buang Air Genangan',
+    COMM_09_MELON:
+      'Naungan Rain Shelter / Greenhouse, Kontrol Kelembaban untuk Brix Kemanisan Tinggi',
+    COMM_10_KELAPA_SAWIT:
+      'Pembuatan Rorak / Tapak Kuda Konservasi Air Tanah, Normalisasi Parit Primer',
+    COMM_11_ALPUKAT:
+      'ZPT Retensi Bunga, Biostimulan Asam Amino Anti-Rontok Pentil Buah',
+    COMM_12_TEMBAKAU:
+      'Larangan Mutlak Penanaman di Musim Hujan, Pengolahan Guludan Kering Pembakar Daun',
+    COMM_13_ANGGREK:
+      'Naungan Paranet 65-75%, Sprinkler Mikro Terjadwal, Fungisida Tembaga Sirkulasi Blower',
   }
 
   const climate_vulnerability = {
@@ -194,7 +285,9 @@ function normalizeCommodity(c: CommodityData & Record<string, unknown>): Commodi
     la_nina_flood_risk: getRiskLabel(laNinaScore),
     el_nino_score: elNinoScore,
     la_nina_score: laNinaScore,
-    mitigation_strategy: CLIMATE_MITIGATION_MAP[c.id] || 'Manajemen tata kelola air terpadu dan pemantauan cuaca BMKG berkala',
+    mitigation_strategy:
+      CLIMATE_MITIGATION_MAP[c.id] ||
+      'Manajemen tata kelola air terpadu dan pemantauan cuaca BMKG berkala',
   }
 
   return {
@@ -215,7 +308,8 @@ const typedDataset = rawDataset as unknown as MarketIntelDataset & {
   commodities: (CommodityData & Record<string, unknown>)[]
 }
 const rawCommodities = typedDataset.commodities || []
-const normalizedCommodities: CommodityData[] = rawCommodities.map(normalizeCommodity)
+const normalizedCommodities: CommodityData[] =
+  rawCommodities.map(normalizeCommodity)
 
 export const dataset: MarketIntelDataset = {
   ...typedDataset,
@@ -240,7 +334,8 @@ export function getCommodityById(idOrSlug: string): CommodityData | undefined {
     (c) =>
       c.id.toUpperCase() === cleanId ||
       c.name.toLowerCase() === idOrSlug.toLowerCase() ||
-      c.id.replace('COMM_', '').replace(/_/g, '-').toLowerCase() === idOrSlug.toLowerCase()
+      c.id.replace('COMM_', '').replace(/_/g, '-').toLowerCase() ===
+        idOrSlug.toLowerCase()
   )
 }
 
@@ -250,15 +345,24 @@ export function formatIDR(
 ): string {
   if (value === undefined || value === null || isNaN(value)) return 'Rp 0'
 
-  if (mode === 'trillion' || (mode === 'compact' && Math.abs(value) >= 1_000_000_000_000)) {
+  if (
+    mode === 'trillion' ||
+    (mode === 'compact' && Math.abs(value) >= 1_000_000_000_000)
+  ) {
     const val = value / 1_000_000_000_000
     return `Rp ${val.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Triliun`
   }
-  if (mode === 'billion' || (mode === 'compact' && Math.abs(value) >= 1_000_000_000)) {
+  if (
+    mode === 'billion' ||
+    (mode === 'compact' && Math.abs(value) >= 1_000_000_000)
+  ) {
     const val = value / 1_000_000_000
     return `Rp ${val.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Miliar`
   }
-  if (mode === 'million' || (mode === 'compact' && Math.abs(value) >= 1_000_000)) {
+  if (
+    mode === 'million' ||
+    (mode === 'compact' && Math.abs(value) >= 1_000_000)
+  ) {
     const val = value / 1_000_000
     return `Rp ${val.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Juta`
   }
@@ -291,7 +395,9 @@ export interface GateZeroAuditResult {
   deviation_reason?: string
 }
 
-export function auditGateZeroReconciliation(commodity: CommodityData): GateZeroAuditResult {
+export function auditGateZeroReconciliation(
+  commodity: CommodityData
+): GateZeroAuditResult {
   const nationalTon = commodity.tam.production_ton
   const sumProvincialTon = commodity.provincial_data.reduce(
     (acc, cur) => acc + (cur.production_ton || 0),
@@ -350,24 +456,38 @@ export function calculateDynamicSOM(
 ): DynamicSOMResult {
   const totalKiosksTargeted = params.salesReps * params.targetKiosksPerRep
   const rawRevenueBillion =
-    (totalKiosksTargeted * (params.avgSalesPerKioskSeasonMillion / 1000) * params.subroundSeasonality)
+    totalKiosksTargeted *
+    (params.avgSalesPerKioskSeasonMillion / 1000) *
+    params.subroundSeasonality
 
   // Working capital limit check: max allowable credit exposure is 2.5x annual tempo limit
   const maxAllowableRevenue = params.tempoCreditLimitBillion * 2.5
-  const constrainedRevenueBillion = Math.min(rawRevenueBillion, maxAllowableRevenue)
+  const constrainedRevenueBillion = Math.min(
+    rawRevenueBillion,
+    maxAllowableRevenue
+  )
   const isWorkingCapitalConstrained = rawRevenueBillion > maxAllowableRevenue
 
   // Convert revenue to hectares based on average input spending per Ha
   const inputSpendingPerHa = commodity.sam.input_spending_per_ha_idr
   const revenueInIDR = constrainedRevenueBillion * 1_000_000_000
-  const attainableHectares = inputSpendingPerHa > 0 ? Math.round(revenueInIDR / inputSpendingPerHa) : 0
+  const attainableHectares =
+    inputSpendingPerHa > 0 ? Math.round(revenueInIDR / inputSpendingPerHa) : 0
 
   // Market share vs SAM
-  const totalSAMValueBillion = commodity.sam.total_input_market_value_trillion_idr * 1000
-  const marketSharePct = totalSAMValueBillion > 0 ? (constrainedRevenueBillion / totalSAMValueBillion) * 100 : 0
+  const totalSAMValueBillion =
+    commodity.sam.total_input_market_value_trillion_idr * 1000
+  const marketSharePct =
+    totalSAMValueBillion > 0
+      ? (constrainedRevenueBillion / totalSAMValueBillion) * 100
+      : 0
   const tempoCreditUtilizationPct =
     params.tempoCreditLimitBillion > 0
-      ? Math.min(100, (constrainedRevenueBillion / 2.5 / params.tempoCreditLimitBillion) * 100)
+      ? Math.min(
+          100,
+          (constrainedRevenueBillion / 2.5 / params.tempoCreditLimitBillion) *
+            100
+        )
       : 0
 
   return {
@@ -383,4 +503,48 @@ export function calculateDynamicSOM(
 
 export * from './commercial-selling-data'
 export * from './province-districts-data'
+export * from './climate-bmkg-data'
 
+export function getCalendarMatrix(
+  mode: CalendarYearMode = '2026_EL_NINO'
+): Record<string, string[]> {
+  switch (mode) {
+    case '2026_EL_NINO':
+      return MATRIX_2026_EL_NINO
+    case '2027_PROJECTED':
+      return MATRIX_2027_PROJECTED
+    case 'CLIMATOLOGICAL_NORMAL':
+    default:
+      return MATRIX_CLIMATOLOGICAL_NORMAL
+  }
+}
+
+export function getClimateTelemetry(): ClimateTelemetry {
+  return BMKG_TELEMETRY_2026
+}
+
+export function getRegionalCorridors(): RegionalCorridorClimate[] {
+  return REGIONAL_AGRO_CLIMATE_CORRIDORS
+}
+
+export function getCommodityClimateProfiles(): CommodityClimateProfile[] {
+  return COMMODITY_CLIMATE_PROFILES
+}
+
+export function getCommodityClimateProfile(
+  id: string
+): CommodityClimateProfile | undefined {
+  return COMMODITY_CLIMATE_PROFILES.find((p) => p.id === id)
+}
+
+export function getKatamProtocols(): KatamProtocol[] {
+  return KATAM_ACTION_PROTOCOLS
+}
+
+export function getRainfallOnsetDistribution(): RainfallOnsetDistribution[] {
+  return RAINFALL_ONSET_DISTRIBUTION_2026
+}
+
+export function getENSOProjections(): ENSOProbabilityItem[] {
+  return ENSO_PROJECTIONS_2026_2027
+}
