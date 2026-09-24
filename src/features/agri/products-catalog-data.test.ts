@@ -5,6 +5,8 @@ import {
   getMixMatchRules,
   getMonthlyProductCampaigns,
   getProductMindmapDiagram,
+  getFieldPlaybooks,
+  getFieldPlaybookById,
 } from './data-provider'
 
 describe('Products Catalog Intelligence & Climate-Commercial Engine', () => {
@@ -27,15 +29,34 @@ describe('Products Catalog Intelligence & Climate-Commercial Engine', () => {
       // Formula & Biological Mechanism
       expect(prod.formulaConcept).toBeTruthy()
       expect(prod.brandMechanism.length).toBeGreaterThan(30)
-      expect(prod.composition.length).toBeGreaterThanOrEqual(3)
+      expect(prod.composition.length).toBeGreaterThanOrEqual(5)
       prod.composition.forEach((ing) => {
         expect(ing.item).toBeTruthy()
         expect(ing.value).toBeTruthy()
         expect(ing.function).toBeTruthy()
       })
 
+      // Physical Quality Specifications (New)
+      expect(prod.physicalSpecifications).toBeDefined()
+      expect(prod.physicalSpecifications.formulationType).toBeTruthy()
+      expect(prod.physicalSpecifications.colorAndAroma).toBeTruthy()
+      expect(prod.physicalSpecifications.density).toBeTruthy()
+      expect(prod.physicalSpecifications.solutionPh).toBeTruthy()
+      expect(prod.physicalSpecifications.solubility).toBeTruthy()
+      expect(prod.physicalSpecifications.shelfLife).toBeTruthy()
+      expect(prod.physicalSpecifications.safetyClass).toBeTruthy()
+
+      // Mode of Action Cellular Timeline (New)
+      expect(prod.modeOfActionTimeline.length).toBeGreaterThanOrEqual(4)
+      prod.modeOfActionTimeline.forEach((moa) => {
+        expect(moa.timeframe).toBeTruthy()
+        expect(moa.phaseName).toBeTruthy()
+        expect(moa.biologicalProcess).toBeTruthy()
+        expect(moa.farmerVisibleResult).toBeTruthy()
+      })
+
       // Severity Levels & Damage Scale (Stage 1-4)
-      expect(prod.severityLevels.length).toBeGreaterThanOrEqual(3)
+      expect(prod.severityLevels.length).toBeGreaterThanOrEqual(4)
       prod.severityLevels.forEach((lvl) => {
         expect(lvl.stage).toBeTruthy()
         expect(lvl.title).toBeTruthy()
@@ -46,7 +67,7 @@ describe('Products Catalog Intelligence & Climate-Commercial Engine', () => {
       })
 
       // Dosage & Application Matrix
-      expect(prod.dosageMatrix.length).toBeGreaterThanOrEqual(2)
+      expect(prod.dosageMatrix.length).toBeGreaterThanOrEqual(4)
       prod.dosageMatrix.forEach((d) => {
         expect(d.cropOrPhase).toBeTruthy()
         expect(d.timing).toBeTruthy()
@@ -58,27 +79,37 @@ describe('Products Catalog Intelligence & Climate-Commercial Engine', () => {
         expect(d.keyNotes).toBeTruthy()
       })
 
-      // Demographics & BPS Production Baselines
+      // Demographics & 100% Indonesian Focus
       expect(prod.demographics.persona.roleTitle).toBeTruthy()
       expect(prod.demographics.persona.acreageProfile).toBeTruthy()
       expect(prod.demographics.persona.buyingMotivator).toBeTruthy()
       expect(prod.demographics.persona.coreFear).toBeTruthy()
-      expect(prod.demographics.sentraHubs.length).toBeGreaterThanOrEqual(3)
+      expect(prod.demographics.sentraHubs.length).toBeGreaterThanOrEqual(5)
       prod.demographics.sentraHubs.forEach((hub) => {
         expect(hub.province).toBeTruthy()
         expect(hub.regencies.length).toBeGreaterThan(0)
         expect(hub.soilAndClimateNote).toBeTruthy()
       })
+      expect(
+        prod.demographics.indonesiaExpansionHubs.length
+      ).toBeGreaterThanOrEqual(4)
+      // Zero Malaysia verification
+      expect(prod.corePositioning.my).toBeUndefined()
+      expect(
+        prod.metaAdsPlaybook.targetingInterests.some((t) =>
+          t.toLowerCase().includes('malaysia')
+        )
+      ).toBe(false)
 
       // Commercial & Customer Support Decision Tree
-      expect(prod.commercialPillars.heroOffers.length).toBeGreaterThan(0)
+      expect(prod.commercialPillars.heroOffers.length).toBeGreaterThanOrEqual(3)
       expect(prod.commercialPillars.pricingStrategy).toBeTruthy()
       expect(
         prod.commercialPillars.csDecisionTree.length
-      ).toBeGreaterThanOrEqual(2)
+      ).toBeGreaterThanOrEqual(3)
       expect(
         prod.commercialPillars.objectionHandling.length
-      ).toBeGreaterThanOrEqual(2)
+      ).toBeGreaterThanOrEqual(4)
       prod.commercialPillars.objectionHandling.forEach((o) => {
         expect(o.objection).toBeTruthy()
         expect(o.rebuttle).toBeTruthy()
@@ -90,10 +121,10 @@ describe('Products Catalog Intelligence & Climate-Commercial Engine', () => {
       expect(prod.climateIntegration.goldenApplicationWindows).toBeTruthy()
 
       // Meta Ads Playbook
-      expect(prod.metaAdsPlaybook.coreHooks.length).toBeGreaterThanOrEqual(1)
+      expect(prod.metaAdsPlaybook.coreHooks.length).toBeGreaterThanOrEqual(4)
       expect(
         prod.metaAdsPlaybook.targetingInterests.length
-      ).toBeGreaterThanOrEqual(2)
+      ).toBeGreaterThanOrEqual(5)
       expect(prod.metaAdsPlaybook.exclusions.length).toBeGreaterThanOrEqual(1)
       prod.metaAdsPlaybook.coreHooks.forEach((hook) => {
         expect(hook.angleId).toBeTruthy()
@@ -104,8 +135,8 @@ describe('Products Catalog Intelligence & Climate-Commercial Engine', () => {
         expect(hook.callToAction).toBeTruthy()
       })
 
-      // FAQs
-      expect(prod.faqs.length).toBeGreaterThanOrEqual(2)
+      // FAQs (6 per SKU)
+      expect(prod.faqs.length).toBeGreaterThanOrEqual(6)
       prod.faqs.forEach((faq) => {
         expect(faq.question).toBeTruthy()
         expect(faq.answer).toBeTruthy()
@@ -237,4 +268,125 @@ describe('Products Catalog Intelligence & Climate-Commercial Engine', () => {
     expect(mindmap).toContain('SARATOGA')
     expect(mindmap).toContain('KOJIEN')
   })
+
+  it('validates complete 15-case field playbook dictionary integrity', () => {
+    const playbooks = getFieldPlaybooks()
+    expect(playbooks).toHaveLength(15)
+
+    const expectedIds = [
+      'PB-HORTI-01',
+      'PB-HORTI-02',
+      'PB-HORTI-03',
+      'PB-HORTI-04',
+      'PB-PADI-05',
+      'PB-PADI-06',
+      'PB-PADI-07',
+      'PB-JAGUNG-08',
+      'PB-JAGUNG-09',
+      'PB-SAWIT-10',
+      'PB-SAWIT-11',
+      'PB-BAWANG-12',
+      'PB-BUAH-13',
+      'PB-RECOVERY-14',
+      'PB-TRANSPLANT-15',
+    ]
+    expect(playbooks.map((p) => p.id)).toEqual(expectedIds)
+
+    playbooks.forEach((p) => {
+      // Diagnostic Identity
+      expect(p.id).toBeTruthy()
+      expect(p.problemName).toBeTruthy()
+      expect([
+        'STRESS_CUACA',
+        'PENYAKIT_JAMUR',
+        'NUTRISI_GENERATIF',
+        'PERTUMBUHAN_MANDEK',
+        'KUALITAS_PANEN',
+      ]).toContain(p.problemCategory)
+      expect(p.categoryLabel).toBeTruthy()
+      expect(p.cropCategory).toBeTruthy()
+      expect(p.crops.length).toBeGreaterThan(0)
+      expect(['RINGAN', 'SEDANG', 'KRITIS']).toContain(p.severityLevel)
+
+      // Symptoms & Cause
+      expect(p.visualSymptoms.length).toBeGreaterThan(20)
+      expect(p.rootCause.length).toBeGreaterThan(30)
+      expect(p.peakMonths.length).toBeGreaterThan(0)
+      expect([
+        'RENDENG_HUJAN',
+        'GADU_KEMARAU',
+        'PANCAROBA',
+        'SEPANJANG_TAHUN',
+      ]).toContain(p.seasonContext)
+      expect(p.seasonLabel).toBeTruthy()
+      expect(p.climateTrigger).toBeTruthy()
+
+      // Product Pairing
+      expect(['aussie', 'bensu', 'saratoga', 'kojien']).toContain(
+        p.productPairing.heroProduct
+      )
+      if (p.productPairing.partnerProduct) {
+        expect(['aussie', 'bensu', 'saratoga', 'kojien']).toContain(
+          p.productPairing.partnerProduct
+        )
+      }
+      expect([
+        'DUO_ROTASI',
+        'DUO_TANK_MIX',
+        'TRIO_PROTOKOL',
+        'TUNGGAL_DARURAT',
+      ]).toContain(p.productPairing.pairingType)
+      expect(p.productPairing.pairingLabel).toBeTruthy()
+      expect(p.productPairing.synergyMechanism.length).toBeGreaterThan(20)
+
+      // Prescription
+      expect(p.prescription.dosagePer16L).toBeTruthy()
+      expect(p.prescription.dosagePerHa).toBeTruthy()
+      expect([
+        'SEMPROT_KABUT_PAGI',
+        'KOCOR_PERAKARAN',
+        'OLES_PASTA_MURNI',
+        'KOMBINASI_SEMPROT_KOCOR',
+      ]).toContain(p.prescription.applicationMethod)
+      expect(p.prescription.applicationMethodLabel).toBeTruthy()
+      expect(p.prescription.bestTime).toBeTruthy()
+      expect(p.prescription.intervalDays).toBeGreaterThan(0)
+      expect(p.prescription.roundsNeeded).toBeGreaterThan(0)
+      expect(p.prescription.recoverySlaDays).toBeTruthy()
+
+      // Safety
+      expect([
+        'COMPATIBLE',
+        'APPLY_SEPARATELY',
+        'JAR_TEST_REQUIRED',
+        'STRICTLY_PROHIBITED',
+      ]).toContain(p.tankMixSafety.status)
+      expect(p.tankMixSafety.guideline).toBeTruthy()
+
+      // Commercial Hooks
+      expect(p.commercialMetaAdsHook.headline).toBeTruthy()
+      expect(p.commercialMetaAdsHook.kiosAdviceScript).toBeTruthy()
+    })
+
+    // Specifically test getFieldPlaybookById lookup
+    const horti01 = getFieldPlaybookById('PB-HORTI-01')
+    expect(horti01).toBeDefined()
+    expect(horti01?.problemCategory).toBe('PERTUMBUHAN_MANDEK')
+    expect(horti01?.productPairing.heroProduct).toBe('bensu')
+    expect(horti01?.productPairing.partnerProduct).toBe('saratoga')
+
+    const ganoderma = getFieldPlaybookById('PB-SAWIT-10')
+    expect(ganoderma).toBeDefined()
+    expect(ganoderma?.productPairing.heroProduct).toBe('aussie')
+    expect(ganoderma?.severityLevel).toBe('KRITIS')
+    expect(ganoderma?.prescription.applicationMethod).toBe(
+      'KOMBINASI_SEMPROT_KOCOR'
+    )
+
+    const antraknosa = getFieldPlaybookById('PB-HORTI-03')
+    expect(antraknosa).toBeDefined()
+    expect(antraknosa?.productPairing.heroProduct).toBe('saratoga')
+    expect(antraknosa?.productPairing.partnerProduct).toBe('kojien')
+  })
 })
+

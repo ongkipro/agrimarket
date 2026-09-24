@@ -22,9 +22,11 @@ import {
   MIX_MATCH_RULES,
   MONTHLY_PRODUCT_CAMPAIGNS_2026_2027,
   PRODUCTS_ECOSYSTEM_MINDMAP_MERMAID,
+  FIELD_PLAYBOOK_DICTIONARY,
   type ProductDetail,
   type MixMatchRule,
   type MonthlyProductCampaign,
+  type FieldPlaybookItem,
 } from './products-catalog-data'
 import type { CommodityData, MarketIntelDataset, MacroSummary } from './types'
 
@@ -579,4 +581,14 @@ export function getMonthlyProductCampaigns(): MonthlyProductCampaign[] {
 
 export function getProductMindmapDiagram(): string {
   return PRODUCTS_ECOSYSTEM_MINDMAP_MERMAID
+}
+
+export function getFieldPlaybooks(): FieldPlaybookItem[] {
+  return FIELD_PLAYBOOK_DICTIONARY
+}
+
+export function getFieldPlaybookById(
+  id: string
+): FieldPlaybookItem | undefined {
+  return FIELD_PLAYBOOK_DICTIONARY.find((item) => item.id === id)
 }

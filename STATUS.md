@@ -31,11 +31,11 @@ All analytical engines and operational hubs are fully implemented and verified:
 10. Retail Distribution Infrastructure & KPL Kiosk Density (`/distribution`) — Subsidized KPL and private agrochemical retail density per 1,000 Ha SAM
 11. BPS Data Audit Ledger & Instant Export Engine (`/audit`) — Gate-0 mathematical balancing ledger ($\Delta = 0.0000\%$) and single-click JSON/CSV dataset exports
 12. System Update Log & Release Ledger (`/help-center`) — Chronological release history with real-time search, filter pills, and navigation shortcuts
-13. Product Catalog Intelligence, Multi-Product Synergy & Climate Meta Ads Engine (`/products`) — Comprehensive Notion-ingested dossiers for 4 strategic SKUs (`AUSSIE Sawit`, `BENSU Hortikultura`, `SARATOGA Plant Serum`, `KOJIEN Activator`), 5 field mix-match rules, 15-month dynamic climate-synchronized campaign roadmap (Oct 2026 – Dec 2027), and visual ecosystem mindmap topology
+13. Product Catalog Intelligence, Multi-Product Synergy & Climate Meta Ads Engine (`/products`) — Comprehensive dossiers for 4 strategic SKUs (`AUSSIE Sawit`, `BENSU Hortikultura`, `SARATOGA Plant Serum`, `KOJIEN Activator`), 15 field diagnostic playbook cases, 5 master protocols, physical specifications & TDS standards, cellular mode of action timeline, 15-month dynamic climate-synchronized campaign roadmap (Oct 2026 – Dec 2027), and high-density responsive tables.
 
 ## Active work
 
-None (All Product Catalog, Mix & Match, and Climate-Commercial Campaigns engineering tasks completed and verified).
+None (All Product Catalog, Mix & Match, and UI/UX engineering tasks completed and verified).
 
 ## Blockers
 
@@ -44,7 +44,7 @@ None recorded.
 ## Verification evidence
 
 1. `pnpm run lint`: ESLint clean, 0 errors, 0 warnings.
-2. `pnpm run test`: Vitest with Playwright headless, 31 test suites, 208 tests passed cleanly (100% pass rate).
+2. `pnpm run test`: Vitest with Playwright headless, 31 test suites, 209 tests passed cleanly (100% pass rate).
 3. `pnpm run build`: TypeScript compilation (`tsc -b`) and Vite production build (`vite build`) passed with zero errors.
 4. Gate-0 Mathematical Reconciliation: 0.0000% discrepancy across national totals, 38-province sums, and 699 BMKG ZOM distributions.
 5. District Census Integrity: 514 authentic Kabupaten/Kota mapped with zero NaN, zero Infinity, and balanced hectares/production volume.

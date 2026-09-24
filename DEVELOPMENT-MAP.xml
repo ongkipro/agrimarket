@@ -86,7 +86,7 @@
     </page>
     <page id="products.mix-match" url="/products/mix-match" route="src/routes/_authenticated/products/mix-match.tsx" source="src/features/products/mix-match-view.tsx" state="demo" layout="admin">
       <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>
-      <section id="products.mix-match.rules" source="src/features/products/mix-match-view.tsx">5 field synergy rules (Horti, Padi, Sawit, Jagung, Bawang) and universal tank-mix safety standards</section>
+      <section id="products.mix-match.playbook" source="src/features/products/mix-match-view.tsx">15-case Field Playbook Dictionary (symptoms, physiological root cause, weather trigger, prescription, recovery SLA), 4-SKU pairing matrix, 12-month action guide, tank dosage & acreage calculator, and universal tank-mix safety standards</section>
     </page>
     <page id="products.campaigns" url="/products/campaigns" route="src/routes/_authenticated/products/campaigns.tsx" source="src/features/products/campaigns-view.tsx" state="demo" layout="admin">
       <uses ref="sidebar"/><uses ref="header"/><uses ref="search"/><uses ref="theme"/><uses ref="configuration"/><uses ref="profile"/>

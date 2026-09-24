@@ -393,6 +393,18 @@
   - Author unit tests (`src/features/agri/products-catalog-data.test.ts`) verifying product data integrity, mix-match rules, and 15-month campaign schedule.
   - Author browser render tests (`src/features/products/products-render.test.tsx`).
   - Execute `pnpm run lint`, `pnpm test`, and `pnpm run build` (100% clean, 0 errors, 10/10 tests passed).
-
-
-
+- [x] **TASK-79:** Field Playbook Dictionary & Mix & Match Multi-Dimensional Overhaul (`src/features/products/mix-match-view.tsx` & `src/features/agri/`):
+  - Ingest 15 comprehensive plant issue diagnostic cases (`PB-HORTI-01` to `PB-TRANSPLANT-15`) covering symptoms, physiological root cause, weather triggers, product pairings, dosage per 16L & per Ha, application methods, interval, SLA recovery, tank safety, and Meta Ads hooks.
+  - Export `getFieldPlaybooks()` and `getFieldPlaybookById()` in `src/features/agri/data-provider.ts`.
+  - Overhaul `src/features/products/mix-match-view.tsx` with 5 interactive tabs:
+    1. `Kamus Masalah Tanaman`: Live text search & multi-facet filters (category, severity, crop).
+    2. `Matriks Sinergi Antar-Produk`: Interactive primary product selector & pair interaction breakdowns + 5 master protocols.
+    3. `Kalender Playbook Musiman`: 12-month selector with BMKG climate context & peaked issue filtering.
+    4. `Kalkulator Dosis & Kebutuhan Lahan`: Area / tank count calculation with packaging recommendations.
+    5. `Standar Keamanan Tangki Semprot`: Compatibility guidelines & 15-minute jar test protocol.
+  - Complete unit and browser tests with 100% pass rate (209/209 tests passed across 31 files).
+- [x] **TASK-80:** Zero-Malaysia Scrub, Deep Product Dossier Enrichment & High-Density UI/UX Overhaul:
+  - Scrub all Malaysian references (language, Johor/Sabah hubs, ad copy) and refocus 100% on Indonesian national corridors and secondary expansion hubs.
+  - Enrich 4 strategic SKUs with physical specifications (formulation type, color/odor, density, solution pH, solubility, shelf life, hazard class), cellular mode-of-action timeline (Hours 0-4 to Days 21-30), severity triage, 5-phase dosage protocols, packaging, CS decision trees, objection handling, and 6 agronomic FAQs.
+  - UI/UX overhaul removing "AI slop" and card fatigue: cut `<Card>` count from 70 to 10 in `product-detail-view.tsx`, replace nested boxes with high-density responsive schedule tables (dosage & severity), TDS Certificate of Analysis grid, unified scope comparison, and sleek search/filter toolbar in `mix-match-view.tsx`.
+  - 100% test pass (31 files, 209 tests), lint clean, and verified production build.

@@ -92,7 +92,7 @@ describe('Products Catalog Views (Browser Mode)', () => {
       .toBeInTheDocument()
   })
 
-  it('renders MixMatchView with synergy matrix and tank-mix safety guidelines', async () => {
+  it('renders MixMatchView with field playbook dictionary, tabs, and diagnostic cards', async () => {
     const { getByText } = await render(
       <SidebarProvider>
         <MixMatchView />
@@ -101,25 +101,49 @@ describe('Products Catalog Views (Browser Mode)', () => {
 
     // Header
     await expect
-      .element(getByText(/Matriks Sinergi & Panduan Mix & Match Antar-Produk/i))
-      .toBeInTheDocument()
-
-    // Rules
-    await expect
-      .element(getByText(/Rotasi Musim Penuh \(Vegetatif ke Generatif\)/i))
-      .toBeInTheDocument()
-    await expect
-      .element(getByText(/Rotasi Anakan Maksimal ke Pengisian Bulir Bernas/i))
-      .toBeInTheDocument()
-    await expect
       .element(
-        getByText(/Sanitasi & Pemulihan Pokok Terpapar Jamur Ganoderma/i)
+        getByText(/Kamus Playbook Lapangan & Matriks Sinergi Mix & Match/i)
       )
       .toBeInTheDocument()
 
-    // Universal Tank-Mix Safety Guidelines
+    // Tabs
     await expect
-      .element(getByText(/Standar Operasional Pencampuran Tangki/i))
+      .element(getByText(/Kamus Masalah Tanaman/i).first())
+      .toBeInTheDocument()
+    await expect
+      .element(getByText(/Matriks Sinergi Antar-Produk/i))
+      .toBeInTheDocument()
+    await expect
+      .element(getByText(/Kalender Playbook Musiman/i))
+      .toBeInTheDocument()
+    await expect
+      .element(getByText(/Kalkulator Dosis & Kebutuhan Lahan/i))
+      .toBeInTheDocument()
+    await expect
+      .element(getByText(/Standar Keamanan Tangki Semprot/i))
+      .toBeInTheDocument()
+
+    // Diagnostic Problem Cards (Initial Tab)
+    await expect
+      .element(
+        getByText(
+          /Daun Keriting, Mandek & Klorosis Kuning Pasca Cuaca Ekstrem/i
+        )
+      )
+      .toBeInTheDocument()
+    await expect
+      .element(
+        getByText(/Patek Antraknosa Buah Busuk & Kulit Lembek Musim Rendeng/i)
+      )
+      .toBeInTheDocument()
+    await expect
+      .element(getByText(/Dosis per Tangki 16 Liter/i).first())
+      .toBeInTheDocument()
+    await expect
+      .element(getByText(/SLA Pemulihan Visual/i).first())
+      .toBeInTheDocument()
+    await expect
+      .element(getByText(/Playbook Edukasi Kios & Hook Iklan Meta Ads/i).first())
       .toBeInTheDocument()
   })
 
