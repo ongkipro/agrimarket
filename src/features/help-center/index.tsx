@@ -251,6 +251,7 @@ export function HelpCenter() {
               Catatan pembaruan berkala fitur operasional, dataset BPS, perbaikan bug, dan optimasi performa
             </p>
           </div>
+        </div>
         <div className='ms-auto flex items-center gap-2 shrink-0'>
           <Search className='hidden sm:flex' />
           <ThemeSwitch />
