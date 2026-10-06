@@ -3,9 +3,9 @@ import {
   BadgeCheck,
   Bell,
   ChevronsUpDown,
-  CreditCard,
+  Palette,
   LogOut,
-  Sparkles,
+  ShieldCheck,
 } from 'lucide-react'
 import { getDisplayNameInitials } from '@/lib/utils'
 import useDialogState from '@/hooks/use-dialog-state'
@@ -84,9 +84,11 @@ export function NavUser({ user }: NavUserProps) {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <Sparkles />
-                  Upgrade to Pro
+                <DropdownMenuItem asChild>
+                  <Link to='/audit'>
+                    <ShieldCheck className='text-emerald-600' />
+                    Gate-0 BPS Verified
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
@@ -98,9 +100,9 @@ export function NavUser({ user }: NavUserProps) {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to='/settings'>
-                    <CreditCard />
-                    Billing
+                  <Link to='/settings/appearance'>
+                    <Palette />
+                    Appearance
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

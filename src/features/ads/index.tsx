@@ -314,8 +314,14 @@ export function AdsGrowthEngine() {
   return (
     <>
       <Header fixed>
-        <Search />
-        <div className='ml-auto flex items-center space-x-4'>
+        <div className='flex items-center gap-2 me-auto min-w-0'>
+          <Megaphone className='h-5 w-5 text-indigo-600 dark:text-indigo-400 shrink-0' />
+          <span className='font-bold tracking-tight text-sm sm:text-base truncate'>
+            Agricultural Digital Acquisition & Ads Intelligence
+          </span>
+        </div>
+        <div className='ms-auto flex items-center gap-2 shrink-0'>
+          <Search className='hidden sm:flex' />
           <ThemeSwitch />
           <ProfileDropdown />
         </div>

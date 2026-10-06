@@ -251,10 +251,11 @@ export function HelpCenter() {
               Catatan pembaruan berkala fitur operasional, dataset BPS, perbaikan bug, dan optimasi performa
             </p>
           </div>
+        <div className='ms-auto flex items-center gap-2 shrink-0'>
+          <Search className='hidden sm:flex' />
+          <ThemeSwitch />
+          <ProfileDropdown />
         </div>
-        <Search className='hidden sm:flex' />
-        <ThemeSwitch />
-        <ProfileDropdown />
       </Header>
 
       <Main className='flex flex-1 flex-col gap-5 sm:gap-6 p-4 sm:p-6 pb-16'>

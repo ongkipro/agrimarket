@@ -66,8 +66,8 @@ export function CommodityQuickTable() {
             <TableBody>
               {commodities.map((crop) => {
                 return (
-                  <TableRow key={crop.id} className='hover:bg-muted/40 transition-colors'>
-                    <TableCell className='font-medium sticky left-0 bg-background z-10 border-r shadow-xs py-3 sm:py-2.5'>
+                  <TableRow key={crop.id} className='group/row hover:bg-muted/40 transition-colors'>
+                    <TableCell className='font-medium sticky left-0 bg-background group-hover/row:bg-muted/50 z-10 border-r shadow-xs py-3 sm:py-2.5 transition-colors'>
                       <Link to='/commodities' search={{ crop: crop.id }} className='hover:underline block'>
                         <div className='font-semibold text-foreground'>{crop.name}</div>
                         <div className='text-[11px] text-muted-foreground italic'>

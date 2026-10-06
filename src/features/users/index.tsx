@@ -1,5 +1,5 @@
 import { getRouteApi } from '@tanstack/react-router'
-import { ConfigDrawer } from '@/components/config-drawer'
+import { Users as UsersIcon } from 'lucide-react'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
@@ -20,10 +20,17 @@ export function Users() {
   return (
     <UsersProvider>
       <Header fixed>
-        <Search className='me-auto' />
-        <ThemeSwitch />
-        <ConfigDrawer />
-        <ProfileDropdown />
+        <div className='flex items-center gap-2 me-auto min-w-0'>
+          <UsersIcon className='h-5 w-5 text-muted-foreground shrink-0' />
+          <span className='font-bold tracking-tight text-sm sm:text-base truncate'>
+            User Management & Role Permissions
+          </span>
+        </div>
+        <div className='ms-auto flex items-center gap-2 shrink-0'>
+          <Search className='hidden sm:flex' />
+          <ThemeSwitch />
+          <ProfileDropdown />
+        </div>
       </Header>
 
       <Main className='flex flex-1 flex-col gap-4 sm:gap-6'>

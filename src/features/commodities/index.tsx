@@ -382,8 +382,7 @@ export function CommoditiesExplorer() {
                   <Table>
                     <TableHeader className='sticky top-0 bg-card z-20'>
                       <TableRow className='bg-muted/50 text-xs font-semibold'>
-                        <TableHead className='w-[60px]'>Code</TableHead>
-                        <TableHead className='sticky left-0 bg-background z-20 border-r shadow-xs min-w-[120px]'>Provinsi</TableHead>
+                        <TableHead className='sticky left-0 bg-background z-20 border-r shadow-xs min-w-[150px]'>Provinsi</TableHead>
                         <TableHead className='text-right'>Harvest Area (Ha)</TableHead>
                         <TableHead className='text-right'>Production (Ton)</TableHead>
                         <TableHead className='text-right'>Yield (Ton/Ha)</TableHead>
@@ -394,12 +393,12 @@ export function CommoditiesExplorer() {
                     </TableHeader>
                     <TableBody>
                       {selectedCrop.provincial_data.map((prov) => (
-                        <TableRow key={prov.province_code} className='hover:bg-muted/40 transition-colors'>
-                          <TableCell className='font-mono text-xs text-muted-foreground'>
-                            {prov.province_code}
-                          </TableCell>
-                          <TableCell className='font-semibold text-xs text-foreground sticky left-0 bg-background z-10 border-r shadow-xs min-w-[120px]'>
-                            {prov.province_name}
+                        <TableRow key={prov.province_code} className='group/row hover:bg-muted/40 transition-colors'>
+                          <TableCell className='font-semibold text-xs text-foreground sticky left-0 bg-background group-hover/row:bg-muted/50 z-10 border-r shadow-xs min-w-[150px] transition-colors'>
+                            <div className='flex items-center gap-1.5'>
+                              <span className='font-mono text-[11px] text-muted-foreground w-5 shrink-0'>{prov.province_code}</span>
+                              <span className='truncate'>{prov.province_name}</span>
+                            </div>
                           </TableCell>
                           <TableCell className='text-right font-mono text-xs'>
                             {formatHa(prov.harvest_area_ha)}

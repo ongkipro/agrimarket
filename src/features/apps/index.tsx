@@ -1,6 +1,6 @@
 import { type ChangeEvent, useState } from 'react'
 import { getRouteApi } from '@tanstack/react-router'
-import { SlidersHorizontal, ArrowUpAZ, ArrowDownAZ } from 'lucide-react'
+import { SlidersHorizontal, ArrowUpAZ, ArrowDownAZ, LayoutGrid } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -11,7 +11,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { ConfigDrawer } from '@/components/config-drawer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
@@ -85,10 +84,17 @@ export function Apps() {
     <>
       {/* ===== Top Heading ===== */}
       <Header>
-        <Search className='me-auto' />
-        <ThemeSwitch />
-        <ConfigDrawer />
-        <ProfileDropdown />
+        <div className='flex items-center gap-2 me-auto min-w-0'>
+          <LayoutGrid className='h-5 w-5 text-muted-foreground shrink-0' />
+          <span className='font-bold tracking-tight text-sm sm:text-base truncate'>
+            Integrations & App Ecosystem
+          </span>
+        </div>
+        <div className='ms-auto flex items-center gap-2 shrink-0'>
+          <Search className='hidden sm:flex' />
+          <ThemeSwitch />
+          <ProfileDropdown />
+        </div>
       </Header>
 
       {/* ===== Content ===== */}

@@ -243,9 +243,17 @@ function TasksContent() {
   return (
     <>
       <Header fixed>
-        <Search className='me-auto' />
-        <ThemeSwitch />
-        <ProfileDropdown />
+        <div className='flex items-center gap-2 me-auto min-w-0'>
+          <ListTodo className='h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0' />
+          <span className='font-bold tracking-tight text-sm sm:text-base truncate'>
+            Field Operations & Agronomist Tasks
+          </span>
+        </div>
+        <div className='ms-auto flex items-center gap-2 shrink-0'>
+          <Search className='hidden sm:flex' />
+          <ThemeSwitch />
+          <ProfileDropdown />
+        </div>
       </Header>
 
       <Main className='flex flex-1 flex-col gap-5 sm:gap-6 pb-12'>

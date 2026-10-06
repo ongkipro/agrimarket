@@ -20,6 +20,7 @@ import {
   Users,
   Compass,
   Activity,
+  Package,
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -31,7 +32,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ConfigDrawer } from '@/components/config-drawer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
@@ -85,10 +85,15 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
   return (
     <>
       <Header fixed>
-        <Search />
-        <div className='ms-auto flex items-center space-x-4'>
+        <div className='flex items-center gap-2 me-auto min-w-0'>
+          <Package className='h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0' />
+          <span className='font-bold tracking-tight text-sm sm:text-base truncate'>
+            {product.name} — {product.subtitle}
+          </span>
+        </div>
+        <div className='ms-auto flex items-center gap-2 shrink-0'>
+          <Search className='hidden sm:flex' />
           <ThemeSwitch />
-          <ConfigDrawer />
           <ProfileDropdown />
         </div>
       </Header>

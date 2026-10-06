@@ -39,6 +39,11 @@ export function Dashboard() {
       {/* ===== Top Heading ===== */}
       <Header>
         <TopNav links={topNav} className='me-auto' />
+        <div className='flex items-center gap-2 me-auto min-w-0 lg:hidden'>
+          <span className='font-bold tracking-tight text-sm truncate'>
+            Agrimarket Telemetry
+          </span>
+        </div>
         <div className='ms-auto flex items-center gap-2 shrink-0'>
           <Search className='hidden sm:flex' />
           <ThemeSwitch />

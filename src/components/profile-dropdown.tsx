@@ -23,17 +23,17 @@ export function ProfileDropdown() {
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' className='relative h-8 w-8 rounded-full'>
             <Avatar className='h-8 w-8'>
-              <AvatarImage src='/avatars/01.png' alt='Demo Admin' />
-              <AvatarFallback>DA</AvatarFallback>
+              <AvatarImage src='/avatars/01.png' alt='Agrimarket Lead' />
+              <AvatarFallback>AL</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className='w-56' align='end' forceMount>
           <DropdownMenuLabel className='font-normal'>
             <div className='flex flex-col gap-1.5'>
-              <p className='text-sm leading-none font-medium'>Demo Admin</p>
+              <p className='text-sm leading-none font-medium'>Agrimarket Lead</p>
               <p className='text-xs leading-none text-muted-foreground'>
-                demo@example.com
+                admin@agritani.com
               </p>
             </div>
           </DropdownMenuLabel>
@@ -46,18 +46,23 @@ export function ProfileDropdown() {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to='/settings'>
-                Billing
-                <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+              <Link to='/settings/account'>
+                Account
+                <DropdownMenuShortcut>⌘A</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to='/settings'>
-                Settings
-                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+              <Link to='/settings/appearance'>
+                Appearance
+                <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>New Team</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to='/settings/notifications'>
+                Notifications
+                <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant='destructive' onClick={() => setOpen(true)}>

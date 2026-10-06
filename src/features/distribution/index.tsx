@@ -209,8 +209,7 @@ export function DistributionNetwork() {
               <Table className='min-w-[860px]'>
                 <TableHeader className='sticky top-0 bg-card z-20'>
                   <TableRow className='bg-muted/50 text-xs font-semibold'>
-                    <TableHead className='w-[60px]'>Code</TableHead>
-                    <TableHead className='sticky left-0 bg-background z-20 border-r shadow-xs min-w-[130px]'>Provinsi</TableHead>
+                    <TableHead className='sticky left-0 bg-background z-20 border-r shadow-xs min-w-[150px]'>Provinsi</TableHead>
                     <TableHead className='text-right'>KPL Subsidi Resmi</TableHead>
                     <TableHead className='text-right'>Total Kios (KPL+Komersial)</TableHead>
                     <TableHead className='text-right'>BPP Centers</TableHead>
@@ -224,9 +223,13 @@ export function DistributionNetwork() {
                   {filteredRows.map((prov) => {
                     const sharePct = ((prov.totalKiosksCount / totalAllKiosks) * 100).toFixed(2)
                     return (
-                      <TableRow key={prov.code} className='hover:bg-muted/40 transition-colors text-xs'>
-                        <TableCell className='font-mono text-muted-foreground'>{prov.code}</TableCell>
-                        <TableCell className='font-semibold text-foreground sticky left-0 bg-background z-10 border-r shadow-xs min-w-[130px] py-3 sm:py-2.5'>{prov.name}</TableCell>
+                      <TableRow key={prov.code} className='group/row hover:bg-muted/40 transition-colors text-xs'>
+                        <TableCell className='font-semibold text-foreground sticky left-0 bg-background group-hover/row:bg-muted/50 z-10 border-r shadow-xs min-w-[150px] py-2.5 transition-colors'>
+                          <div className='flex items-center gap-1.5'>
+                            <span className='font-mono text-[11px] text-muted-foreground w-5 shrink-0'>{prov.code}</span>
+                            <span className='truncate'>{prov.name}</span>
+                          </div>
+                        </TableCell>
                         <TableCell className='text-right font-mono text-emerald-600 dark:text-emerald-400 font-semibold'>
                           {prov.subsidizedKpl.toLocaleString('id-ID')}
                         </TableCell>

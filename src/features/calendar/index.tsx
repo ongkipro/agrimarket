@@ -379,37 +379,39 @@ export function CroppingCalendar() {
         {/* YEAR SELECTION TOGGLE & AGRO-CLIMATE INTEGRATION BANNER */}
         <div className='space-y-2.5'>
           <div className='flex flex-wrap items-center justify-between gap-2'>
-            <div className='inline-flex rounded-lg border border-border bg-muted/40 p-1'>
-              <button
-                onClick={() => setYearMode('2026_EL_NINO')}
-                className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
-                  yearMode === '2026_EL_NINO'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                Tahun Ini: 2026 (El Niño Aktif &amp; Kemunduran Musim Tanam)
-              </button>
-              <button
-                onClick={() => setYearMode('2027_PROJECTED')}
-                className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
-                  yearMode === '2027_PROJECTED'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                Tahun Depan: 2027 (Proyeksi Normalisasi &amp; La Niña)
-              </button>
-              <button
-                onClick={() => setYearMode('CLIMATOLOGICAL_NORMAL')}
-                className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
-                  yearMode === 'CLIMATOLOGICAL_NORMAL'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                Normal Klimatologis (Standar BPS)
-              </button>
+            <div className='w-full overflow-x-auto no-scrollbar pb-1 sm:w-auto'>
+              <div className='inline-flex min-w-max rounded-lg border border-border bg-muted/40 p-1'>
+                <button
+                  onClick={() => setYearMode('2026_EL_NINO')}
+                  className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
+                    yearMode === '2026_EL_NINO'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  Tahun Ini: 2026 (El Niño Aktif &amp; Kemunduran Musim Tanam)
+                </button>
+                <button
+                  onClick={() => setYearMode('2027_PROJECTED')}
+                  className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
+                    yearMode === '2027_PROJECTED'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  Tahun Depan: 2027 (Proyeksi Normalisasi &amp; La Niña)
+                </button>
+                <button
+                  onClick={() => setYearMode('CLIMATOLOGICAL_NORMAL')}
+                  className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
+                    yearMode === 'CLIMATOLOGICAL_NORMAL'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  Normal Klimatologis (Standar BPS)
+                </button>
+              </div>
             </div>
 
             <Link

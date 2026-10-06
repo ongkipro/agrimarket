@@ -7,6 +7,7 @@ import {
   Store,
   Compass,
   MapPin,
+  CalendarClock,
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -17,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ConfigDrawer } from '@/components/config-drawer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
@@ -80,10 +80,15 @@ export function CampaignsView() {
   return (
     <>
       <Header fixed>
-        <Search />
-        <div className='ms-auto flex items-center space-x-4'>
+        <div className='flex items-center gap-2 me-auto min-w-0'>
+          <CalendarClock className='h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0' />
+          <span className='font-bold tracking-tight text-sm sm:text-base truncate'>
+            Kalender Kampanye Komersial Iklim 15-Bulan (2026–2027)
+          </span>
+        </div>
+        <div className='ms-auto flex items-center gap-2 shrink-0'>
+          <Search className='hidden sm:flex' />
           <ThemeSwitch />
-          <ConfigDrawer />
           <ProfileDropdown />
         </div>
       </Header>
