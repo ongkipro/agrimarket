@@ -1,6 +1,10 @@
 /**
  * BMKG & KATAM Agro-Climatic Intelligence Dataset
  *
+ * DEMO DATA: static, illustrative values for the UI reference. They are not live or official BMKG/NOAA
+ * telemetry and must not be republished as facts. Official figures as of 2026-10-13 differ (BMKG: El Niño
+ * very strong, Niño3.4 +3.33, IOD +0.703). Consumers needing real data must cite BMKG/NOAA/BPS directly.
+ *
  * Sources & Methodological Standards:
  * - Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) - Basis ZOM9120 (Normal 1991-2020)
  * - Sistem Informasi Kalender Tanam Terpadu (SI Katam Terpadu) - Kementerian Pertanian / BSIP
