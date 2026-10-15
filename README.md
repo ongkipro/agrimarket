@@ -40,7 +40,7 @@ Platform intelijen pasar pertanian strategis Indonesia berbasis data sensus resm
    - Panduan Glosarium Teknis 11 Fase Budidaya dan tindakan kritis lapang.
    - Dynamic Monthly Commercial Selling Opportunities & Lead-Time Booking Kios KPL.
 4. **Agro-Climatic Intelligence & BMKG Weather Outlook (`/climate`)**
-   - Telemetri iklim makro: Status ENSO Nino 3.4 (+1.68°C El Niño Kuat), IOD (+0.76°C Positif), Dinamika Monsun Australia vs Asia, dan 61,08% ZOM mundur.
+   - Telemetri iklim makro (data demo statis, bukan telemetri BMKG langsung): Status ENSO Nino 3.4 (+1.68°C El Niño Kuat), IOD (+0.76°C Positif), Dinamika Monsun Australia vs Asia, dan 61,08% ZOM mundur. Sebagai pembanding, rilis resmi BMKG per 13 Oktober 2026: El Niño intensitas sangat kuat (Niño3.4 +3,33), IOD +0,703, dan awal musim hujan mundur di 529 ZOM (61,08% luas daratan). Jangan gunakan angka demo ini sebagai data resmi.
    - Sebaran onset awal musim hujan 2026/2027 pada 699 Zona Musim (ZOM) seluruh Indonesia.
    - Drilldown 6 Koridor Agroklimat Regional (Jawa, Sumatera, Bali-Nusra, Sulawesi, Kalimantan, Maluku-Papua) dengan data hari tanpa hujan (HTH) dan kapasitas tampung waduk/embung.
    - Proyeksi multi-model ENSO 2027 (peluruhan El Niño di Q1 2027, fase netral 72% di Q2 2027, dan potensi La Niña lemah 58% di semester 2 2027).
